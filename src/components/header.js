@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 
 export default function Header(){
     return(
@@ -7,8 +7,8 @@ export default function Header(){
             <h1>FavorEats</h1>
             <nav>
                 <ul>
-                    <li><a href="#">Sign Up</a></li>
-                    <li><a href="#">Login</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                    <li><a href="/login">Login</a></li>
                 </ul>
             </nav>
         </div>
