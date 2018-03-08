@@ -8,7 +8,7 @@ import './App.css';
 
 import LandingPage from './components/landing-page';
 import LoginForm from './components/login-form';
-import RegistrationForm from './components/registration-form';
+import RegistrationPage from './components/registration-page';
 import HomePage from './components/home-page';
 import RestaurantInfo from './components/restaurant-info';
 import DishInfo from './components/dish-info';
@@ -21,7 +21,7 @@ export class App extends Component {
         <div>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/login" component={LoginForm} />
-          <Route exact path="/signup" component={RegistrationForm} />
+          <Route exact path="/signup" component={RegistrationPage} />
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/restaurant/:restaurantId" component={RestaurantInfo} />
           <Route exact path="/restaurant/:restaurantId/dishes" component={DishesList} />
@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
   hasAuthToken: state.auth.authToken !== null,
   loggedIn: state.auth.currentUser !== null
 });
-export default (connect(mapStateToProps)(App));
+export default connect(mapStateToProps)(App);
