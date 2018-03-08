@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 
@@ -13,22 +14,26 @@ import RestaurantInfo from './components/restaurant-info';
 import DishInfo from './components/dish-info';
 import DishesList from './components/dishes-list';
 
-class App extends Component {
+export class App extends Component {
   render() {
     return (
       <Router>
         <div>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={LoginForm} />
-        <Route exact path="/signup" component={RegistrationForm} />
-        <Route exact path="/home" component={HomePage} />
-        <Route exact path="/restaurant/:restaurantId" component={RestaurantInfo} />
-        <Route exact path="/restaurant/:restaurantId/dishes" component={DishesList} />
-        <Route exact path="/restaurant/:restaurantId/dish/:dishId" component={DishInfo} />
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/login" component={LoginForm} />
+          <Route exact path="/signup" component={RegistrationForm} />
+          <Route exact path="/home" component={HomePage} />
+          <Route exact path="/restaurant/:restaurantId" component={RestaurantInfo} />
+          <Route exact path="/restaurant/:restaurantId/dishes" component={DishesList} />
+          <Route exact path="/restaurant/:restaurantId/dish/:dishId" component={DishInfo} />
         </div>   
       </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  hasAuthToken: state.auth.authToken !== null,
+  loggedIn: state.auth.currentUser !== null
+});
+export default (connect(mapStateToProps)(App));
