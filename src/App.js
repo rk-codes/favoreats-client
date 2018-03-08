@@ -14,7 +14,7 @@ import RestaurantInfo from './components/restaurant-info';
 import DishInfo from './components/dish-info';
 import DishesList from './components/dishes-list';
 
-export class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <Router>
@@ -32,4 +32,4 @@ export class App extends Component {
   }
 }
 
-export default connect()(App);
+
