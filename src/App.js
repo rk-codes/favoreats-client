@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, withRouter} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 
