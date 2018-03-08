@@ -13,6 +13,9 @@ import HomePage from './components/home-page';
 import RestaurantInfo from './components/restaurant-info';
 import DishInfo from './components/dish-info';
 import DishesList from './components/dishes-list';
+import AddRestaurantForm from './components/add-restaurant-form';
+import AddDishForm from './components/add-dish-form';
+import DishReviewsList from './components/dish-reviews-list';
 
 export default class App extends Component {
   render() {
@@ -23,9 +26,12 @@ export default class App extends Component {
           <Route exact path="/login" component={LoginForm} />
           <Route exact path="/signup" component={RegistrationPage} />
           <Route exact path="/home" component={HomePage} />
-          <Route exact path="/restaurant/:restaurantId" component={RestaurantInfo} />
-          <Route exact path="/restaurant/:restaurantId/dishes" component={DishesList} />
-          <Route exact path="/restaurant/:restaurantId/dish/:dishId" component={DishInfo} />
+          <Route exact path="/restaurants/:restaurantId" component={RestaurantInfo} />
+          <Route exact path="/restaurants/:restaurantId/dishes" component={DishesList} />
+          <Route exact path="/restaurants/:restaurantId/dishes/:dishId" component={DishInfo} />
+          <Route exact path="/restaurants/:restaurantId/dishes/:dishId/reviews" component={DishReviewsList} />
+          <Route exact path="/addrestaurant" component={AddRestaurantForm} />
+          <Route exact path="/restaurants/:restaurantId/dishes/adddish" component={AddDishForm} />
         </div>   
       </Router>
     );
