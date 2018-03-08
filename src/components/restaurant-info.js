@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import DishesList from './dishes-list';
-
 
 export default function RestaurantInfo(props) {
     return(
