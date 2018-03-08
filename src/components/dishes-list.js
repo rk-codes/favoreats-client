@@ -4,10 +4,12 @@ import DishInfo from './dish-info';
 
 export default function DishesList() {
     const data = [{
+        dishId: '1',
         name: 'Xyz',
         rating: '3'
     },
     {
+        dishId: '2',
         name: 'Bcd',
         rating: '5'
     }
