@@ -16,6 +16,7 @@ import DishesList from './components/dishes-list';
 import AddRestaurantForm from './components/add-restaurant-form';
 import AddDishForm from './components/add-dish-form';
 import DishReviewsList from './components/dish-reviews-list';
+import AddDishReviewForm from './components/add-dish-review-form';
 
 export default class App extends Component {
   render() {
@@ -30,6 +31,7 @@ export default class App extends Component {
           <Route exact path="/restaurants/:restaurantId/dishes" component={DishesList} />
           <Route exact path="/restaurants/:restaurantId/dishes/:dishId" component={DishInfo} />
           <Route exact path="/restaurants/:restaurantId/dishes/:dishId/reviews" component={DishReviewsList} />
+          <Route exact path="/restaurants/:restaurantId/dishes/:dishId/addreview" component={AddDishReviewForm} />
           <Route exact path="/addrestaurant" component={AddRestaurantForm} />
           <Route exact path="/restaurants/:restaurantId/dishes/adddish" component={AddDishForm} />
         </div>   
