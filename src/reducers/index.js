@@ -5,22 +5,34 @@ const initialState = {
         id: '1',
         name: 'ABC',
         location: 'San Francisco',
-        cuisine: 'American',
-        dishCount: '3' 
+        cuisine: 'Italian',
+        dishCount: '1',
+        dishes: [{
+            dishId: '1',
+            name: 'Xyz',
+            rating: '3'
+        }]
     },
     {
         id: '2',
         name: 'BCD',
         location: 'Las Vegas',
         cuisine: 'Mexican',
-        dishCount: '1' 
+        dishCount: '1',
+        dishes: [{
+            dishId: '2',
+            name: 'Bcd',
+            rating: '5'
+        }]
     }]
 }
 export const restaurantReducer = (state=initialState, action) => {
     if(action.type === actions.ADD_RESTAURANT) {
         console.log("Add restaurant reducer");
         //update state
-        return(Object.assign({}, state, action.restaurant));
+        return(Object.assign({}, state, {
+            restaurants: [...state.restaurants, action.restaurant] 
+        }));
     }
     return state;
 }
