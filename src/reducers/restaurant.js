@@ -1,38 +1,22 @@
 import * as actions from '../actions';
 
 const initialState = {
-    restaurants: [{
-        id: '1',
-        name: 'ABC',
-        location: 'San Francisco',
-        cuisine: 'Italian',
-        dishCount: '1',
-        dishes: [{
-            dishId: '1',
-            name: 'Xyz',
-            rating: '3'
-        }]
-    },
-    {
-        id: '2',
-        name: 'BCD',
-        location: 'Las Vegas',
-        cuisine: 'Mexican',
-        dishCount: '1',
-        dishes: [{
-            dishId: '2',
-            name: 'Bcd',
-            rating: '5'
-        }]
-    }]
+    restaurants: []
 }
 export default  (state=initialState, action) => {
-    if(action.type === actions.ADD_RESTAURANT) {
-        console.log("Add restaurant reducer");
-        //update state
-        return(Object.assign({}, state, {
-            restaurants: [...state.restaurants, action.restaurant] 
-        }));
+    console.log(action);
+    switch(action.type) {
+        case actions.ADD_RESTAURANT:
+         return(Object.assign({}, state, {
+             restaurants: [...state.restaurants, action.payload] 
+         }));
+     
+        case actions.FETCH_ALL_RESTAURANTS_SUCCESS: 
+            return(Object.assign({}, state, {
+                    restaurants: action.payload 
+                 }));
+        default: return state;
     }
-    return state;
+
+    
 }

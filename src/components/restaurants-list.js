@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import RestaurantInfo from './restaurant-info';
+import {fetchAllRestaurants} from '../actions';
 
 class  RestaurantsList extends React.Component {
-    constructor(props){
-        super(props);
+    // constructor(props){
+    //     super(props);
+    // }
+    componentDidMount() {
+        this.props.fetchAllRestaurants();
     }
-
     render() {
         const info = this.props.restaurants.map((item, index) =>
             <li key={index}>
@@ -32,4 +35,10 @@ const mapStateToProps = (state) => {
         restaurants: state.restaurant.restaurants
     }
 }
-export default connect(mapStateToProps)(RestaurantsList);
+const mapDispatchToProps = (dispatch) => {
+    return({
+        fetchAllRestaurants: () => dispatch(fetchAllRestaurants())
+    })
+   
+}
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsList);

@@ -1,7 +1,7 @@
 export const FETCH_ALL_RESTAURANTS_SUCCESS = 'FETCH_ALL_RESTAURANTS_SUCCESS';
 export const fetchAllRestaurantsSuccess = (data) => ({
     type: FETCH_ALL_RESTAURANTS_SUCCESS,
-    data
+    payload: data
 })
 export const FETCH_ALL_RESTAURANTS_ERROR = 'FETCH_ALL_RESTAURANTS_ERROR';
 export const fetchAllRestaurantsError = (error) => ({
@@ -10,10 +10,42 @@ export const fetchAllRestaurantsError = (error) => ({
 })
 
 //Get all restaurants from db
-export const fetchAllRestaurants = (dispatch) => ({
-    //API call to GET
+export const fetchAllRestaurants = () => dispatch => {
+    console.log("fetach all");
+     //API call to GET
     // fetch(`${API_BASE_URL/restaurants}`)
-})
+    const restaurants =  [{
+        id: '1',
+        name: 'ABC',
+        location: 'San Francisco',
+        cuisine: 'Italian',
+        dishCount: '1',
+        dishes: [{
+            dishId: '1',
+            name: 'Xyz',
+            rating: '3'
+        }]
+    },
+    {
+        id: '2',
+        name: 'BCD',
+        location: 'Las Vegas',
+        cuisine: 'Mexican',
+        dishCount: '1',
+        dishes: [{
+            dishId: '2',
+            name: 'Bcd',
+            rating: '5'
+        }]
+    }]
+    setTimeout(() => { 
+        console.log("success");
+        dispatch(fetchAllRestaurantsSuccess(restaurants))
+    }, 300);
+}
+   
+     
+
 
 //Add a new restaurant
 export const ADD_RESTAURANT = 'ADD_RESTAURANT';
@@ -21,7 +53,7 @@ export const addRestaurant = (restaurant) => ({
    //API call to POST
    // fetch(`${API_BASE_URL/restaurants}`)
     type: ADD_RESTAURANT,
-    restaurant
+    payload: restaurant
 })
 
 //Delete a restaurant
