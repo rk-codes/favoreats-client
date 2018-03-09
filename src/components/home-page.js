@@ -8,8 +8,7 @@ export default function HomePage() {
         <div>
             <Header />
             <h1>Home Page</h1>
-            <RestaurantsList />
-            <button>Add Restaurant</button>
+            <RestaurantsList />          
         </div>
     )
 }
