@@ -73,3 +73,14 @@ export const addDish = (dish) => ({
       // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId}`)
   })
  
+  //Add review to a dish
+  export const addDishReview = (review) => ({
+    //API call to POST
+     // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId/addreview}`)
+ })
+
+ //Get all reviews of a dish
+ export const fetchAllReviewsOfDish = (dispatch) => ({
+    //API call to GET
+    // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId/reviews}`)
+})
