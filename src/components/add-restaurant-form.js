@@ -50,3 +50,6 @@ export class AddRestaurantForm extends React.Component{
 export default reduxForm({
     form: 'addrestaurant'
 })(AddRestaurantForm);
+
+
+//Submit the form -> dispatch an action to add the restaurant data -> Redirect to the restaurants list page

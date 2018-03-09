@@ -6,6 +6,7 @@ import DishInfo from './dish-info';
 class DishesList extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         this.state = {
             dishes: [{
                 dishId: '1',
@@ -18,6 +19,12 @@ class DishesList extends React.Component {
                 rating: '5'
             }]
         }
+    }
+
+    onClick(){
+        console.log("Clicked");
+        //render add dish form
+    
     }
 
     render() {
@@ -34,7 +41,7 @@ class DishesList extends React.Component {
                 <ul>
                     {info}
                 </ul>
-                <button>Add dish</button>
+                <button onClick = {() => this.onClick()}>Add dish</button>
             </div>
         )
     }
@@ -42,8 +49,11 @@ class DishesList extends React.Component {
 }
 const mapStateToProps = (state) => {
     return{
-        dishes: {...state.dishes}
+        dishes: state.dishes
     }
 }
 
 export default connect(mapStateToProps)(DishesList);
+
+
+//Add dish clicked -> render add dish form -> rerender dishes list with the updated data 
