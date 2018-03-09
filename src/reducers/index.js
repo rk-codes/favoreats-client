@@ -20,6 +20,7 @@ export const restaurantReducer = (state=initialState, action) => {
     if(action.type === actions.ADD_RESTAURANT) {
         console.log("Add restaurant reducer");
         //update state
+        return(Object.assign({}, state, action.restaurant));
     }
     return state;
 }
