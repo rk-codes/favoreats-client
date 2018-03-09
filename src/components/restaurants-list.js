@@ -6,26 +6,10 @@ import RestaurantInfo from './restaurant-info';
 class  RestaurantsList extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            restaurants: [{
-                id: '1',
-                name: 'ABC',
-                location: 'San Francisco',
-                cuisine: 'American',
-                dishCount: '3' 
-            },
-            {
-                id: '2',
-                name: 'BCD',
-                location: 'Las Vegas',
-                cuisine: 'Mexican',
-                dishCount: '1' 
-            }]
-        }
     }
 
     render() {
-        const info = this.state.restaurants.map((item, index) =>
+        const info = this.props.restaurants.map((item, index) =>
             <li key={index}>
                 <RestaurantInfo {...item} />
             </li>
@@ -45,7 +29,7 @@ class  RestaurantsList extends React.Component {
 
 const mapStateToProps = (state) => {
     return{
-        restaurants: {...state.restaurants}
+        restaurants: state.restaurant.restaurants
     }
 }
 export default connect(mapStateToProps)(RestaurantsList);
