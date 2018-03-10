@@ -20,6 +20,7 @@ export default  (state=initialState, action) => {
         case actions.FETCH_ALL_DISHES_SUCCESS: 
                 let restaurant = state.restaurants[0];
                 console.log(restaurant);
+                return state;
                 //return Object.assign({}, restaurant,{dishes: action.payload})
             
             // return(Object.assign({}, state,  { 
