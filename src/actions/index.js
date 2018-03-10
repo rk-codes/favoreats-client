@@ -166,9 +166,9 @@ export const fetchAllDishes = () => dispatch =>{
 }
 
 //Add a new dish
-export const ADD_DIS_REVIEW_SUCCESS = 'ADD_DIS_REVIEW_SUCCESS';
+export const ADD_DISH_SUCCESS = 'ADD_DISH_SUCCESS';
 export const addDishSuccess = (data) => ({
-    type: ADD_DIS_REVIEW_SUCCESS,
+    type: ADD_DISH_SUCCESS,
     payload: data
 })
 export const ADD_DISH_ERROR = 'ADD_DISH_ERROR';
