@@ -29,7 +29,6 @@ export default  (state=initialState, action) => {
             // );
         case actions.DELETE_RESTAURANT_SUCCESS:
         case actions.EDIT_RESTAURANT_SUCCESS:
-        case actions: FETCH_ALL_DISHES_SUCCESS;
         case actions.ADD_DISH_SUCCESS:
         case actions.DELETE_DISH_SUCCESS:
         case actions.EDIT_DISH_SUCCESS:
