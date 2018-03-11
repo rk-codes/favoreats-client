@@ -33,12 +33,16 @@ export default  (state=initialState, action) => {
         case actions.FETCH_ALL_DISHES_SUCCESS: 
             console.log("Case: Fetach all dishes succes ");
             console.log(action.payload);
-            return Object.assign({}, state, {
+            return (Object.assign({}, state, {
                 restaurants: action.payload
-            } )
+            }))
      
         case actions.ADD_DISH_SUCCESS:
             console.log("Case: Add dish succes ");
+            return (Object.assign({}, state, {
+                restaurants: action.payload
+            }))
+
         case actions.DELETE_DISH_SUCCESS:
             console.log("Case: Delete dish succes ");
         case actions.EDIT_DISH_SUCCESS:
