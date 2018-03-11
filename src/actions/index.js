@@ -55,14 +55,14 @@ export const addRestaurantError = (error) => ({
     type: ADD_RESTAURANT_ERROR,
     payload: error
 })
-export const addRestaurant = () => (dispatch) => {
+export const addRestaurant = (item) => (dispatch) => {
    //API call to POST
    // fetch(`${API_BASE_URL/restaurants}`)
    const restaurant =  {
-        id: '1',
-        name: 'ABC',
-        location: 'San Francisco',
-        cuisine: 'Italian',
+        id: '4',
+        name: item.name,
+        location: item.location,
+        cuisine: item.cuisine,
         dishCount: '0'
     }
 
@@ -83,9 +83,10 @@ export const deleteRestaurantError = (error) => ({
     type: DELETE_RESTAURANT_ERROR,
     payload: error
 })
-export const deleteRestaurant = () => (dispatch) => {
+export const deleteRestaurant = (item) => (dispatch) => {
    //API call to DELETE
    // fetch(`${API_BASE_URL/restaurants/:restaurantId}`)
+   
    const restaurant =  {
         id: '1',
         name: 'ABC',
