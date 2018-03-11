@@ -2,7 +2,9 @@ import * as actions from '../actions';
 
 const initialState = {
     restaurants: [{
-        dishes: []
+        dishes: [{
+            reviews: []
+        }]
     }]
 }
 export default  (state=initialState, action) => {
@@ -45,12 +47,20 @@ export default  (state=initialState, action) => {
 
         case actions.DELETE_DISH_SUCCESS:
             console.log("Case: Delete dish succes ");
+            return state;
+
         case actions.EDIT_DISH_SUCCESS:
             console.log("Case: Edit dish succes ");
+            return state;
+
         case actions.ADD_DISH_REVIEW_SUCCESS:
             console.log("Case: Add dish review succes ");
+            return state;
+
         case actions.FETCH_ALL_REVIEWS_SUCCESS:
             console.log("Case: Fetch all dish reviews succes ");
+            return state;
+            
         default: return state;
     }
 
