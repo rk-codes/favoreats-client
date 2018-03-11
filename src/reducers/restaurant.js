@@ -19,26 +19,26 @@ export default  (state=initialState, action) => {
             return(Object.assign({}, state, {
                 restaurants: action.payload 
             }));
-        case actions.FETCH_ALL_DISHES_SUCCESS: 
-            console.log("Case: Fetach all dishes succes ");
-            let restaurant = state.restaurants[0];
-            console.log(restaurant);
-            return state;
-                //return Object.assign({}, restaurant,{dishes: action.payload})
-            
-            // return(Object.assign({}, state,  { 
-            //         dishes: action.payload
-            //      })
-               
-            // );
         case actions.DELETE_RESTAURANT_SUCCESS:
-            console.log("Case: Delete restaurant succes ");
-            const updatedRestaurants = state.restaurants.filter(restaurant => restaurant.id !== action.payload.id);
-            return(Object.assign({}, {restaurants: updatedRestaurants}));
+            console.log("Case: Delete restaurant succes ");      
+            return(Object.assign({}, {restaurants: state.restaurants.filter(restaurant => restaurant.id !== action.payload.id)}));
+
         case actions.EDIT_RESTAURANT_SUCCESS:
             console.log("Case: Edit restaurant succes ");
+            const filteredRestaurants = state.restaurants.filter(restaurant => restaurant.id !== action.payload.id);
+            return(Object.assign({}, state, {
+                restaurants: [...filteredRestaurants, action.payload] 
+            }));
+
+        case actions.FETCH_ALL_DISHES_SUCCESS: 
+            console.log("Case: Fetach all dishes succes ");
+            console.log(action.payload);
+            return Object.assign({}, state, {
+                restaurants: action.payload
+            } )
+     
         case actions.ADD_DISH_SUCCESS:
-        console.log("Case: Add dish succes ");
+            console.log("Case: Add dish succes ");
         case actions.DELETE_DISH_SUCCESS:
             console.log("Case: Delete dish succes ");
         case actions.EDIT_DISH_SUCCESS:

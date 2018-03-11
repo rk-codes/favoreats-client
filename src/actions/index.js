@@ -117,9 +117,9 @@ export const editRestaurant = () => (dispatch) => {
      // fetch(`${API_BASE_URL/restaurants/:restaurantId}`)
      const restaurant =  {
         id: '1',
-        name: 'XYY',
+        name: 'XYY Edited',
         location: 'San Francisco',
-        cuisine: 'Italian',
+        cuisine: 'Indian',
         dishCount: '2'
     }
 
@@ -133,9 +133,9 @@ export const editRestaurant = () => (dispatch) => {
  //Actions for managing dishes
 
 export const FETCH_ALL_DISHES_SUCCESS = 'FETCH_ALL_DISHES_SUCCESS';
-export const fetchAllDishesSuccess = (dishes) => ({
+export const fetchAllDishesSuccess = (restaurant) => ({
     type: FETCH_ALL_DISHES_SUCCESS,
-    payload: dishes
+    payload: restaurant
 })
 export const FETCH_ALL_DISHES_ERROR = 'FETCH_ALL_DISHES_ERROR';
 export const fetchAllDishesError = (error) => ({
@@ -149,20 +149,27 @@ export const fetchAllDishes = () => dispatch =>{
     // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes}`)
     console.log("fetach all");
    
-       const dishes = [{
+    const restaurant =  [{
+        id: '1',
+        name: 'ABC',
+        location: 'San Francisco',
+        cuisine: 'Italian',
+        dishCount: '1',
+        dishes: [{
             dishId: '1',
             name: 'Xyz',
             rating: '3'
         },
         {
-            dishId: '2',
-            name: 'Bcd',
-            rating: '5'
+            dishId: '3',
+            name: 'ddd',
+            rating: '4'
         }]
+    }]
         
     setTimeout(() => { 
         console.log("success");
-        dispatch(fetchAllDishesSuccess(dishes))
+        dispatch(fetchAllDishesSuccess(restaurant))
     }, 300);
 }
 

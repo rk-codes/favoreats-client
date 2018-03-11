@@ -15,7 +15,7 @@ class DishesList extends React.Component {
         this.props.fetchAllDishes();
     }
 
-    onClick(){
+    onAddClick(){
         console.log("Clicked");
         //render add dish form
     
@@ -23,27 +23,30 @@ class DishesList extends React.Component {
 
     render() {
         console.log(this.props.restaurants);
-        // const info = this.props.restaurants.dishes.map((item, index) =>
-        // <li key={index}>
-        //     <DishInfo {...item} />
-        // </li>
-        // )
+        console.log(this.props.restaurants.dishes); // undefined ?
+        let dishes;
+        const info = this.props.restaurants.map((restaurant,index) => {
+            dishes = restaurant.dishes.map((dish, index) => 
+                <li key={index}>
+                    <DishInfo {...dish} />
+                </li>
+            )
+         })
         return(
             <div className="dishes-list">
-                <h3>Restaurant Name</h3>
-                <p>Cuisine</p>
-                <span>Dishes count</span>
+                <h3>Restaurant Name: {this.props.restaurants.name}</h3>
+                <p>Cuisine: {this.props.restaurants.cuisine}</p>
+                <span>Dishes count: {this.props.restaurants.dishCount}</span>
                 <ul>
-                    
+                  {dishes}
                 </ul>
-                <button onClick = {() => this.onClick()}>Add dish</button>
+                <button onClick = {() => this.onAddClick()}>Add dish</button>
             </div>
         )
     }
    
 }
 const mapStateToProps = (state) => {
-    //console.log(state.restaurant.restaurants);
     return{
         restaurants: state.restaurant.restaurants
     }
