@@ -1,13 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
+import {deleteRestaurant} from '../actions';
 
-export default class RestaurantInfo extends React.Component {
+ class RestaurantInfo extends React.Component {
     // constructor(props) {
     //     super(props);
     // }
     onDelete(){
         console.log("Delete Clicked");
+        this.props.deleteRestaurant({restaurant:{}});
     }
     onEdit() {
         console.log("Edit Clicked");
@@ -26,5 +29,17 @@ export default class RestaurantInfo extends React.Component {
     }
    
 }
+const mapStateToProps = (state) => {
+    return{
+        restaurants: state.restaurant.restaurants
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return({
+        deleteRestaurant: () => dispatch(deleteRestaurant())
+    })
+   
+}
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantInfo);
 
 //Delete clicked -> dispatch action to delete the restaurant -> Redirect to the restaurants list page
