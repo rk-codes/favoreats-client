@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import RestaurantInfo from './restaurant-info';
 import {fetchAllRestaurants} from '../actions';
@@ -10,6 +10,11 @@ class  RestaurantsList extends React.Component {
     // }
     componentDidMount() {
         this.props.fetchAllRestaurants();
+    }
+
+    onAddClick() {
+        console.log("Add clicked");
+        //render the add-restaurant form
     }
     render() {
         const info = this.props.restaurants.map((item, index) =>
@@ -24,7 +29,7 @@ class  RestaurantsList extends React.Component {
                 <ul>
                     {info}
                 </ul>
-                <button>Add Restaurant</button>
+                <button onClick ={() => this.onAddClick()}>Add Restaurant</button>
             </div>
         )
     }
