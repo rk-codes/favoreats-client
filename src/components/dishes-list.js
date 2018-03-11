@@ -25,7 +25,7 @@ class DishesList extends React.Component {
         console.log(this.props.restaurants);
         console.log(this.props.restaurants.dishes); // undefined ?
         let dishes;
-        const info = this.props.restaurants.map((restaurant,index) => {
+        this.props.restaurants.map((restaurant) => {
             dishes = restaurant.dishes.map((dish, index) => 
                 <li key={index}>
                     <DishInfo {...dish} />
