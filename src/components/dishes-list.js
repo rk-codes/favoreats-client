@@ -25,13 +25,13 @@ class DishesList extends React.Component {
         console.log(this.props.restaurants);
         console.log(this.props.restaurants.dishes); // undefined ?
         let dishes;
-        this.props.restaurants.map((restaurant) => {
+        this.props.restaurants.map((restaurant) => 
             dishes = restaurant.dishes.map((dish, index) => 
                 <li key={index}>
                     <DishInfo {...dish} />
                 </li>
             )
-         })
+         )
         return(
             <div className="dishes-list">
                 <h3>Restaurant Name: {this.props.restaurants.name}</h3>
