@@ -9,6 +9,8 @@ export class AddRestaurantForm extends React.Component{
         console.log(values);
         //API call to POST new restaurant
         dispatch(addRestaurant(values));
+        this.props.history.push('/home');
+        
     }
     render() {
         let successMessage;
