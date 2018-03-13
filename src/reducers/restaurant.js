@@ -31,9 +31,8 @@ export default  (state=initialState, action) => {
 
         case actions.EDIT_RESTAURANT_SUCCESS:
             console.log("Case: Edit restaurant succes ");
-            const filteredRestaurants = state.restaurants.filter(restaurant => restaurant.id !== action.payload.id);
             return(Object.assign({}, state, {
-                restaurants: [...filteredRestaurants, action.payload] 
+                restaurants: [...action.payload] 
             }));
 
         case actions.FETCH_ALL_DISHES_SUCCESS: 

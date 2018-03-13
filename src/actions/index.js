@@ -141,17 +141,29 @@ export const editRestaurantError = (error) => ({
 export const editRestaurant = () => (dispatch) => {
     //API call to PUT
      // fetch(`${API_BASE_URL/restaurants/:restaurantId}`)
-     const restaurants =  {
+     const restaurants =  [{
         id: '1',
         name: 'XYY Edited',
         location: 'San Francisco',
         cuisine: 'Indian',
         dishCount: '2'
-    }
+    },
+    {
+        id: '2',
+        name: 'BCD',
+        location: 'Las Vegas',
+        cuisine: 'Mexican',
+        dishCount: '1',
+        dishes: [{
+            dishId: '2',
+            name: 'Bcd',
+            rating: '5'
+        }]
+    }]
 
     setTimeout(() => { 
         console.log("success");
-        dispatch(editRestaurantSuccess(restaurant))
+        dispatch(editRestaurantSuccess(restaurants))
     }, 300);
  }
 
