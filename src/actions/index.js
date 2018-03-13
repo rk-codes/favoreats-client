@@ -58,17 +58,40 @@ export const addRestaurantError = (error) => ({
 export const addRestaurant = (item) => (dispatch) => {
    //API call to POST
    // fetch(`${API_BASE_URL/restaurants}`)
-   const restaurant =  {
+   const restaurants =  [{
+       id: '1',
+       name: 'ABC',
+       location: 'San Francisco',
+       cuisine: 'Italian',
+       dishCount: '1',
+       dishes: [{
+           dishId: '1',
+           name: 'Xyz',
+           rating: '3'
+        }]
+    },
+    {
+        id: '2',
+        name: 'BCD',
+        location: 'Las Vegas',
+        cuisine: 'Mexican',
+        dishCount: '1',
+        dishes: [{
+            dishId: '2',
+            name: 'Bcd',
+            rating: '5'
+        }]
+    },
+    {
         id: '4',
         name: item.name,
         location: item.location,
         cuisine: item.cuisine,
         dishCount: '0'
-    }
-
+    }]
     setTimeout(() => { 
         console.log("success");
-        dispatch(addRestaurantSuccess(restaurant))
+        dispatch(addRestaurantSuccess(restaurants))
     }, 300);
 }
 
