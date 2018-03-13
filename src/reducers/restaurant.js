@@ -12,18 +12,22 @@ export default  (state=initialState, action) => {
     switch(action.type) {
         case actions.ADD_RESTAURANT_SUCCESS:
             console.log("Case: Add restaurant succes ");
+            console.log(state);
             return(Object.assign({}, state, {
-                restaurants: [...state.restaurants, action.payload] 
+                restaurants: [...action.payload] 
             }));
      
         case actions.FETCH_ALL_RESTAURANTS_SUCCESS: 
             console.log("Case: Fetch all restaurants succes ");
+            console.log(state);
             return(Object.assign({}, state, {
                 restaurants: action.payload 
             }));
         case actions.DELETE_RESTAURANT_SUCCESS:
             console.log("Case: Delete restaurant succes ");      
-            return(Object.assign({}, {restaurants: state.restaurants.filter(restaurant => restaurant.id !== action.payload.id)}));
+            return(Object.assign({}, state, {
+                restaurants: [...action.payload] 
+            }));
 
         case actions.EDIT_RESTAURANT_SUCCESS:
             console.log("Case: Edit restaurant succes ");

@@ -109,18 +109,21 @@ export const deleteRestaurantError = (error) => ({
 export const deleteRestaurant = (item) => (dispatch) => {
    //API call to DELETE
    // fetch(`${API_BASE_URL/restaurants/:restaurantId}`)
-   
-   const restaurant =  {
-        id: '1',
-        name: 'ABC',
-        location: 'San Francisco',
-        cuisine: 'Italian',
-        dishCount: '2'
-    }
+   const restaurants =  [{
+       id: '1',
+       name: 'ABC',
+       location: 'San Francisco',
+       cuisine: 'Italian',dishCount: '1',
+       dishes: [{
+           dishId: '1',
+           name: 'Xyz',
+           rating: '3'
+        }]
+    }]
 
     setTimeout(() => { 
         console.log("success");
-        dispatch(deleteRestaurantSuccess(restaurant))
+        dispatch(deleteRestaurantSuccess(restaurants))
     }, 300);
 }
 
@@ -138,7 +141,7 @@ export const editRestaurantError = (error) => ({
 export const editRestaurant = () => (dispatch) => {
     //API call to PUT
      // fetch(`${API_BASE_URL/restaurants/:restaurantId}`)
-     const restaurant =  {
+     const restaurants =  {
         id: '1',
         name: 'XYY Edited',
         location: 'San Francisco',
