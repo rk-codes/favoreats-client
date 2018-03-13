@@ -2,9 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {deleteRestaurant} from '../actions';
+import {deleteRestaurant, editRestaurant} from '../actions';
 
- class RestaurantInfo extends React.Component {
+class RestaurantInfo extends React.Component {
     // constructor(props) {
     //     super(props);
     // }
@@ -14,6 +14,7 @@ import {deleteRestaurant} from '../actions';
     }
     onEdit() {
         console.log("Edit Clicked");
+        this.props.editRestaurant();
     }
     render() {
         return(
@@ -36,7 +37,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return({
-        deleteRestaurant: () => dispatch(deleteRestaurant())
+        deleteRestaurant: () => dispatch(deleteRestaurant()),
+        editRestaurant: () => dispatch(editRestaurant())
     })
    
 }
