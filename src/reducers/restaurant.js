@@ -1,5 +1,5 @@
 import * as actions from '../actions';
-import {normalizeRestaurant} from '../utils/normalizer';
+import {normalizeRestaurant, normalizeDish} from '../utils/normalizer';
 
 const initialState = {
     restaurants: {},
@@ -53,15 +53,21 @@ export default  (state=initialState, action) => {
             console.log("Case: Fetch all restaurants succes ");
             console.log(state);
             let normalizedArray = [];
-            action.payload.forEach(restaurant => normalizedArray.push(normalizeRestaurant(restaurant)))
+            let normalizedDishes = [];
+            action.payload.forEach(restaurant => {
+                normalizedArray.push(normalizeRestaurant(restaurant));
+                restaurant.dishes.forEach(dish => normalizedDishes.push(normalizeDish(dish)))
+            })
             console.log(normalizedArray)
             let test = normalizedArray.map(item => item.restaurants)
-            console.log(test)
-            return(Object.assign({}, state, {
-                restaurants: Object.assign({}, state.restaurants, ...test),
-                dishes: {},
-                reviews: {} 
-            }));
+            
+            console.log(normalizedDishes)
+             return(Object.assign({}, state, {
+                 restaurants: Object.assign({}, state.restaurants, ...test),
+                 dishes: Object.assign({}, state.dishes, ...normalizedDishes),
+                 reviews: {}
+             }))
+            
         case actions.DELETE_RESTAURANT_SUCCESS:
             console.log("Case: Delete restaurant succes ");      
             return(Object.assign({}, state, {
@@ -77,12 +83,25 @@ export default  (state=initialState, action) => {
         case actions.FETCH_ALL_DISHES_SUCCESS: 
             console.log("Case: Fetach all dishes succes ");
             console.log(action.payload);
+            const restId = action.payload[0].restId;
+            const match = Object.keys(state.restaurants).find(key => key == restId);
+            console.log(state.restaurants[match])
+           // console.log(normalizeRestaurant(state.restaurants[match]))
+            let normalizedDishesData = [];
+            action.payload.forEach((dish) => normalizedDishesData.push(normalizeDish(dish)))
+
             return (Object.assign({}, state, {
-                restaurants: action.payload
+                restaurants: Object.assign({}, state.restaurants),
+                dishes: Object.assign({}, state.dishes, ...normalizedDishesData)
             }))
      
         case actions.ADD_DISH_SUCCESS:
             console.log("Case: Add dish succes ");
+            // const restId = action.payload.restId;
+            // console.log(restId);
+            // console.log(Object.keys(state.restaurants));
+            // const matchRestaurant = Object.keys(state.restaurants).find(key => key == restId)
+            // console.log(state.restaurants[matchRestaurant])
             return (Object.assign({}, state, {
                 restaurants: action.payload
             }))
