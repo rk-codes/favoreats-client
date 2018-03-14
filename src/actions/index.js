@@ -15,27 +15,25 @@ export const fetchAllRestaurants = () => dispatch => {
      //API call to GET
     // fetch(`${API_BASE_URL/restaurants}`)
     const restaurants =  [{
-        id: '1',
+        id: 1,
         name: 'ABC',
         location: 'San Francisco',
         cuisine: 'Italian',
-        dishCount: '1',
         dishes: [{
-            dishId: '1',
+            id: 1,
             name: 'Xyz',
-            rating: '3'
+            reviews: []
         }]
     },
     {
-        id: '2',
+        id: 2,
         name: 'BCD',
         location: 'Las Vegas',
         cuisine: 'Mexican',
-        dishCount: '1',
         dishes: [{
-            dishId: '2',
+            id: 2,
             name: 'Bcd',
-            rating: '5'
+           reviews: []
         }]
     }]
     setTimeout(() => { 
@@ -55,43 +53,19 @@ export const addRestaurantError = (error) => ({
     type: ADD_RESTAURANT_ERROR,
     payload: error
 })
-export const addRestaurant = (item) => (dispatch) => {
+export const addRestaurant = (restaurant) => (dispatch) => {
    //API call to POST
    // fetch(`${API_BASE_URL/restaurants}`)
-   const restaurants =  [{
-       id: '1',
-       name: 'ABC',
+   const restaurant =  {
+       id: 4,
+       name: 'DFF',
        location: 'San Francisco',
-       cuisine: 'Italian',
-       dishCount: '1',
-       dishes: [{
-           dishId: '1',
-           name: 'Xyz',
-           rating: '3'
-        }]
-    },
-    {
-        id: '2',
-        name: 'BCD',
-        location: 'Las Vegas',
-        cuisine: 'Mexican',
-        dishCount: '1',
-        dishes: [{
-            dishId: '2',
-            name: 'Bcd',
-            rating: '5'
-        }]
-    },
-    {
-        id: '4',
-        name: item.name,
-        location: item.location,
-        cuisine: item.cuisine,
-        dishCount: '0'
-    }]
+       cuisine: 'Indian',
+       dishes: []
+    }
     setTimeout(() => { 
         console.log("success");
-        dispatch(addRestaurantSuccess(restaurants))
+        dispatch(addRestaurantSuccess(restaurant))
     }, 300);
 }
 
