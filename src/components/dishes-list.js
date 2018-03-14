@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import DishInfo from './dish-info';
-import { fetchAllDishes } from '../actions';
+import { fetchAllDishes, addDish } from '../actions';
+import store from '../store';
 
 class DishesList extends React.Component {
     // constructor(props) {
@@ -18,20 +19,17 @@ class DishesList extends React.Component {
     onAddClick(){
         console.log("Clicked");
         //render add dish form
-    
+        console.log(this.props);
+        this.props.addDish(); //To be changed later to render add dish form
     }
 
     render() {
-        console.log(this.props.restaurants);
-        console.log(this.props.restaurants.dishes); // undefined ?
-        let dishes;
-        this.props.restaurants.map((restaurant) => 
-            dishes = restaurant.dishes.map((dish, index) => 
-                <li key={index}>
-                    <DishInfo {...dish} />
-                </li>
-            )
-         )
+        console.log(store.getState());
+        const dishes = Object.values(this.props.dishes).map((item,index) => 
+            <li key={index}>
+                <DishInfo {...item} />
+            </li>
+        )
         return(
             <div className="dishes-list">
                 <h3>Restaurant Name: {this.props.restaurants.name}</h3>
@@ -48,12 +46,14 @@ class DishesList extends React.Component {
 }
 const mapStateToProps = (state) => {
     return{
-        restaurants: state.restaurant.restaurants
+        restaurants: state.restaurant.restaurants,
+        dishes: state.restaurant.dishes
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return ({
-        fetchAllDishes: () => dispatch(fetchAllDishes())
+        fetchAllDishes: () => dispatch(fetchAllDishes()),
+        addDish: () => dispatch(addDish()) //To be moved to add dish form
     })
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DishesList);
