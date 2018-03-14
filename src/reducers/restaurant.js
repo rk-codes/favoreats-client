@@ -1,4 +1,5 @@
 import * as actions from '../actions';
+import {union} from 'lodash';
 import {normalizeRestaurant, normalizeDish} from '../utils/normalizer';
 
 const initialState = {
@@ -41,7 +42,7 @@ export default  (state=initialState, action) => {
     switch(action.type) {
         case actions.ADD_RESTAURANT_SUCCESS:
             console.log("Case: Add restaurant succes ");
-            console.log(state);
+            //console.log(state);
             const normalizedData = normalizeRestaurant(action.payload);
             return(Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, normalizedData.restaurants),
@@ -51,17 +52,17 @@ export default  (state=initialState, action) => {
      
         case actions.FETCH_ALL_RESTAURANTS_SUCCESS: 
             console.log("Case: Fetch all restaurants succes ");
-            console.log(state);
+            //console.log(state);
             let normalizedArray = [];
             let normalizedDishes = [];
             action.payload.forEach(restaurant => {
                 normalizedArray.push(normalizeRestaurant(restaurant)); //normalize each restaurant in the api response and add them to a new array 
-                restaurant.dishes.forEach(dish => normalizedDishes.push(normalizeDish(dish)))
+                restaurant.dishes.forEach(dish => normalizedDishes.push(normalizeDish(dish))) //change to map
             })
-            console.log(normalizedArray)
+           // console.log(normalizedArray)
             let restaurants = normalizedArray.map(item => item.restaurants) //get the values of 'restaurants' key  
             
-            console.log(normalizedDishes)
+           // console.log(normalizedDishes)
              return(Object.assign({}, state, {
                  restaurants: Object.assign({}, state.restaurants, ...restaurants),
                  dishes: Object.assign({}, state.dishes, ...normalizedDishes),
@@ -80,7 +81,7 @@ export default  (state=initialState, action) => {
                     filteredRestaurants.push((state.restaurants[key])) //push the restaurants that don't match to an array
                 }
             })
-            console.log(filteredRestaurants);
+            //console.log(filteredRestaurants);
 
             // remove all dish Ids from state.dishes for the deleted restaurant
 
@@ -96,17 +97,19 @@ export default  (state=initialState, action) => {
 
         case actions.FETCH_ALL_DISHES_SUCCESS: 
             console.log("Case: Fetach all dishes succes ");
-            console.log(action.payload);
-            const restId = action.payload[0].restId;
-            const match = Object.keys(state.restaurants).find(key => key == restId); // find the matching restaurant in the state
-            console.log(state.restaurants[match])
-           // console.log(normalizeRestaurant(state.restaurants[match]))
-            let normalizedDishesData = [];
-            action.payload.forEach((dish) => normalizedDishesData.push(normalizeDish(dish))) //normalize each dish in the api response and add to a new array
+           // console.log(action.payload);
+             const restId = action.payload[0].restId;
+             const cachedRestaurant = state.restaurants[restId]// find the matching restaurant in the state
+             const restaurant = Object.assign({}, cachedRestaurant, {dishIds: union(cachedRestaurant.dishIds, action.payload.map(dish => dish.id))})
+             console.log(cachedRestaurant.dishIds, action.payload.map(dish => dish.id));
+        //     console.log(state.restaurants[restaurant])
+        //    // console.log(normalizeRestaurant(state.restaurants[match]))
+           // let normalizedDishesData = [];
+            const dishes = action.payload.map((dish) => normalizeDish(dish)) //normalize each dish in the api response and add to a new array
 
             return (Object.assign({}, state, {
-                restaurants: Object.assign({}, state.restaurants),
-                dishes: Object.assign({},  ...normalizedDishesData),
+                restaurants: Object.assign({}, state.restaurants, {[restId]: restaurant}),
+                dishes: Object.assign({},  state.dishes, ...dishes),
                 reviews: {}
             }))
      
