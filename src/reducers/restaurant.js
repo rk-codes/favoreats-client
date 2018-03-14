@@ -54,8 +54,11 @@ export default  (state=initialState, action) => {
             console.log(state);
             let normalizedArray = [];
             action.payload.forEach(restaurant => normalizedArray.push(normalizeRestaurant(restaurant)))
+            console.log(normalizedArray)
+            let test = normalizedArray.map(item => item.restaurants)
+            console.log(test)
             return(Object.assign({}, state, {
-                restaurants: Object.assign({}, state.restaurants, Object.values(normalizedArray)),
+                restaurants: Object.assign({}, state.restaurants, ...test),
                 dishes: {},
                 reviews: {} 
             }));
