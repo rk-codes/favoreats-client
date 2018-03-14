@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import RestaurantInfo from './restaurant-info';
 import {fetchAllRestaurants} from '../actions';
 import store from '../store';
+import {withRouter} from 'react-router-dom';
 
 class  RestaurantsList extends React.Component {
     // constructor(props){
@@ -16,8 +17,10 @@ class  RestaurantsList extends React.Component {
     onAddClick() {
         console.log("Add clicked");
         //render the add-restaurant form
+        this.props.history.push('/addrestaurant');
     }
     render() {
+        console.log(this.props.history)
         console.log(store.getState());
 
         const restaurants = this.props.restaurants;
@@ -51,4 +54,4 @@ const mapDispatchToProps = (dispatch) => {
     })
    
 }
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantsList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RestaurantsList));
