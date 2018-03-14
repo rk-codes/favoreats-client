@@ -55,15 +55,15 @@ export default  (state=initialState, action) => {
             let normalizedArray = [];
             let normalizedDishes = [];
             action.payload.forEach(restaurant => {
-                normalizedArray.push(normalizeRestaurant(restaurant));
+                normalizedArray.push(normalizeRestaurant(restaurant)); //normalize each restaurant in the api response and add them to a new array 
                 restaurant.dishes.forEach(dish => normalizedDishes.push(normalizeDish(dish)))
             })
             console.log(normalizedArray)
-            let test = normalizedArray.map(item => item.restaurants)
+            let restaurants = normalizedArray.map(item => item.restaurants) //get the values of 'restaurants' key  
             
             console.log(normalizedDishes)
              return(Object.assign({}, state, {
-                 restaurants: Object.assign({}, state.restaurants, ...test),
+                 restaurants: Object.assign({}, state.restaurants, ...restaurants),
                  dishes: Object.assign({}, state.dishes, ...normalizedDishes),
                  reviews: {}
              }))
@@ -84,11 +84,11 @@ export default  (state=initialState, action) => {
             console.log("Case: Fetach all dishes succes ");
             console.log(action.payload);
             const restId = action.payload[0].restId;
-            const match = Object.keys(state.restaurants).find(key => key == restId);
+            const match = Object.keys(state.restaurants).find(key => key == restId); // find the matching restaurant in the state
             console.log(state.restaurants[match])
            // console.log(normalizeRestaurant(state.restaurants[match]))
             let normalizedDishesData = [];
-            action.payload.forEach((dish) => normalizedDishesData.push(normalizeDish(dish)))
+            action.payload.forEach((dish) => normalizedDishesData.push(normalizeDish(dish))) //normalize each dish in the api response and add to a new array
 
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants),
@@ -98,9 +98,9 @@ export default  (state=initialState, action) => {
      
         case actions.ADD_DISH_SUCCESS:
             console.log("Case: Add dish succes ");
-            const normalizedDish = normalizeDish(action.payload);
-            const matchRestaurantKey = Object.keys(state.restaurants).find(key => key == action.payload.restId)
-            state.restaurants[matchRestaurantKey].dishIds.push(action.payload.id)
+            const normalizedDish = normalizeDish(action.payload); // normalize the dish in the api response
+            const matchRestaurantKey = Object.keys(state.restaurants).find(key => key == action.payload.restId) //find the matching restaurant in the state
+            state.restaurants[matchRestaurantKey].dishIds.push(action.payload.id) // add the new dish id to the dishIds array
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants),
                 dishes: Object.assign({},  state.dishes, normalizedDish),
