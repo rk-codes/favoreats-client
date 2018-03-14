@@ -42,7 +42,7 @@ export const fetchAllRestaurants = () => dispatch => {
         location: 'Las Vegas',
         cuisine: 'Mexican',
         dishes: [{
-            id: 2,
+            id: 22,
             name: 'Bcd',
            reviews: []
         }]
@@ -94,21 +94,22 @@ export const deleteRestaurantError = (error) => ({
 export const deleteRestaurant = (item) => (dispatch) => {
    //API call to DELETE
    // fetch(`${API_BASE_URL/restaurants/:restaurantId}`)
-   const restaurants =  [{
-       id: '1',
-       name: 'ABC',
-       location: 'San Francisco',
-       cuisine: 'Italian',dishCount: '1',
+   const restaurant =  {
+       id: 2,
+       name: 'BCD',
+       location: 'Las Vegas',
+       cuisine: 'Mexican',
+       dishCount: '1',
        dishes: [{
-           dishId: '1',
-           name: 'Xyz',
-           rating: '3'
+           dishId: 22,
+           name: 'Bcd',
+           reviews: []
         }]
-    }]
+    }
 
     setTimeout(() => { 
         console.log("success");
-        dispatch(deleteRestaurantSuccess(restaurants))
+        dispatch(deleteRestaurantSuccess(restaurant))
     }, 300);
 }
 

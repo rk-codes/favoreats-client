@@ -69,9 +69,23 @@ export default  (state=initialState, action) => {
              }))
             
         case actions.DELETE_RESTAURANT_SUCCESS:
-            console.log("Case: Delete restaurant succes ");      
+            console.log("Case: Delete restaurant succes ");
+            const restaurantId = action.payload.id;
+            //Get the keys of all state.restaurants
+            const keys = Object.keys(state.restaurants);
+            //Find the key that matches the restaurantId
+            let filteredRestaurants = [];
+            keys.forEach(key => {
+                if(key != restaurantId) {
+                    filteredRestaurants.push((state.restaurants[key])) //push the restaurants that don't match to an array
+                }
+            })
+            console.log(filteredRestaurants);
+
+            // remove all dish Ids from state.dishes for the deleted restaurant
+
             return(Object.assign({}, state, {
-                restaurants: [...action.payload] 
+                restaurants:  Object.assign({}, filteredRestaurants) 
             }));
 
         case actions.EDIT_RESTAURANT_SUCCESS:
