@@ -92,18 +92,19 @@ export default  (state=initialState, action) => {
 
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants),
-                dishes: Object.assign({},  ...normalizedDishesData)
+                dishes: Object.assign({},  ...normalizedDishesData),
+                reviews: {}
             }))
      
         case actions.ADD_DISH_SUCCESS:
             console.log("Case: Add dish succes ");
-            // const restId = action.payload.restId;
-            // console.log(restId);
-            // console.log(Object.keys(state.restaurants));
-            // const matchRestaurant = Object.keys(state.restaurants).find(key => key == restId)
-            // console.log(state.restaurants[matchRestaurant])
+            const normalizedDish = normalizeDish(action.payload);
+            const matchRestaurantKey = Object.keys(state.restaurants).find(key => key == action.payload.restId)
+            state.restaurants[matchRestaurantKey].dishIds.push(action.payload.id)
             return (Object.assign({}, state, {
-                restaurants: action.payload
+                restaurants: Object.assign({}, state.restaurants),
+                dishes: Object.assign({},  state.dishes, normalizedDish),
+                reviews: {}
             }))
 
         case actions.DELETE_DISH_SUCCESS:

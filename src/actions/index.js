@@ -216,7 +216,7 @@ export const addDish = (dish) => (dispatch) => {
        const dish = {
             restId: 1,
             id: 11,
-            name: 'Xyz',
+            name: 'Dish Added',
             reviews: [{
                 rating: 4,
                 description: 'sffsg'
