@@ -10,22 +10,25 @@ class DishesList extends React.Component {
     //     super(props);
     //     console.log(this.props);
     // }
-
+    
     componentDidMount() {
-        console.log("mount");
-        this.props.fetchAllDishes();
+        //console.log("mount");
+        this.props.fetchAllDishes(this.props.match.params.restaurantId);
     }
 
     onAddClick(){
-        console.log("Clicked");
+       // console.log("Clicked");
         //render add dish form
-        console.log(this.props);
+        //console.log(this.props);
         this.props.addDish(); //To be changed later to render add dish form
     }
 
     render() {
-        console.log(store.getState());
-        const dishes = Object.values(this.props.dishes).map((item,index) => 
+        const restaurantId = this.props.match.params.restaurantId;
+        const dishIds = this.props.restaurants[restaurantId].dishIds  // get all dish ids of this restaurant
+        //iterate dishes{} to find the dish objects where dish.id == dishId
+        const dishesList = dishIds.map(id => this.props.dishes[id])
+        const dishes = Object.values(dishesList).map((item,index) => 
             <li key={index}>
                 <DishInfo {...item} />
             </li>
