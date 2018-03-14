@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import RestaurantInfo from './restaurant-info';
 import {fetchAllRestaurants} from '../actions';
+import store from '../store';
 
 class  RestaurantsList extends React.Component {
     // constructor(props){
@@ -17,17 +18,21 @@ class  RestaurantsList extends React.Component {
         //render the add-restaurant form
     }
     render() {
-        const info = this.props.restaurants.map((item, index) =>
+        console.log(store.getState());
+
+        const restaurants = this.props.restaurants;
+        console.log(restaurants);
+
+        const restaurant = Object.values(this.props.restaurants).map((item, index) =>
             <li key={index}>
                 <RestaurantInfo {...item} />
             </li>
-        );
-
+        )
         return(    
             <div className="restaurants-list">
                 <h1>Restaurants List</h1>
                 <ul>
-                    {info}
+                    {restaurant}
                 </ul>
                 <button onClick ={() => this.onAddClick()}>Add Restaurant</button>
             </div>
