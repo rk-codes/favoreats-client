@@ -92,7 +92,7 @@ export default  (state=initialState, action) => {
 
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants),
-                dishes: Object.assign({}, state.dishes, ...normalizedDishesData)
+                dishes: Object.assign({},  ...normalizedDishesData)
             }))
      
         case actions.ADD_DISH_SUCCESS:
