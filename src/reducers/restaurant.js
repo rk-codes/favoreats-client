@@ -43,17 +43,15 @@ export default  (state=initialState, action) => {
     switch(action.type) {
         case actions.ADD_RESTAURANT_SUCCESS:
             console.log("Case: Add restaurant succes ");
-            //console.log(state);
             const normalizedData = normalizeRestaurant(action.payload);
             return(Object.assign({}, state, {
-                restaurants: Object.assign({}, state.restaurants, normalizedData.restaurants),
+                restaurants: Object.assign({}, state.restaurants, normalizedData),
                 dishes: {},
                 reviews: {} 
             }));
      
         case actions.FETCH_ALL_RESTAURANTS_SUCCESS: 
             console.log("Case: Fetch all restaurants succes ");
-            //console.log(state);
             let normalizedArray = [];
             let normalizedDishes = [];
             action.payload.forEach(restaurant => {
@@ -61,11 +59,8 @@ export default  (state=initialState, action) => {
                 restaurant.dishes.forEach(dish => normalizedDishes.push(normalizeDish(dish))) //change to map
             })
            // console.log(normalizedArray)
-            let restaurants = normalizedArray.map(item => item.restaurants) //get the values of 'restaurants' key  
-            
-           // console.log(normalizedDishes)
              return(Object.assign({}, state, {
-                 restaurants: Object.assign({}, state.restaurants, ...restaurants),
+                 restaurants: Object.assign({}, state.restaurants, ...normalizedArray),
                  dishes: Object.assign({}, state.dishes, ...normalizedDishes),
                  reviews: {}
              }))
@@ -97,9 +92,7 @@ export default  (state=initialState, action) => {
             const cachedRestaurant = state.restaurants[restId]// find the matching restaurant in the state
             const restaurant = Object.assign({}, cachedRestaurant, {dishIds: union(cachedRestaurant.dishIds, action.payload.map(dish => dish.id))})
             console.log(cachedRestaurant.dishIds, action.payload.map(dish => dish.id));
-        //     console.log(state.restaurants[restaurant])
-        //    // console.log(normalizeRestaurant(state.restaurants[match]))
-           // let normalizedDishesData = [];
+     
             const dishes = action.payload.map((dish) => normalizeDish(dish)) //normalize each dish in the api response and add to a new array
 
             return (Object.assign({}, state, {
