@@ -1,7 +1,7 @@
 import * as actions from '../actions';
-import {union} from 'lodash';
+//import {union} from 'lodash';
 import _ from 'lodash';
-import {normalizeRestaurant, normalizeDish} from '../utils/normalizer';
+import {normalizeRestaurant, normalizeDish, normalizeReview} from '../utils/normalizer';
 
 const initialState = {
     restaurants: {},
@@ -90,7 +90,7 @@ export default  (state=initialState, action) => {
             console.log("Case: Fetch all dishes succes ");
             const restId = action.payload[0].restId;
             const cachedRestaurant = state.restaurants[restId]// find the matching restaurant in the state
-            const restaurant = Object.assign({}, cachedRestaurant, {dishIds: union(cachedRestaurant.dishIds, action.payload.map(dish => dish.id))})
+            const restaurant = Object.assign({}, cachedRestaurant, {dishIds: _.union(cachedRestaurant.dishIds, action.payload.map(dish => dish.id))})
             console.log(cachedRestaurant.dishIds, action.payload.map(dish => dish.id));
      
             const dishes = action.payload.map((dish) => normalizeDish(dish)) //normalize each dish in the api response and add to a new array
@@ -109,9 +109,9 @@ export default  (state=initialState, action) => {
 
             const rId = action.payload.restId;
             const matchRestaurant = state.restaurants[rId];
-            const updatedRestaurant = Object.assign({}, matchRestaurant, {dishId: union(matchRestaurant.dishIds, action.payload.id)});
+            const updatedRestaurant = Object.assign({}, matchRestaurant, {dishIds: _.concat(matchRestaurant.dishIds, action.payload.id)});
             return (Object.assign({}, state, {
-                restaurants: Object.assign({}, state.restaurants, {[restaurantId]: updatedRestaurant}),
+                restaurants: Object.assign({}, state.restaurants, {[rId]: updatedRestaurant}),
                 dishes: Object.assign({},  state.dishes, normalizedDish),
                 reviews: {}
             }))
@@ -136,7 +136,12 @@ export default  (state=initialState, action) => {
 
         case actions.ADD_DISH_REVIEW_SUCCESS:
             console.log("Case: Add dish review succes ");
-            return state;
+            const idOfDish = action.payload.dishId;
+            const normalizedReview = normalizeReview(action.payload);
+            console.log(normalizedReview)
+            return (Object.assign({}, state, {
+                reviews: Object.assign({}, state.reviews, normalizedReview)
+            }))
 
         case actions.FETCH_ALL_REVIEWS_SUCCESS:
             console.log("Case: Fetch all dish reviews succes ");
