@@ -97,11 +97,12 @@ export default  (state=initialState, action) => {
             console.log(cachedRestaurant.dishIds, action.payload.map(dish => dish.id));
      
             const dishes = action.payload.map((dish) => normalizeDish(dish)) //normalize each dish in the api response and add to a new array
-
+            const reviewsNormalized = action.payload.map(dish => dish.reviews.map(review => normalizeReview(review)))
+            console.log(reviewsNormalized)
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[restId]: restaurant}),
                 dishes: Object.assign({},  state.dishes, ...dishes),
-                reviews: {}
+                reviews: Object.assign({}, state.reviews,  ...reviewsNormalized)
             }))
      
         case actions.ADD_DISH_SUCCESS:
