@@ -1,26 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 import DishInfo from './dish-info';
-import { fetchAllDishes, addDish } from '../actions';
+import { fetchAllDishes } from '../actions';
 import store from '../store';
 
 class DishesList extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     console.log(this.props);
-    // }
     
     componentDidMount() {
-        //console.log("mount");
         this.props.fetchAllDishes(this.props.match.params.restaurantId);
     }
 
     onAddClick(){
-       // console.log("Clicked");
-        //render add dish form
-        //console.log(this.props);
-        this.props.addDish(); //To be changed later to render add dish form
+        this.props.history.push(`/restaurants/${this.props.match.params.restaurantId}/dishes/adddish`)
     }
 
     render() {
@@ -56,10 +49,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return ({
         fetchAllDishes: () => dispatch(fetchAllDishes()),
-        addDish: () => dispatch(addDish()) //To be moved to add dish form
     })
 }
-export default connect(mapStateToProps, mapDispatchToProps)(DishesList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DishesList));
 
 
 //Add dish clicked -> render add dish form -> rerender dishes list with the updated data 
