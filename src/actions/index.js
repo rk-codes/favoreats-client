@@ -20,7 +20,7 @@ export const fetchAllRestaurants = () => dispatch => {
         location: 'San Francisco',
         cuisine: 'Italian',
         dishes: [{
-            id: 1,
+            id: 11,
             name: 'Xyz',
             reviews: [{
                 id: 111,
@@ -29,7 +29,7 @@ export const fetchAllRestaurants = () => dispatch => {
             }]
         },
         {
-            id: 3,
+            id: 33,
             name: 'ddd',
             reviews: [{
                 id: 333,
@@ -185,18 +185,20 @@ export const fetchAllDishes = (restaurantId) => dispatch =>{
     const dishes = [
         {
         restId: 1,
-        id: 1,
+        id: 11,
         name: 'Xyz',
         reviews: [{
+            id: 111,
             rating: 3,
             description: 'sgdgdh'
         }]     
     },
     {
         restId: 1,
-        id: 3,
+        id: 33,
         name: 'ddd',
         reviews: [{
+            id: 333,
             rating: 4,
             description: 'sfg'
         }]    
@@ -225,10 +227,10 @@ export const addDish = (dishInput) => (dispatch) => {
     console.log(dishInput);
        const dish = {
             restId: 1,
-            id: 11,
+            id: 44,
             name: dishInput.name,
             reviews: [{
-                id: 111,
+                id: 444,
                 rating: dishInput.rating,
                 description: dishInput.review
             }]
