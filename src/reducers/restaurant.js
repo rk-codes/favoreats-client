@@ -54,15 +54,18 @@ export default  (state=initialState, action) => {
             console.log("Case: Fetch all restaurants succes ");
             let normalizedArray = [];
             let normalizedDishes = [];
+            let normalizedReviews = [];
             action.payload.forEach(restaurant => {
                 normalizedArray.push(normalizeRestaurant(restaurant)); //normalize each restaurant in the api response and add them to a new array 
                 restaurant.dishes.forEach(dish => normalizedDishes.push(normalizeDish(dish))) //change to map
+                restaurant.dishes.forEach(dish => dish.reviews.map(review => normalizedReviews.push(normalizeReview(review))))
             })
-           // console.log(normalizedArray)
+
+            //console.log(normalizedReviews);
              return(Object.assign({}, state, {
                  restaurants: Object.assign({}, state.restaurants, ...normalizedArray),
                  dishes: Object.assign({}, state.dishes, ...normalizedDishes),
-                 reviews: {}
+                 reviews: Object.assign({}, state.reviews, ...normalizedReviews)
              }))
             
         case actions.DELETE_RESTAURANT_SUCCESS:
@@ -106,14 +109,16 @@ export default  (state=initialState, action) => {
             const normalizedDish = normalizeDish(action.payload); // normalize the dish in the api response
            // const matchRestaurantKey = Object.keys(state.restaurants).find(key => key == action.payload.restId) //find the matching restaurant in the state
             //state.restaurants[matchRestaurantKey].dishIds.push(action.payload.id) // add the new dish id to the dishIds array
-
             const rId = action.payload.restId;
             const matchRestaurant = state.restaurants[rId];
-            const updatedRestaurant = Object.assign({}, matchRestaurant, {dishIds: _.concat(matchRestaurant.dishIds, action.payload.id)});
+            const updatedRestaurant = Object.assign({}, matchRestaurant, {
+                dishIds: _.concat(matchRestaurant.dishIds, action.payload.id)
+            });
+            const normalizedDishReview = normalizeReview(action.payload.reviews[0]);
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[rId]: updatedRestaurant}),
                 dishes: Object.assign({},  state.dishes, normalizedDish),
-                reviews: {}
+                reviews: Object.assign({},  state.reviews, normalizedDishReview)
             }))
 
         case actions.DELETE_DISH_SUCCESS:
@@ -145,7 +150,12 @@ export default  (state=initialState, action) => {
 
         case actions.FETCH_ALL_REVIEWS_SUCCESS:
             console.log("Case: Fetch all dish reviews succes ");
-            return state;
+            const reviews = action.payload.map((review) => normalizeReview(review))
+            return (Object.assign({}, state, {
+                restaurants: Object.assign({}, state.restaurants),
+                dishes: Object.assign({},  state.dishes),
+                reviews: Object.assign({}, state.reviews, ...reviews)
+            }))
             
         default: return state;
     }
