@@ -16,7 +16,7 @@ export  class DishInfo extends React.Component{
                 <p>Rating: {this.props.rating}</p>
                 <button onClick={() => this.onDelete()}>Delete</button>
                
-                <Link to={`/restaurants/1/dishes/${this.props.dishId}/addreview`}>Add review</Link>
+                <Link to={`/restaurants/1/dishes/${this.props.dishId}/reviews/addreview`}>Add review</Link>
                 <Link to={`/restaurants/1/dishes/${this.props.dishId}/reviews`}>View past reviews</Link>
             </div>
         )
