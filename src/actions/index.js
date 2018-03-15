@@ -45,7 +45,13 @@ export const fetchAllRestaurants = () => dispatch => {
             id: 22,
             name: 'Bcd',
            reviews: []
-        }]
+        },
+        {
+            id: 44,
+            name: 'ghghf',
+            reviews: []
+        
+         }]
     }]
     setTimeout(() => { 
         console.log("success");
@@ -211,16 +217,17 @@ export const addDishError = (error) => ({
     type: ADD_DISH_ERROR,
     payload: error
 })
-export const addDish = (dish) => (dispatch) => {
+export const addDish = (dishInput) => (dispatch) => {
     //API call to POST
     // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes}`)
+    console.log(dishInput);
        const dish = {
             restId: 1,
             id: 11,
-            name: 'Dish Added',
+            name: dishInput.name,
             reviews: [{
-                rating: 4,
-                description: 'sffsg'
+                rating: dishInput.rating,
+                description: dishInput.review
             }]
         }
    
@@ -246,9 +253,13 @@ export const deleteDishError = (error) => ({
     //API call to DELETE
     // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId}`)
     const dish = {
-        dishId: '3',
-        name: 'aab',
-        rating: '3'
+        restId: 2,
+        id: 22,
+        name: 'Bcd',
+        reviews: [{
+            rating: '3',
+            description: 'sfsg'
+        }]
     }
     setTimeout(() => { 
         console.log("success");

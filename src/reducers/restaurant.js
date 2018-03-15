@@ -118,7 +118,17 @@ export default  (state=initialState, action) => {
 
         case actions.DELETE_DISH_SUCCESS:
             console.log("Case: Delete dish succes ");
-            return state;
+            const dishIdToDelete =  action.payload.id;
+            const resId = action.payload.restId;
+           // const match = state.restaurants[resId];
+            const filterDishes = _.omitBy(state.dishes, (value, key) => key == dishIdToDelete); //remove the dish from dishes object
+            const remainingDishIds = _.without(state.restaurants[resId].dishIds, dishIdToDelete ) //remove the dishId from restaurant.dishIds array
+            const updatedRest = Object.assign({}, state.restaurants[resId], {dishIds: remainingDishIds} ) //update the restaurant with new array of dishIds
+            return (Object.assign({}, state, {
+                restaurants: Object.assign({}, state.restaurants, {[resId]: updatedRest}),
+                dishes: Object.assign({},  filterDishes),
+                reviews: {}
+            }))
 
         case actions.EDIT_DISH_SUCCESS:
             console.log("Case: Edit dish succes ");

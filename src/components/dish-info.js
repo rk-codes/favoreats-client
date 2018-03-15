@@ -5,6 +5,9 @@ import {deleteDish} from '../actions';
 
 
 export  class DishInfo extends React.Component{
+    onDelete() {
+        this.props.deleteDish();
+    }
     render() {
         return(
             <div className="dish-info">
