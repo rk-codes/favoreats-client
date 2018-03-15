@@ -23,6 +23,7 @@ export const fetchAllRestaurants = () => dispatch => {
             id: 1,
             name: 'Xyz',
             reviews: [{
+                id: 111,
                 rating: 3,
                 description: 'sgdgdh'
             }]
@@ -31,6 +32,7 @@ export const fetchAllRestaurants = () => dispatch => {
             id: 3,
             name: 'ddd',
             reviews: [{
+                id: 333,
                 rating: 4,
                 description: 'sfg'
             }]
@@ -226,6 +228,7 @@ export const addDish = (dishInput) => (dispatch) => {
             id: 11,
             name: dishInput.name,
             reviews: [{
+                id: 111,
                 rating: dishInput.rating,
                 description: dishInput.review
             }]
@@ -306,10 +309,12 @@ export const deleteDishError = (error) => ({
   export const addDishReview = () => (dispatch) => {
     //API call to POST
      // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId/addreview}`)
-     const review = { 
-        date: '4/5/2017',
-        rating: '3',
-        review: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+     const review = {
+         dishId: 22,
+         id: 555, 
+         date: '4/5/2017',
+         rating: '3',
+         description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     }
     setTimeout(() => { 
         console.log("success");
