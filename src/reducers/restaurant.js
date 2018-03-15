@@ -97,8 +97,9 @@ export default  (state=initialState, action) => {
             console.log(cachedRestaurant.dishIds, action.payload.map(dish => dish.id));
      
             const dishes = action.payload.map((dish) => normalizeDish(dish)) //normalize each dish in the api response and add to a new array
-            const reviewsNormalized = action.payload.map(dish => dish.reviews.map(review => normalizeReview(review)))
-            console.log(reviewsNormalized)
+            const reviewsNormalized = action.payload.map(dish => 
+                 dish.reviews.forEach(review => normalizeReview(review)) //normalize each review in each dish
+            )
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[restId]: restaurant}),
                 dishes: Object.assign({},  state.dishes, ...dishes),
@@ -125,15 +126,22 @@ export default  (state=initialState, action) => {
         case actions.DELETE_DISH_SUCCESS:
             console.log("Case: Delete dish succes ");
             const dishIdToDelete =  action.payload.id;
+            console.log(`To delete: ${dishIdToDelete}`)
             const resId = action.payload.restId;
            // const match = state.restaurants[resId];
             const filterDishes = _.omitBy(state.dishes, (value, key) => key == dishIdToDelete); //remove the dish from dishes object
             const remainingDishIds = _.without(state.restaurants[resId].dishIds, dishIdToDelete ) //remove the dishId from restaurant.dishIds array
             const updatedRest = Object.assign({}, state.restaurants[resId], {dishIds: remainingDishIds} ) //update the restaurant with new array of dishIds
+            //remove reviewIds from dishes.reviewIds array
+            const remainingReviews  = _.pick(state.reviews, state.dishes.reviewIds)
+            //Object.keys(filterDishes).map(key => state.reviews[key])
+            console.log(Object.keys(filterDishes))
+            console.log(_.pick(state.reviews, state.dishes.reviewIds));
+            //console.log(remainingReviews);
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[resId]: updatedRest}),
                 dishes: Object.assign({},  filterDishes),
-                reviews: {}
+                reviews:Object.assign({}, remainingReviews)
             }))
 
         case actions.EDIT_DISH_SUCCESS:
