@@ -9,9 +9,11 @@ export class AddDishForm extends React.Component{
         console.log(values);
         //API call to POST new restaurant
         dispatch(addDish(values));
+        this.props.history.push(`/restaurants/${this.props.match.params.restaurantId}/dishes`);
     }
     
     render() {
+        console.log(this.props);
         let successMessage;
         if (this.props.submitSucceeded) {
             successMessage = (
