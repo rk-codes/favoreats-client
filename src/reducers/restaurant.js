@@ -126,22 +126,24 @@ export default  (state=initialState, action) => {
         case actions.DELETE_DISH_SUCCESS:
             console.log("Case: Delete dish succes ");
             const dishIdToDelete =  action.payload.id;
-            console.log(`To delete: ${dishIdToDelete}`)
             const resId = action.payload.restId;
-           // const match = state.restaurants[resId];
-            const filterDishes = _.omitBy(state.dishes, (value, key) => key == dishIdToDelete); //remove the dish from dishes object
-            const remainingDishIds = _.without(state.restaurants[resId].dishIds, dishIdToDelete ) //remove the dishId from restaurant.dishIds array
-            const updatedRest = Object.assign({}, state.restaurants[resId], {dishIds: remainingDishIds} ) //update the restaurant with new array of dishIds
-            //remove reviewIds from dishes.reviewIds array
-            const remainingReviews  = _.pick(state.reviews, state.dishes.reviewIds)
-            //Object.keys(filterDishes).map(key => state.reviews[key])
-            console.log(Object.keys(filterDishes))
-            console.log(_.pick(state.reviews, state.dishes.reviewIds));
-            //console.log(remainingReviews);
+
+            //remove the dish from dishes object in the state
+            const filterDishes = _.omitBy(state.dishes, (value, key) => key == dishIdToDelete); 
+
+            //remove the dishId from restaurant.dishIds array in the state
+            const remainingDishIds = _.without(state.restaurants[resId].dishIds, dishIdToDelete ) 
+
+            //remove the reviews of the deleted dish from the state
+            const updatedReviews = _.omit(state.reviews, state.dishes[dishIdToDelete].reviewIds);
+
+            //update the restaurant with new array of dishIds
+            const updatedRest = Object.assign({}, state.restaurants[resId], {dishIds: remainingDishIds}) 
+      
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[resId]: updatedRest}),
                 dishes: Object.assign({},  filterDishes),
-                reviews:Object.assign({}, remainingReviews)
+                reviews:Object.assign({}, updatedReviews)
             }))
 
         case actions.EDIT_DISH_SUCCESS:
