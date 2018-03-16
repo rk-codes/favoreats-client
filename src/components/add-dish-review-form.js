@@ -5,7 +5,7 @@ import { addDishReview } from '../actions';
 export  class AddDishReview extends React.Component{
     onSubmit(values, dispatch) {
         dispatch(addDishReview(values));
-        this.props.history.push(`/restaurants/${this.props.match.params.restaurantId}/dishes/${this.props.match.params.restaurantId}/addreview`);
+        this.props.history.push(`/restaurants/${this.props.match.params.restaurantId}/dishes/${this.props.match.params.dishId}/reviews`);
     }
     render() {
         return(
