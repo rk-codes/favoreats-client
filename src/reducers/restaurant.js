@@ -43,7 +43,11 @@ export default  (state=initialState, action) => {
     switch(action.type) {
         case actions.ADD_RESTAURANT_SUCCESS:
             console.log("Case: Add restaurant succes ");
+
+            //normalize restaurant
             const normalizedData = normalizeRestaurant(action.payload);
+
+            //update restaurants in state
             return(Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, normalizedData),
                 dishes: {},
@@ -52,16 +56,16 @@ export default  (state=initialState, action) => {
      
         case actions.FETCH_ALL_RESTAURANTS_SUCCESS: 
             console.log("Case: Fetch all restaurants succes ");
-            let normalizedArray = [];
             let normalizedDishes = [];
             let normalizedReviews = [];
+            //normalize each restaurant in the payload
+            const normalizedArray = action.payload.map(restaurant => normalizeRestaurant(restaurant));
+           
             action.payload.forEach(restaurant => {
-                normalizedArray.push(normalizeRestaurant(restaurant)); //normalize each restaurant in the api response and add them to a new array 
-                restaurant.dishes.forEach(dish => normalizedDishes.push(normalizeDish(dish))) //change to map
+                normalizedDishes = restaurant.dishes.map(dish => normalizeDish(dish)) 
                 restaurant.dishes.forEach(dish => dish.reviews.map(review => normalizedReviews.push(normalizeReview(review))))
             })
 
-            //console.log(normalizedReviews);
              return(Object.assign({}, state, {
                  restaurants: Object.assign({}, state.restaurants, ...normalizedArray),
                  dishes: Object.assign({}, state.dishes, ...normalizedDishes),
@@ -73,11 +77,24 @@ export default  (state=initialState, action) => {
             const restaurantId = action.payload.id;
             //Get the keys of all state.restaurants
             const keys = Object.keys(state.restaurants);
-             // create filteredRestaurants by omitting the restaurant from the state that matches the restaurantId
+            // remove the restaurant object from the restaurants in state
             const filteredRestaurants = _.omitBy(state.restaurants, (value, key) => key == restaurantId);
-            console.log(filteredRestaurants);
-            const dIds = state.restaurants[restaurantId].dishIds;
-            const filteredDishes = dIds.forEach(id => Object.values(state.dishes).map(dish => dish.id != id))
+
+            // remove the dishes of the deleted restaurant from the dishes object in the state
+            const dishIdsOfDeletedRestaurant = state.restaurants[restaurantId].dishIds;
+            const filteredDishes = _.omit(state.dishes, dishIdsOfDeletedRestaurant );
+
+            console.log(filteredDishes);
+
+            console.log(filteredDishes.reviewIds)
+            //remove reviews of the dishes in the deleted restaurant
+            //const reviewIdsOfDeletedDishes = 
+            const dishesToDelete = _.pick(state.dishes, dishIdsOfDeletedRestaurant); //got the dishes to be deleted
+            
+       
+
+           // console.log(_.omit(state.reviews, reviewsIdsToDelete));
+
             return(Object.assign({}, state, {
                 restaurants:  Object.assign({}, filteredRestaurants),
                 dishes: Object.assign({}, filteredDishes)
@@ -161,11 +178,15 @@ export default  (state=initialState, action) => {
 
         case actions.FETCH_ALL_REVIEWS_SUCCESS:
             console.log("Case: Fetch all dish reviews succes ");
-            const reviews = action.payload.map((review) => normalizeReview(review))
+            const normalizedDishReviews = action.payload.map((review) => normalizeReview(review)) //normalize each review 
+            const cachedDish = state.dishes[action.payload[0].dishId];
+            const dish = Object.assign({}, cachedRestaurant, {reviewIds: _.union(cachedDish.reviewIds, action.payload.map(review => review.id))})
+            console.log(cachedDish.reviewIds, action.payload.map(review => review.id));
+
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants),
                 dishes: Object.assign({},  state.dishes),
-                reviews: Object.assign({}, state.reviews, ...reviews)
+                reviews: Object.assign({}, state.reviews, ...normalizedDishReviews)
             }))
             
         default: return state;
@@ -173,3 +194,4 @@ export default  (state=initialState, action) => {
 
     
 }
+// fetch all reviews 
