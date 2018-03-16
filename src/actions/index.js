@@ -26,6 +26,10 @@ export const fetchAllRestaurants = () => dispatch => {
                 id: 111,
                 rating: 3,
                 description: 'sgdgdh'
+            },{
+                id: 112,
+                rating: 5,
+                description: 'gjhgk'
             }]
         },
         {
@@ -191,6 +195,10 @@ export const fetchAllDishes = (restaurantId) => dispatch =>{
             id: 111,
             rating: 3,
             description: 'sgdgdh'
+        },{
+            id: 112,
+            rating: 5,
+            description: 'gjhgk'
         }]     
     },
     {
@@ -227,10 +235,10 @@ export const addDish = (dishInput) => (dispatch) => {
     console.log(dishInput);
        const dish = {
             restId: 1,
-            id: 44,
+            id: 55,
             name: dishInput.name,
             reviews: [{
-                id: 444,
+                id: 555,
                 rating: dishInput.rating,
                 description: dishInput.review
             }]
@@ -258,10 +266,11 @@ export const deleteDishError = (error) => ({
     //API call to DELETE
     // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId}`)
     const dish = {
-        restId: 2,
-        id: 22,
+        restId: 1,
+        id: 11,
         name: 'Bcd',
         reviews: [{
+            id: 111,
             rating: '3',
             description: 'sfsg'
         }]
