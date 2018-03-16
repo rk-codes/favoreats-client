@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {deleteDish} from '../actions';
 
@@ -9,6 +10,7 @@ export  class DishInfo extends React.Component{
         this.props.deleteDish();
     }
     render() {
+        console.log(this.props);
         return(
             <div className="dish-info">
                 <h3>DishInfo</h3>
@@ -16,8 +18,8 @@ export  class DishInfo extends React.Component{
                 <p>Rating: {this.props.rating}</p>
                 <button onClick={() => this.onDelete()}>Delete</button>
                
-                <Link to={`/restaurants/1/dishes/${this.props.dishId}/reviews/addreview`}>Add review</Link>
-                <Link to={`/restaurants/1/dishes/${this.props.dishId}/reviews`}>View past reviews</Link>
+                <Link to={`/restaurants/${this.props.match.params.restaurantId}/dishes/${this.props.dishId}/reviews/addreview`}>Add review</Link>
+                <Link to={`/restaurants/${this.props.match.params.restaurantId}/dishes/${this.props.dishId}/reviews`}>View past reviews</Link>
             </div>
         )
     }  
@@ -33,4 +35,4 @@ const mapDispatchToProps = (dispatch) => {
         deleteDish: () => dispatch(deleteDish()),
     })
 }
-export default connect(mapStateToProps, mapDispatchToProps)(DishInfo);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DishInfo));
