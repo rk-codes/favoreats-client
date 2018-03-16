@@ -108,12 +108,19 @@ export default  (state=initialState, action) => {
 
         case actions.FETCH_ALL_DISHES_SUCCESS: 
             console.log("Case: Fetch all dishes succes ");
+
+            //normalize each dish in the payload 
+            const dishes = action.payload.map((dish) => normalizeDish(dish)) 
+
+            // find the matching restaurant in the state
             const restId = action.payload[0].restId;
-            const cachedRestaurant = state.restaurants[restId]// find the matching restaurant in the state
+            const cachedRestaurant = state.restaurants[restId];
+
+            //add dishIds of all the dishes to the dishIds array of the restaurant
             const restaurant = Object.assign({}, cachedRestaurant, {dishIds: _.union(cachedRestaurant.dishIds, action.payload.map(dish => dish.id))})
             console.log(cachedRestaurant.dishIds, action.payload.map(dish => dish.id));
      
-            const dishes = action.payload.map((dish) => normalizeDish(dish)) //normalize each dish in the api response and add to a new array
+           
             const reviewsNormalized = action.payload.map(dish => 
                  dish.reviews.forEach(review => normalizeReview(review)) //normalize each review in each dish
             )
@@ -125,14 +132,19 @@ export default  (state=initialState, action) => {
      
         case actions.ADD_DISH_SUCCESS:
             console.log("Case: Add dish succes ");
-            const normalizedDish = normalizeDish(action.payload); // normalize the dish in the api response
-           // const matchRestaurantKey = Object.keys(state.restaurants).find(key => key == action.payload.restId) //find the matching restaurant in the state
-            //state.restaurants[matchRestaurantKey].dishIds.push(action.payload.id) // add the new dish id to the dishIds array
+
+            // normalize the dish in the payload
+            const normalizedDish = normalizeDish(action.payload); 
+            
+            //find the matching restaurant
             const rId = action.payload.restId;
             const matchRestaurant = state.restaurants[rId];
+
+            //add the dishId to the dishIds array in the matching restaurant
             const updatedRestaurant = Object.assign({}, matchRestaurant, {
                 dishIds: _.concat(matchRestaurant.dishIds, action.payload.id)
             });
+            
             const normalizedDishReview = normalizeReview(action.payload.reviews[0]);
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[rId]: updatedRestaurant}),
