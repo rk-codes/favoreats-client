@@ -50,7 +50,9 @@ export const fetchAllRestaurants = () => dispatch => {
         dishes: [{
             id: 22,
             name: 'Bcd',
-           reviews: []
+           reviews: [{
+               id: 888
+           }]
         },
         {
             id: 44,
@@ -76,14 +78,14 @@ export const addRestaurantError = (error) => ({
     type: ADD_RESTAURANT_ERROR,
     payload: error
 })
-export const addRestaurant = (restaurant) => (dispatch) => {
+export const addRestaurant = (restaurantData) => (dispatch) => {
    //API call to POST
    // fetch(`${API_BASE_URL/restaurants}`)
    const restaurant =  {
        id: 4,
-       name: 'DFF',
-       location: 'San Francisco',
-       cuisine: 'Indian',
+       name: restaurantData.name,
+       location: restaurantData.location,
+       cuisine: restaurantData.cuisine,
        dishes: []
     }
     setTimeout(() => { 
@@ -107,16 +109,32 @@ export const deleteRestaurant = (item) => (dispatch) => {
    //API call to DELETE
    // fetch(`${API_BASE_URL/restaurants/:restaurantId}`)
    const restaurant =  {
-       id: 2,
-       name: 'BCD',
-       location: 'Las Vegas',
-       cuisine: 'Mexican',
-       dishCount: '1',
+       id: 1,
+       name: 'ABC',
+       location: 'San Francisco',
+       cuisine: 'Italian',
        dishes: [{
-           dishId: 22,
-           name: 'Bcd',
-           reviews: []
+        id: 11,
+        name: 'Xyz',
+        reviews: [{
+            id: 111,
+            rating: 3,
+            description: 'sgdgdh'
+        },{
+            id: 112,
+            rating: 5,
+            description: 'gjhgk'
         }]
+    },
+    {
+        id: 33,
+        name: 'ddd',
+        reviews: [{
+            id: 333,
+            rating: 4,
+            description: 'sfg'
+        }]
+    }]   
     }
 
     setTimeout(() => { 
@@ -349,11 +367,15 @@ export const fetchAllReviewsError = (error) => ({
     //API call to GET
     // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId/reviews}`)
     const reviews=[{
+        dishId: 11,
+        id: 111,
         date: '4/5/2017',
         rating: '3',
         review: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
     },
     {
+        dishId: 11,
+        id: 112,
         date: '5/6/2017',
         rating: '4',
         review: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
