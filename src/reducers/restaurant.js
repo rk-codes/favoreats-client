@@ -49,32 +49,29 @@ export default  (state=initialState, action) => {
 
             //update restaurants in state
             return(Object.assign({}, state, {
-                restaurants: Object.assign({}, state.restaurants, normalizedData),
-                dishes: {},
-                reviews: {} 
+                restaurants: Object.assign({}, state.restaurants, normalizedData)
             }));
      
         case actions.FETCH_ALL_RESTAURANTS_SUCCESS: 
             console.log("Case: Fetch all restaurants succes ");
-            let normalizedDishes = [];
-            let normalizedReviews = [];
+         
             //normalize each restaurant in the payload
-            const normalizedArray = action.payload.map(restaurant => normalizeRestaurant(restaurant));
+            const restaurants = action.payload.map(restaurant => normalizeRestaurant(restaurant));
            
-            action.payload.forEach(restaurant => {
-                normalizedDishes = restaurant.dishes.map(dish => normalizeDish(dish)) 
-                restaurant.dishes.forEach(dish => dish.reviews.map(review => normalizedReviews.push(normalizeReview(review))))
-            })
+            // action.payload.forEach(restaurant => {
+            //     normalizedDishes = restaurant.dishes.map(dish => normalizeDish(dish)) 
+            //     restaurant.dishes.forEach(dish => dish.reviews.map(review => normalizedReviews.push(normalizeReview(review))))
+            // })
 
              return(Object.assign({}, state, {
-                 restaurants: Object.assign({}, state.restaurants, ...normalizedArray),
-                 dishes: Object.assign({}, state.dishes, ...normalizedDishes),
-                 reviews: Object.assign({}, state.reviews, ...normalizedReviews)
+                 restaurants: Object.assign({}, state.restaurants, ...restaurants)
+       
              }))
             
         case actions.DELETE_RESTAURANT_SUCCESS:
             console.log("Case: Delete restaurant succes ");
             const restaurantId = action.payload.id;
+
             //Get the keys of all state.restaurants
             const keys = Object.keys(state.restaurants);
             // remove the restaurant object from the restaurants in state
@@ -84,20 +81,24 @@ export default  (state=initialState, action) => {
             const dishIdsOfDeletedRestaurant = state.restaurants[restaurantId].dishIds;
             const filteredDishes = _.omit(state.dishes, dishIdsOfDeletedRestaurant );
 
-            console.log(filteredDishes);
+            console.log(dishIdsOfDeletedRestaurant);
 
-            console.log(filteredDishes.reviewIds)
-            //remove reviews of the dishes in the deleted restaurant
-            //const reviewIdsOfDeletedDishes = 
-            const dishesToDelete = _.pick(state.dishes, dishIdsOfDeletedRestaurant); //got the dishes to be deleted
-            
-       
-
-           // console.log(_.omit(state.reviews, reviewsIdsToDelete));
+            // delete the reviews of the dishes 
+         
+        
+            function mapDishToReviewIds(dishes) {
+                console.log(dishes);
+              const reviewIds =  dishes.map(dish => dish.reviewIds)
+                .reduce( (arr, ele) => [...arr, ...ele], []);
+                return reviewIds;
+            }
+            const reviewIdsOfDeletedRestaurant = mapDishToReviewIds(dishIdsOfDeletedRestaurant.map(id => state.dishes[id]));
+            const filteredReviews = _.omit(state.review, reviewIdsOfDeletedRestaurant );
 
             return(Object.assign({}, state, {
-                restaurants:  Object.assign({}, filteredRestaurants),
-                dishes: Object.assign({}, filteredDishes)
+                restaurants:  Object.assign({},state.restaurants, filteredRestaurants),
+                dishes: Object.assign({}, state.dishes, filteredDishes),
+                reviews: Object.assign({}, state.reviews, filteredReviews)
             }));
 
         case actions.EDIT_RESTAURANT_SUCCESS:
