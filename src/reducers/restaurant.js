@@ -181,19 +181,34 @@ export default  (state=initialState, action) => {
 
         case actions.ADD_DISH_REVIEW_SUCCESS:
             console.log("Case: Add dish review succes ");
-            const idOfDish = action.payload.dishId;
+           
+            //normalize review in the payload
             const normalizedReview = normalizeReview(action.payload);
-            console.log(normalizedReview)
+
+            //find the matching dish to update the reviewIds
+            const idOfDish = action.payload.dishId;
+            const matchDish = state.dishes[idOfDish];
+
+            //add the reviewId to the dish
+            const updatedDish = Object.assign({}, matchDish, {
+                reviewIds: _.concat(matchDish.reviewIds, action.payload.id)
+            });
+
             return (Object.assign({}, state, {
+                restaurants: Object.assign({}, state.restaurants),
+                dishes: Object.assign({},  updatedDish),
                 reviews: Object.assign({}, state.reviews, normalizedReview)
             }))
 
         case actions.FETCH_ALL_REVIEWS_SUCCESS:
             console.log("Case: Fetch all dish reviews succes ");
-            const normalizedDishReviews = action.payload.map((review) => normalizeReview(review)) //normalize each review 
-            const cachedDish = state.dishes[action.payload[0].dishId];
-            const dish = Object.assign({}, cachedRestaurant, {reviewIds: _.union(cachedDish.reviewIds, action.payload.map(review => review.id))})
-            console.log(cachedDish.reviewIds, action.payload.map(review => review.id));
+
+            //normalize each review in the payload
+            const normalizedDishReviews = action.payload.map((review) => normalizeReview(review)) 
+
+            //find the matching dish to update the reviewIds
+            const matchingDishId = action.payload[0].dishId
+  
 
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants),
