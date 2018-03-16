@@ -19,47 +19,14 @@ export const fetchAllRestaurants = () => dispatch => {
         name: 'ABC',
         location: 'San Francisco',
         cuisine: 'Italian',
-        dishes: [{
-            id: 11,
-            name: 'Xyz',
-            reviews: [{
-                id: 111,
-                rating: 3,
-                description: 'sgdgdh'
-            },{
-                id: 112,
-                rating: 5,
-                description: 'gjhgk'
-            }]
-        },
-        {
-            id: 33,
-            name: 'ddd',
-            reviews: [{
-                id: 333,
-                rating: 4,
-                description: 'sfg'
-            }]
-        }]   
+        dishes: [ 11, 33]
     },
     {
         id: 2,
         name: 'BCD',
         location: 'Las Vegas',
         cuisine: 'Mexican',
-        dishes: [{
-            id: 22,
-            name: 'Bcd',
-           reviews: [{
-               id: 888
-           }]
-        },
-        {
-            id: 44,
-            name: 'ghghf',
-            reviews: []
-        
-         }]
+        dishes: [22, 44]
     }]
     setTimeout(() => { 
         console.log("success");
@@ -113,28 +80,7 @@ export const deleteRestaurant = (item) => (dispatch) => {
        name: 'ABC',
        location: 'San Francisco',
        cuisine: 'Italian',
-       dishes: [{
-        id: 11,
-        name: 'Xyz',
-        reviews: [{
-            id: 111,
-            rating: 3,
-            description: 'sgdgdh'
-        },{
-            id: 112,
-            rating: 5,
-            description: 'gjhgk'
-        }]
-    },
-    {
-        id: 33,
-        name: 'ddd',
-        reviews: [{
-            id: 333,
-            rating: 4,
-            description: 'sfg'
-        }]
-    }]   
+       dishes: [11 , 33]
     }
 
     setTimeout(() => { 
@@ -157,27 +103,15 @@ export const editRestaurantError = (error) => ({
 export const editRestaurant = () => (dispatch) => {
     //API call to PUT
      // fetch(`${API_BASE_URL/restaurants/:restaurantId}`)
-     const restaurants =  [{
+     const restaurants =  {
         id: '1',
         name: 'XYY Edited',
         location: 'San Francisco',
         cuisine: 'Indian',
         dishCount: '0',
         dishes:[]
-    },
-    {
-        id: '2',
-        name: 'BCD',
-        location: 'Las Vegas',
-        cuisine: 'Mexican',
-        dishCount: '1',
-        dishes: [{
-            dishId: '2',
-            name: 'Bcd',
-            rating: '5'
-        }]
-    }]
-
+    }
+    
     setTimeout(() => { 
         console.log("success");
         dispatch(editRestaurantSuccess(restaurants))
@@ -255,11 +189,7 @@ export const addDish = (dishInput) => (dispatch) => {
             restId: 1,
             id: 55,
             name: dishInput.name,
-            reviews: [{
-                id: 555,
-                rating: dishInput.rating,
-                description: dishInput.review
-            }]
+            reviews: [555]
         }
    
     setTimeout(() => { 
