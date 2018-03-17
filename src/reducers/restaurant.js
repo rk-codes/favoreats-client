@@ -72,28 +72,35 @@ export default  (state=initialState, action) => {
             console.log("Case: Delete restaurant succes ");
             const restaurantId = action.payload.id;
 
+            let filteredDishes = {};
+            let filteredReviews = {};
             //Get the keys of all state.restaurants
             const keys = Object.keys(state.restaurants);
             // remove the restaurant object from the restaurants in state
             const filteredRestaurants = _.omitBy(state.restaurants, (value, key) => key == restaurantId);
 
             // remove the dishes of the deleted restaurant from the dishes object in the state
-            const dishIdsOfDeletedRestaurant = state.restaurants[restaurantId].dishIds;
-            const filteredDishes = _.omit(state.dishes, dishIdsOfDeletedRestaurant );
+          
+            if(state.restaurants[restaurantId].dishIds.length !== 0) { //check if the deleted restaurant has any dishes
 
-            console.log(dishIdsOfDeletedRestaurant);
-
-            // delete the reviews of the dishes 
+                const dishIdsOfDeletedRestaurant = state.restaurants[restaurantId].dishIds;
+                filteredDishes = _.omit(state.dishes, dishIdsOfDeletedRestaurant );
+           
+                const dishesOfDeletedRest = state.restaurants[restaurantId].dishIds;
+               
+                // delete the reviews of the dishes 
          
         
-            function mapDishToReviewIds(dishes) {
-                console.log(dishes);
-              const reviewIds =  dishes.map(dish => dish.reviewIds)
-                .reduce( (arr, ele) => [...arr, ...ele], []);
-                return reviewIds;
+                function mapDishToReviewIds(dishes) {
+                    console.log(dishes);
+                    const reviewIds =  dishes.map(dish => dish.reviewIds)
+                        .reduce( (arr, ele) => [...arr, ...ele], []);
+                        return reviewIds;
+                }
+                const reviewIdsOfDeletedRestaurant = mapDishToReviewIds(dishIdsOfDeletedRestaurant.map(id => state.dishes[id]));
+                filteredReviews = _.omit(state.review, reviewIdsOfDeletedRestaurant );
+
             }
-            const reviewIdsOfDeletedRestaurant = mapDishToReviewIds(dishIdsOfDeletedRestaurant.map(id => state.dishes[id]));
-            const filteredReviews = _.omit(state.review, reviewIdsOfDeletedRestaurant );
 
             return(Object.assign({}, state, {
                 restaurants:  Object.assign({},state.restaurants, filteredRestaurants),
@@ -146,11 +153,10 @@ export default  (state=initialState, action) => {
                 dishIds: _.concat(matchRestaurant.dishIds, action.payload.id)
             });
             
-            const normalizedDishReview = normalizeReview(action.payload.reviews[0]);
+    
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[rId]: updatedRestaurant}),
-                dishes: Object.assign({},  state.dishes, normalizedDish),
-                reviews: Object.assign({},  state.reviews, normalizedDishReview)
+                dishes: Object.assign({},  state.dishes, normalizedDish)
             }))
 
         case actions.DELETE_DISH_SUCCESS:
