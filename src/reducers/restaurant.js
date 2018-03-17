@@ -128,14 +128,9 @@ export default  (state=initialState, action) => {
             const restaurant = Object.assign({}, cachedRestaurant, {dishIds: _.union(cachedRestaurant.dishIds, action.payload.map(dish => dish.id))})
             console.log(cachedRestaurant.dishIds, action.payload.map(dish => dish.id));
      
-           
-            const reviewsNormalized = action.payload.map(dish => 
-                 dish.reviews.forEach(review => normalizeReview(review)) //normalize each review in each dish
-            )
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[restId]: restaurant}),
-                dishes: Object.assign({},  state.dishes, ...dishes),
-                reviews: Object.assign({}, state.reviews,  ...reviewsNormalized)
+                dishes: Object.assign({},  state.dishes, ...dishes)
             }))
      
         case actions.ADD_DISH_SUCCESS:
