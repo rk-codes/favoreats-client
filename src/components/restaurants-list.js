@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import RestaurantInfo from './restaurant-info';
 import {fetchAllRestaurants} from '../actions';
-import store from '../store';
+//import store from '../store';
 import {withRouter} from 'react-router-dom';
 
 class  RestaurantsList extends React.Component {
@@ -24,7 +24,7 @@ class  RestaurantsList extends React.Component {
         console.log(store.getState());
 
         const restaurants = this.props.restaurants;
-        console.log(restaurants);
+        //console.log(restaurants);
 
         const restaurant = Object.values(this.props.restaurants).map((item, index) =>
             <li key={index}>
