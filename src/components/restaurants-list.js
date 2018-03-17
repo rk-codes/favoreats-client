@@ -21,7 +21,7 @@ class  RestaurantsList extends React.Component {
     }
     render() {
         console.log(this.props.history)
-        console.log(store.getState());
+        //console.log(store.getState());
 
         const restaurants = this.props.restaurants;
         //console.log(restaurants);
