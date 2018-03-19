@@ -8,7 +8,6 @@ const initialState = {
     dishes: {},
     reviews: {}
 }
-initialState.restaurants
 /*
 const initialState = {
     restaurants: {
@@ -74,9 +73,7 @@ export default  (state=initialState, action) => {
 
             let filteredDishes = {};
             let filteredReviews = {};
-            //Get the keys of all state.restaurants
-            const keys = Object.keys(state.restaurants);
-            
+       
             // remove the restaurant object from the restaurants in state
             const filteredRestaurants = _.omitBy(state.restaurants, (value, key) => key == restaurantId);
 
@@ -86,9 +83,7 @@ export default  (state=initialState, action) => {
 
                 const dishIdsOfDeletedRestaurant = state.restaurants[restaurantId].dishIds;
                 filteredDishes = _.omit(state.dishes, dishIdsOfDeletedRestaurant );
-           
-                const dishesOfDeletedRest = state.restaurants[restaurantId].dishIds;
-               
+            
                 // delete the reviews of the dishes 
          
                 const reviewIdsOfDeletedRestaurant = mapDishToReviewIds(dishIdsOfDeletedRestaurant.map(id => state.dishes[id]));
@@ -203,8 +198,7 @@ export default  (state=initialState, action) => {
             const normalizedDishReviews = action.payload.map((review) => normalizeReview(review)) 
 
             //find the matching dish to update the reviewIds
-            const matchingDishId = action.payload[0].dishId
-  
+            //const matchingDishId = action.payload[0].dishId
 
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants),
