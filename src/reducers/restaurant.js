@@ -70,12 +70,13 @@ export default  (state=initialState, action) => {
         case actions.DELETE_RESTAURANT_SUCCESS:
             console.log("Case: Delete restaurant succes ");
             const restaurantId = action.payload.id;
+            console.log(restaurantId, typeof(restaurantId))
 
             let filteredDishes = {};
             let filteredReviews = {};
        
             // remove the restaurant object from the restaurants in state
-            const filteredRestaurants = _.omitBy(state.restaurants, (value, key) => key == restaurantId);
+            const filteredRestaurants = _.omitBy(state.restaurants, (value, key) => key === restaurantId);
 
             // remove the dishes of the deleted restaurant from the dishes object in the state
           
@@ -149,7 +150,7 @@ export default  (state=initialState, action) => {
             const resId = action.payload.restId;
 
             //remove the dish from dishes object in the state
-            const filterDishes = _.omitBy(state.dishes, (value, key) => key == dishIdToDelete); 
+            const filterDishes = _.omitBy(state.dishes, (value, key) => key === dishIdToDelete); 
 
             //remove the dishId from restaurant.dishIds array in the state
             const remainingDishIds = _.without(state.restaurants[resId].dishIds, dishIdToDelete ) 
