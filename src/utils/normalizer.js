@@ -5,7 +5,7 @@ export function normalizeRestaurant(restaurant) {
             name: restaurant.name,
             location: restaurant.location,
             cuisine: restaurant.cuisine,
-            dishIds: restaurant.dishes.map(dish => dish.id)
+            dishIds: restaurant.dishes
         }
     }
 }
