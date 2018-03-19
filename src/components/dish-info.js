@@ -18,8 +18,8 @@ export  class DishInfo extends React.Component{
                 <p>Rating: {this.props.rating}</p>
                 <button onClick={() => this.onDelete()}>Delete</button>
                
-                <Link to={`/restaurants/${this.props.match.params.restaurantId}/dishes/${this.props.dishId}/reviews/addreview`}>Add review</Link>
-                <Link to={`/restaurants/${this.props.match.params.restaurantId}/dishes/${this.props.dishId}/reviews`}>View past reviews</Link>
+                <Link to={`/restaurants/${this.props.match.params.restaurantId}/dishes/${this.props.id}/reviews/addreview`}>Add review</Link>
+                <Link to={`/restaurants/${this.props.match.params.restaurantId}/dishes/${this.props.id}/reviews`}>View past reviews</Link>
             </div>
         )
     }  
