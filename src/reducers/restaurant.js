@@ -56,11 +56,6 @@ export default  (state=initialState, action) => {
          
             //normalize each restaurant in the payload
             const restaurants = action.payload.map(restaurant => normalizeRestaurant(restaurant));
-           
-            // action.payload.forEach(restaurant => {
-            //     normalizedDishes = restaurant.dishes.map(dish => normalizeDish(dish)) 
-            //     restaurant.dishes.forEach(dish => dish.reviews.map(review => normalizedReviews.push(normalizeReview(review))))
-            // })
 
              return(Object.assign({}, state, {
                  restaurants: Object.assign({}, state.restaurants, ...restaurants)
@@ -152,19 +147,19 @@ export default  (state=initialState, action) => {
             //remove the dish from dishes object in the state
             const filterDishes = _.omitBy(state.dishes, (value, key) => key === dishIdToDelete); 
 
-            //remove the dishId from restaurant.dishIds array in the state
+           
+            //remove the dishId from the dishIds of the restaurant of the deleted dish
             const remainingDishIds = _.without(state.restaurants[resId].dishIds, dishIdToDelete ) 
-
-            //remove the reviews of the deleted dish from the state
-            const updatedReviews = _.omit(state.reviews, state.dishes[dishIdToDelete].reviewIds);
-
             //update the restaurant with new array of dishIds
             const updatedRest = Object.assign({}, state.restaurants[resId], {dishIds: remainingDishIds}) 
-      
+
+            //remove the reviews of the deleted dish from the reviews
+            const updatedReviews = _.omit(state.reviews, state.dishes[dishIdToDelete].reviewIds);
+
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[resId]: updatedRest}),
-                dishes: Object.assign({},  filterDishes),
-                reviews:Object.assign({}, updatedReviews)
+                dishes: Object.assign({},  state.dishes, filterDishes),
+                reviews:Object.assign({}, state.reviews, updatedReviews)
             }))
 
         case actions.EDIT_DISH_SUCCESS:
