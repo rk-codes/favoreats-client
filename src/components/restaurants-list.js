@@ -23,7 +23,7 @@ class  RestaurantsList extends React.Component {
         console.log(this.props.history)
         //console.log(store.getState());
 
-        const restaurants = this.props.restaurants;
+        //const restaurants = this.props.restaurants;
         //console.log(restaurants);
 
         const restaurant = Object.values(this.props.restaurants).map((item, index) =>

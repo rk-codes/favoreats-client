@@ -1,8 +1,8 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import {loadAuthToken} from './local-storage';
+//import {loadAuthToken} from './local-storage';
 import reducers from './reducers';
-import {setAuthToken, refreshAuthToken} from './actions/auth';
+//import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 const store = createStore(
     reducers,

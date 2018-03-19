@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 
 import DishInfo from './dish-info';
 import { fetchAllDishes } from '../actions';
-import store from '../store';
+//import store from '../store';
 
 class DishesList extends React.Component {
     
@@ -17,6 +17,7 @@ class DishesList extends React.Component {
     }
 
     render() {
+        //console.log(store.getState());
         const restaurantId = this.props.match.params.restaurantId;
         const dishIds = this.props.restaurants[restaurantId].dishIds  // get all dish ids of this restaurant
         //iterate dishes{} to find the dish objects where dish.id == dishId
