@@ -187,8 +187,7 @@ export default  (state=initialState, action) => {
             });
 
             return (Object.assign({}, state, {
-                restaurants: Object.assign({}, state.restaurants),
-                dishes: Object.assign({},  updatedDish),
+                dishes: Object.assign({}, state.dishes, {[idOfDish]: updatedDish}),
                 reviews: Object.assign({}, state.reviews, normalizedReview)
             }))
 
