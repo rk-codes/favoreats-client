@@ -13,29 +13,23 @@ export  class DishReviewsList extends React.Component{
         console.log("DishReviewsList");
         console.log(store.getState());
         const restaurantId = this.props.match.params.restaurantId;
-        const reviews=[{
-            date: '4/5/2017',
-            rating: '3',
-            review: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-        },
-        {
-            date: '5/6/2017',
-            rating: '4',
-            review: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-        }
-        ]
-    
-        const dishReviews = reviews.map((item, index) =>
+        const dishId = this.props.match.params.dishId;
+        const reviewIds = this.props.dishes[dishId].reviewIds; //get all reviewIds of the dish
+   
+        const reviewsList = reviewIds.map(id => this.props.reviews[id]) //get the reviews for each review id
+        console.log(reviewsList);
+        const reviews = Object.values(reviewsList).map((item,index) => 
             <li key={index}>
                 <DishReview {...item} />
             </li>
         )
+
         return(
             <div className="reviews">
             <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
             <h4>Dish Name</h4>
                 <ul>
-                    {dishReviews}
+                    {reviews}
                 </ul>
             </div>
         )
@@ -44,7 +38,8 @@ export  class DishReviewsList extends React.Component{
 const mapStateToProps = (state) => {
     return{
         restaurants: state.restaurant.restaurants,
-        dishes: state.restaurant.dishes
+        dishes: state.restaurant.dishes,
+        reviews: state.restaurant.reviews
     }
 }
 const mapDispatchToProps = (dispatch) => {
