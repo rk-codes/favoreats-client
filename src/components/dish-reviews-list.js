@@ -10,8 +10,9 @@ export  class DishReviewsList extends React.Component{
         this.props.fetchAllReviewsOfDish();
     }
     render() {
-        console.log("DishReviewsList")
-        console.log(store.getState())
+        console.log("DishReviewsList");
+        console.log(store.getState());
+        const restaurantId = this.props.match.params.restaurantId;
         const reviews=[{
             date: '4/5/2017',
             rating: '3',
@@ -31,7 +32,8 @@ export  class DishReviewsList extends React.Component{
         )
         return(
             <div className="reviews">
-            <h3>Dish Name</h3>
+            <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
+            <h4>Dish Name</h4>
                 <ul>
                     {dishReviews}
                 </ul>
