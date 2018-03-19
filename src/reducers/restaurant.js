@@ -1,7 +1,7 @@
 import * as actions from '../actions';
-//import {union} from 'lodash';
 import _ from 'lodash';
 import {normalizeRestaurant, normalizeDish, normalizeReview} from '../utils/normalizer';
+import {mapDishToReviewIds} from '../utils/mapper';
 
 const initialState = {
     restaurants: {},
@@ -76,6 +76,7 @@ export default  (state=initialState, action) => {
             let filteredReviews = {};
             //Get the keys of all state.restaurants
             const keys = Object.keys(state.restaurants);
+            
             // remove the restaurant object from the restaurants in state
             const filteredRestaurants = _.omitBy(state.restaurants, (value, key) => key == restaurantId);
 
@@ -90,13 +91,6 @@ export default  (state=initialState, action) => {
                
                 // delete the reviews of the dishes 
          
-        
-                function mapDishToReviewIds(dishes) {
-                    console.log(dishes);
-                    const reviewIds =  dishes.map(dish => dish.reviewIds)
-                        .reduce( (arr, ele) => [...arr, ...ele], []);
-                        return reviewIds;
-                }
                 const reviewIdsOfDeletedRestaurant = mapDishToReviewIds(dishIdsOfDeletedRestaurant.map(id => state.dishes[id]));
                 filteredReviews = _.omit(state.review, reviewIdsOfDeletedRestaurant );
 
