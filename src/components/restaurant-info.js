@@ -22,7 +22,7 @@ class RestaurantInfo extends React.Component {
                 <Link to= {`/restaurants/${this.props.id}/dishes`}>Restaurant Name: {this.props.name}</Link>
                 <p>Location: {this.props.location}</p>
                 <span>Cuisine: {this.props.cuisine}</span>
-                <p>Dishes Count: {this.props.dishCount}</p>
+                <p>Dishes Count: {this.props.dishIds.length}</p>
                 <button onClick={() => this.onEdit()}>Edit</button>
                 <button onClick={() => this.onDelete()}>Delete</button>
             </div>
