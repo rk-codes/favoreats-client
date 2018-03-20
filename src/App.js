@@ -19,10 +19,12 @@ import Header from './components/header';
 export default class App extends Component {
   render() {
     return (
+      <div>
+      <Header />
       <Router>
         <div>
-          <Header />
-          <main>
+         
+      
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/login" component={LoginForm} />
             <Route exact path="/signup" component={RegistrationPage} />
@@ -34,9 +36,11 @@ export default class App extends Component {
             <Route exact path="/restaurants/:restaurantId/dishes/:dishId/reviews/addreview" component={AddDishReviewForm} />
             <Route exact path="/addrestaurant" component={AddRestaurantForm} />
             <Route exact path="/restaurants/:restaurantId/dishes/adddish" component={AddDishForm} />
-          </main>
+         
         </div>   
       </Router>
+      </div>
+      
     );
   }
 }
