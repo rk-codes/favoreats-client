@@ -139,41 +139,25 @@ export const fetchAllDishesError = (error) => ({
 })
 
 //Get all dishes of a restaurant from db
-export const fetchAllDishes = (restaurantId) => dispatch =>{
-    //API call to GET
-    // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes}`)
+export const fetchAllDishes = (restaurantId) => (dispatch, getState) =>{
+  
     console.log("fetch all dishes");
-   
-    const dishes = [
-        {
-        restId: 1,
-        id: 11,
-        name: 'Xyz',
-        reviews: [{
-            id: 111,
-            rating: 3,
-            description: 'sgdgdh'
-        },{
-            id: 112,
-            rating: 5,
-            description: 'gjhgk'
-        }]     
-    },
-    {
-        restId: 1,
-        id: 33,
-        name: 'ddd',
-        reviews: [{
-            id: 333,
-            rating: 4,
-            description: 'sfg'
-        }]    
-    }]
-        
-    setTimeout(() => { 
-        console.log("success");
-        dispatch(fetchAllDishesSuccess(dishes))
-    }, 300);
+    const authToken = getState().auth.authToken;
+    
+     //API call to GET all dishes
+    return fetch(`${API_BASE_URL}/restaurants/${restaurantId}/dishes`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((data) => dispatch(fetchAllDishesSuccess(data)))
+    .catch(err => {
+        dispatch(fetchAllDishesError(err));
+    });
 }
 
 //Add a new dish
