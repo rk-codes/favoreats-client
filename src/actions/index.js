@@ -1,3 +1,6 @@
+import {API_BASE_URL} from '../config';
+import {normalizeResponseErrors} from './utils';
+
 export const FETCH_ALL_RESTAURANTS_SUCCESS = 'FETCH_ALL_RESTAURANTS_SUCCESS';
 export const fetchAllRestaurantsSuccess = (data) => ({
     type: FETCH_ALL_RESTAURANTS_SUCCESS,
@@ -10,28 +13,43 @@ export const fetchAllRestaurantsError = (error) => ({
 })
 
 //Get all restaurants from db
-export const fetchAllRestaurants = () => dispatch => {
-    console.log("fetach all");
-     //API call to GET
-    // fetch(`${API_BASE_URL/restaurants}`)
-    const restaurants =  [{
-        id: 1,
-        name: 'ABC',
-        location: 'San Francisco',
-        cuisine: 'Italian',
-        dishes: [ 11, 33]
-    },
-    {
-        id: 2,
-        name: 'BCD',
-        location: 'Las Vegas',
-        cuisine: 'Mexican',
-        dishes: [22, 44]
-    }]
-    setTimeout(() => { 
-        console.log("success");
-        dispatch(fetchAllRestaurantsSuccess(restaurants))
-    }, 300);
+export const fetchAllRestaurants = () => (dispatch, getState) => {
+    console.log("Fetch all restaurants");
+    const authToken = getState().auth.authToken;
+    
+     //API call to GET all restaurants
+    return fetch(`${API_BASE_URL}/restaurants`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((data) => dispatch(fetchAllRestaurantsSuccess(data)))
+    .catch(err => {
+        dispatch(fetchAllRestaurantsError(err));
+    });
+
+    // const restaurants =  [{
+    //     id: 1,
+    //     name: 'ABC',
+    //     location: 'San Francisco',
+    //     cuisine: 'Italian',
+    //     dishes: [ 11, 33]
+    // },
+    // {
+    //     id: 2,
+    //     name: 'BCD',
+    //     location: 'Las Vegas',
+    //     cuisine: 'Mexican',
+    //     dishes: [22, 44]
+    // }]
+    // setTimeout(() => { 
+    //     console.log("success");
+    //     dispatch(fetchAllRestaurantsSuccess(restaurants))
+    // }, 300);
 }
    
 //Add a new restaurant
