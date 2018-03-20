@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import DishReview from './dish-review';
-import store from '../store';
 import { fetchAllReviewsOfDish } from '../actions';
 
 export  class DishReviewsList extends React.Component{
@@ -11,7 +10,6 @@ export  class DishReviewsList extends React.Component{
     }
     render() {
         console.log("DishReviewsList");
-        console.log(store.getState());
         const restaurantId = this.props.match.params.restaurantId;
         const dishId = this.props.match.params.dishId;
         const reviewIds = this.props.dishes[dishId].reviewIds; //get all reviewIds of the dish
