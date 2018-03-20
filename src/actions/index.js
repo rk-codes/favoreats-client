@@ -187,22 +187,26 @@ export const addDishError = (error) => ({
     type: ADD_DISH_ERROR,
     payload: error
 })
-export const addDish = (dishInput) => (dispatch) => {
-    //API call to POST
-    // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes}`)
-    console.log(dishInput);
-       const dish = {
-            restId: 1,
-            id: 55,
-            name: dishInput.name,
-            reviews: [555]
-        }
-   
-    setTimeout(() => { 
-        console.log("success");
-        dispatch(addDishSuccess(dish))
-    }, 300);
+export const addDish = (restaurantId, dishData) => (dispatch, getState) => {
+    console.log("Add a dish");
+    const authToken = getState().auth.authToken;
 
+    //API call to POST
+    return fetch(`${API_BASE_URL}/restaurants/${restaurantId}/dishes`, {
+        method: 'POST',
+        body: JSON.stringify(dishData),
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((data) => dispatch(addDishSuccess(data)))
+    .catch(err => {
+        dispatch(addDishError(err));
+    });
  }
  
  //Delete a dish
