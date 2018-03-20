@@ -9,9 +9,6 @@ export class Header extends React.Component{
     logOut() {
         this.props.dispatch(clearAuth());
         clearAuthToken();
-        // if (this.props.hasAuthToken === false) {
-        //     return <Redirect to="/" />;
-        // }
     }
     render() {
         let navLinks;
