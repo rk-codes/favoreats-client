@@ -26,10 +26,9 @@ class DishesList extends React.Component {
         //console.log(store.getState());
         let restaurantId;
         restaurantId = this.props.match.params.restaurantId;
-        const dishIds = this.props.restaurants[restaurantId].dishIds  // get all dish ids of this restaurant
-     
-        //const dishIds = get(this.props.restaurants, [restaurantId, 'dishIds']) || [];
-        console.log(dishIds);
+      
+        const dishIds = get(this.props.restaurants, [restaurantId, 'dishIds']) || [];
+       
         //iterate dishes{} to find the dish objects where dish.id == dishId
         const dishesList = dishIds.map(id => this.props.dishes[id])
         const dishes = Object.values(dishesList).map((item,index) => 
@@ -41,7 +40,7 @@ class DishesList extends React.Component {
             <div className="dishes-list">
                 <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
                 <p>Cuisine: {this.props.restaurants[restaurantId].cuisine}</p>
-                <span>Dishes count: {this.props.restaurants[restaurantId].dishCount}</span>
+                <span>Dishes count: {dishIds.length}</span>
                 <ul>
                   {dishes}
                 </ul>
