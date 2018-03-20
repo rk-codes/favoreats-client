@@ -31,25 +31,6 @@ export const fetchAllRestaurants = () => (dispatch, getState) => {
     .catch(err => {
         dispatch(fetchAllRestaurantsError(err));
     });
-
-    // const restaurants =  [{
-    //     id: 1,
-    //     name: 'ABC',
-    //     location: 'San Francisco',
-    //     cuisine: 'Italian',
-    //     dishes: [ 11, 33]
-    // },
-    // {
-    //     id: 2,
-    //     name: 'BCD',
-    //     location: 'Las Vegas',
-    //     cuisine: 'Mexican',
-    //     dishes: [22, 44]
-    // }]
-    // setTimeout(() => { 
-    //     console.log("success");
-    //     dispatch(fetchAllRestaurantsSuccess(restaurants))
-    // }, 300);
 }
    
 //Add a new restaurant
@@ -63,20 +44,27 @@ export const addRestaurantError = (error) => ({
     type: ADD_RESTAURANT_ERROR,
     payload: error
 })
-export const addRestaurant = (restaurantData) => (dispatch) => {
+export const addRestaurant = (restaurantData) => (dispatch, getState) => {
+    console.log("Add a restaurant");
+    const authToken = getState().auth.authToken;
+    console.log(restaurantData);
+
    //API call to POST
-   // fetch(`${API_BASE_URL/restaurants}`)
-   const restaurant =  {
-       id: 4,
-       name: restaurantData.name,
-       location: restaurantData.location,
-       cuisine: restaurantData.cuisine,
-       dishes: []
-    }
-    setTimeout(() => { 
-        console.log("success");
-        dispatch(addRestaurantSuccess(restaurant))
-    }, 300);
+   return fetch(`${API_BASE_URL}/restaurants`, {
+        method: 'POST',
+        body: JSON.stringify(restaurantData),
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((data) => dispatch(addRestaurantSuccess(data)))
+    .catch(err => {
+        dispatch(addRestaurantError(err));
+    });
 }
 
 //Delete a restaurant
