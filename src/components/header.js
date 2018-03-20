@@ -9,6 +9,7 @@ export class Header extends React.Component{
     logOut() {
         this.props.dispatch(clearAuth());
         clearAuthToken();
+        return <Redirect to="/" />
     }
     render() {
         let navLinks;
@@ -47,4 +48,4 @@ const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null
 });
   
-  export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(Header);
