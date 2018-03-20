@@ -8,7 +8,7 @@ export class AddDishForm extends React.Component{
         console.log("Dish Form submitted");
         console.log(values);
         //API call to POST new restaurant
-        dispatch(addDish(values));
+        dispatch(addDish(this.props.match.params.restaurantId, values));
         this.props.history.push(`/restaurants/${this.props.match.params.restaurantId}/dishes`);
     }
     
@@ -39,8 +39,8 @@ export class AddDishForm extends React.Component{
                     <Field name="name" type="text" component="input" />
                     <label htmlFor="rating">Rating</label>
                     <Field name="rating" type="text" component="input" />
-                    <label htmlFor="review">Review</label>
-                    <Field name="review" type="text" component="input" />
+                    <label htmlFor="description">Review</label>
+                    <Field name="description" type="text" component="input" />
                     <button>Cancel</button>
                     <button type="submit">Add</button>
                 </fieldset>     
