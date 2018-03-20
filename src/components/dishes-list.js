@@ -8,8 +8,11 @@ import { fetchAllDishes } from '../actions';
 
 class DishesList extends React.Component {
     
-    componentDidMount() {
-        this.props.fetchAllDishes(this.props.match.params.restaurantId);
+    componentDidMount() {    
+        const restaurant = this.props.restaurants[this.props.match.params.restaurantId];
+        if(restaurant.dishIds.length > 0) {
+            this.props.fetchAllDishes(this.props.match.params.restaurantId);
+        }
     }
 
     onAddClick(){
@@ -18,7 +21,8 @@ class DishesList extends React.Component {
 
     render() {
         //console.log(store.getState());
-        const restaurantId = this.props.match.params.restaurantId;
+        let restaurantId;
+        restaurantId = this.props.match.params.restaurantId;
         const dishIds = this.props.restaurants[restaurantId].dishIds  // get all dish ids of this restaurant
         //iterate dishes{} to find the dish objects where dish.id == dishId
         const dishesList = dishIds.map(id => this.props.dishes[id])
@@ -29,9 +33,9 @@ class DishesList extends React.Component {
         )
         return(
             <div className="dishes-list">
-                <h3>Restaurant Name: {this.props.restaurants.name}</h3>
-                <p>Cuisine: {this.props.restaurants.cuisine}</p>
-                <span>Dishes count: {this.props.restaurants.dishCount}</span>
+                <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
+                <p>Cuisine: {this.props.restaurants[restaurantId].cuisine}</p>
+                <span>Dishes count: {this.props.restaurants[restaurantId].dishCount}</span>
                 <ul>
                   {dishes}
                 </ul>
