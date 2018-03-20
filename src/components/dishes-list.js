@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import {get} from 'lodash';
 
 import DishInfo from './dish-info';
 import { fetchAllDishes } from '../actions';
@@ -9,8 +10,10 @@ import { fetchAllDishes } from '../actions';
 class DishesList extends React.Component {
     
     componentDidMount() {    
+        
         const restaurant = this.props.restaurants[this.props.match.params.restaurantId];
         if(restaurant.dishIds.length > 0) {
+            console.log(this.props.match.params.restaurantId);
             this.props.fetchAllDishes(this.props.match.params.restaurantId);
         }
     }
@@ -24,6 +27,9 @@ class DishesList extends React.Component {
         let restaurantId;
         restaurantId = this.props.match.params.restaurantId;
         const dishIds = this.props.restaurants[restaurantId].dishIds  // get all dish ids of this restaurant
+     
+        //const dishIds = get(this.props.restaurants, [restaurantId, 'dishIds']) || [];
+        console.log(dishIds);
         //iterate dishes{} to find the dish objects where dish.id == dishId
         const dishesList = dishIds.map(id => this.props.dishes[id])
         const dishes = Object.values(dishesList).map((item,index) => 
@@ -53,7 +59,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return ({
-        fetchAllDishes: () => dispatch(fetchAllDishes()),
+        fetchAllDishes: (restaurantId) => dispatch(fetchAllDishes(restaurantId)),
     })
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DishesList));
