@@ -1,15 +1,22 @@
 import React from 'react';
+import { connect } from "react-redux";
 import {Field, reduxForm, focus} from 'redux-form';
 import Input from './input';
 import {login} from '../actions/auth';
 import {required, nonEmpty} from '../validators';
 
 export class LoginForm extends React.Component {
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.loggedIn) {
+            this.props.history.push('/home');
+        }
+    }
     onSubmit(values) {
         return this.props.dispatch(login(values.username, values.password)); 
     }
 
     render() {
+        console.log(this.props);
         let error;
         if (this.props.error) {
             error = (
@@ -48,8 +55,12 @@ export class LoginForm extends React.Component {
         );
     }
 }
+const mapStateToProps = state => ({
+    loggedIn: state.auth.currentUser !== null
+});
+const withState = connect(mapStateToProps);
 
 export default reduxForm({
     form: 'login',
     onSubmitFail: (errors, dispatch) => dispatch(focus('login', 'username'))
-})(LoginForm);
+})(withState(LoginForm));
