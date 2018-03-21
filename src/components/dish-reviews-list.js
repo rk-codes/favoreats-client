@@ -6,10 +6,11 @@ import { fetchAllReviewsOfDish } from '../actions';
 export  class DishReviewsList extends React.Component{
 
     componentDidMount() {
-        this.props.fetchAllReviewsOfDish();
+        this.props.fetchAllReviewsOfDish(this.props.match.params.restaurantId, this.props.match.params.dishId);
     }
     render() {
         console.log("DishReviewsList");
+        console.log(this.props);
         const restaurantId = this.props.match.params.restaurantId;
         const dishId = this.props.match.params.dishId;
         const reviewIds = this.props.dishes[dishId].reviewIds; //get all reviewIds of the dish
@@ -25,7 +26,7 @@ export  class DishReviewsList extends React.Component{
         return(
             <div className="reviews">
             <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
-            <h4>Dish Name</h4>
+            <h4>Dish Name: {this.props.dishes[dishId].name}</h4>
                 <ul>
                     {reviews}
                 </ul>
@@ -42,7 +43,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return ({
-        fetchAllReviewsOfDish: () => dispatch(fetchAllReviewsOfDish()),
+        fetchAllReviewsOfDish: (restaurantId, dishId) => dispatch(fetchAllReviewsOfDish(restaurantId, dishId)),
     })
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DishReviewsList);
