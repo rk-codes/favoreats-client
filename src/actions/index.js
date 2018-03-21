@@ -14,7 +14,7 @@ export const fetchAllRestaurantsError = (error) => ({
 
 //Get all restaurants from db
 export const fetchAllRestaurants = () => (dispatch, getState) => {
-    console.log("Fetch all restaurants");
+    console.log("Action: Fetch all restaurants");
     const authToken = getState().auth.authToken;
     
      //API call to GET all restaurants
@@ -45,7 +45,7 @@ export const addRestaurantError = (error) => ({
     payload: error
 })
 export const addRestaurant = (restaurantData) => (dispatch, getState) => {
-    console.log("Add a restaurant");
+    console.log("Action: Add a restaurant");
     const authToken = getState().auth.authToken;
     console.log(restaurantData);
 
@@ -78,21 +78,25 @@ export const deleteRestaurantError = (error) => ({
     type: DELETE_RESTAURANT_ERROR,
     payload: error
 })
-export const deleteRestaurant = (item) => (dispatch) => {
+export const deleteRestaurant = (restaurantId) => (dispatch, getState) => {
+    console.log("Action: Delete restaurant");
+    const authToken = getState().auth.authToken;
    //API call to DELETE
    // fetch(`${API_BASE_URL/restaurants/:restaurantId}`)
-   const restaurant =  {
-       id: 1,
-       name: 'ABC',
-       location: 'San Francisco',
-       cuisine: 'Italian',
-       dishes: [11 , 33]
-    }
-
-    setTimeout(() => { 
-        console.log("success");
-        dispatch(deleteRestaurantSuccess(restaurant))
-    }, 300);
+   return fetch(`${API_BASE_URL}/restaurants/${restaurantId}`, {
+        method: 'DELETE',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((data) => dispatch(deleteRestaurantSuccess(data)))
+    .catch(err => {
+        dispatch(deleteRestaurantError(err));
+    });
 }
 
 //Edit a restaurant
@@ -141,7 +145,8 @@ export const fetchAllDishesError = (error) => ({
 //Get all dishes of a restaurant from db
 export const fetchAllDishes = (restaurantId) => (dispatch, getState) =>{
   
-    console.log("fetch all dishes");
+    console.log("Action: fetch all dishes");
+    
     const authToken = getState().auth.authToken;
     
      //API call to GET all dishes
@@ -172,7 +177,7 @@ export const addDishError = (error) => ({
     payload: error
 })
 export const addDish = (restaurantId, dishData) => (dispatch, getState) => {
-    console.log("Add a dish");
+    console.log("Action: Add a dish");
     const authToken = getState().auth.authToken;
 
     //API call to POST
@@ -204,23 +209,25 @@ export const deleteDishError = (error) => ({
     type: DELETE_DISH_ERROR,
     payload: error
 })
- export const deleteDish = () => (dispatch) => {
+ export const deleteDish = (restaurantId, dishId) => (dispatch, getState) => {
+    console.log('Action: Delete dish');
+    const authToken = getState().auth.authToken;
+
     //API call to DELETE
-    // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId}`)
-    const dish = {
-        restId: 1,
-        id: 11,
-        name: 'Bcd',
-        reviews: [{
-            id: 111,
-            rating: '3',
-            description: 'sfsg'
-        }]
-    }
-    setTimeout(() => { 
-        console.log("success");
-        dispatch(deleteDishSuccess(dish))
-    }, 300);
+    return fetch(`${API_BASE_URL}/restaurants/${restaurantId}/dishes/${dishId}`, {
+         method: 'DELETE',
+         headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            'content-type': 'application/json'
+         }
+     })
+     .then(res => normalizeResponseErrors(res))
+     .then(res => res.json())
+     .then((data) => dispatch(deleteDishSuccess(data)))
+     .catch(err => {
+        dispatch(deleteDishError(err));
+    });
  }
  
  //Edit a dish
