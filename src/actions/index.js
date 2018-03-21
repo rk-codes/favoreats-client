@@ -266,12 +266,15 @@ export const deleteDishError = (error) => ({
       type: ADD_DISH_REVIEW_ERROR,
       payload: error
   })
-  export const addDishReview = (restaurantId, dishId) => (dispatch, getState) => {
+  export const addDishReview = (restaurantId, dishId, reviewData) => (dispatch, getState) => {
       console.log('Action: add review');
+      console.log(restaurantId, dishId)
+      console.log(reviewData);
     //API call to POST
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/restaurants/${restaurantId}/dishes/${dishId}/reviews`, {
         method: 'POST',
+        body: JSON.stringify(reviewData),
         headers: {
            // Provide our auth token as credentials
            Authorization: `Bearer ${authToken}`,
@@ -280,8 +283,9 @@ export const deleteDishError = (error) => ({
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then((data) => dispatch(addDishReviewSuccess(data)))
+    .then((data) => dispatch(addDishReviewSuccess(Object.assign({}, data, {dishId}))))
     .catch(err => {
+        console.log(err);
        dispatch(addDishReviewError(err));
    });
  }
@@ -299,7 +303,7 @@ export const fetchAllReviewsError = (error) => ({
 })
  export const fetchAllReviewsOfDish = (restaurantId, dishId) => (dispatch, getState) => {
     console.log("Action: fetch all reviews");
-    
+    console.log(restaurantId, dishId);
     const authToken = getState().auth.authToken;
     
      //API call to GET all reviews
