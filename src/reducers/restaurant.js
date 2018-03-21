@@ -152,8 +152,8 @@ export default (state = initialState, action) => {
         restaurants: Object.assign({}, state.restaurants, {
           [resId]: updatedRest
         }),
-        dishes: Object.assign({}, state.dishes, filterDishes),
-        reviews: Object.assign({}, state.reviews, updatedReviews)
+        dishes: filterDishes,
+        reviews: updatedReviews
       });
 
     case actions.EDIT_DISH_SUCCESS:
@@ -162,6 +162,7 @@ export default (state = initialState, action) => {
     case actions.ADD_DISH_REVIEW_SUCCESS:
       //normalize review in the payload
       const normalizedReview = normalizeReview(action.payload);
+      console.log(normalizedReview);
 
       //find the matching dish to update the reviewIds
       const idOfDish = action.payload.dishId;
@@ -169,9 +170,10 @@ export default (state = initialState, action) => {
 
       //add the reviewId to the dish
       const updatedDish = Object.assign({}, matchDish, {
-        reviewIds: _.concat(matchDish.reviewIds, action.payload._id)
+        reviewIds: _.concat(matchDish.reviewIds, action.payload.id)
       });
 
+      console.log(updatedDish);
       return Object.assign({}, state, {
         dishes: Object.assign({}, state.dishes, { [idOfDish]: updatedDish }),
         reviews: Object.assign({}, state.reviews, normalizedReview)
