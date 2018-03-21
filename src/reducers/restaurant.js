@@ -54,8 +54,10 @@ export default  (state=initialState, action) => {
         case actions.FETCH_ALL_RESTAURANTS_SUCCESS: 
             console.log("Case: Fetch all restaurants succes ");
          
+            console.log(action.payload);
             //normalize each restaurant in the payload
             const restaurants = action.payload.map(restaurant => normalizeRestaurant(restaurant));
+            console.log(restaurants);
 
              return(Object.assign({}, state, {
                  restaurants: Object.assign({}, state.restaurants, ...restaurants)
@@ -66,12 +68,14 @@ export default  (state=initialState, action) => {
             console.log("Case: Delete restaurant succes ");
             const restaurantId = action.payload.id;
             console.log(restaurantId, typeof(restaurantId))
+            console.log(Object.keys(state.restaurants));
 
             let filteredDishes = {};
             let filteredReviews = {};
        
             // remove the restaurant object from the restaurants in state
-            const filteredRestaurants = _.omitBy(state.restaurants, (value, key) => key === restaurantId);
+            const filteredRestaurants = _.omitBy(state.restaurants, (value, key) => key == restaurantId);
+            console.log(filteredRestaurants);
 
             // remove the dishes of the deleted restaurant from the dishes object in the state
           
@@ -80,6 +84,8 @@ export default  (state=initialState, action) => {
                 const dishIdsOfDeletedRestaurant = state.restaurants[restaurantId].dishIds;
                 filteredDishes = _.omit(state.dishes, dishIdsOfDeletedRestaurant );
             
+                console.log(dishIdsOfDeletedRestaurant);
+                console.log(state.dishes);
                 // delete the reviews of the dishes 
          
                 const reviewIdsOfDeletedRestaurant = mapDishToReviewIds(dishIdsOfDeletedRestaurant.map(id => state.dishes[id]));
@@ -88,7 +94,7 @@ export default  (state=initialState, action) => {
             }
 
             return(Object.assign({}, state, {
-                restaurants:  Object.assign({},state.restaurants, filteredRestaurants),
+                restaurants:  Object.assign({}, state.restaurants, filteredRestaurants),
                 dishes: Object.assign({}, state.dishes, filteredDishes),
                 reviews: Object.assign({}, state.reviews, filteredReviews)
             }));
@@ -104,15 +110,14 @@ export default  (state=initialState, action) => {
 
             //normalize each dish in the payload 
             const dishes = action.payload.map((dish) => normalizeDish(dish)) 
-
+     
             // find the matching restaurant in the state
-            const restId = action.payload[0].restId;
+            const restId = action.payload[0].restaurant;
             const cachedRestaurant = state.restaurants[restId];
 
             //add dishIds of all the dishes to the dishIds array of the restaurant
             const restaurant = Object.assign({}, cachedRestaurant, {dishIds: _.union(cachedRestaurant.dishIds, action.payload.map(dish => dish.id))})
-            console.log(cachedRestaurant.dishIds, action.payload.map(dish => dish.id));
-     
+          
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[restId]: restaurant}),
                 dishes: Object.assign({},  state.dishes, ...dishes)
@@ -133,6 +138,8 @@ export default  (state=initialState, action) => {
                 dishIds: _.concat(matchRestaurant.dishIds, action.payload.id)
             });
             
+            console.log(matchRestaurant);
+            console.log(updatedRestaurant);
     
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[rId]: updatedRestaurant}),
@@ -158,7 +165,7 @@ export default  (state=initialState, action) => {
 
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[resId]: updatedRest}),
-                dishes: Object.assign({},  state.dishes, filterDishes),
+                dishes: Object.assign({},   filterDishes),
                 reviews:Object.assign({}, state.reviews, updatedReviews)
             }))
 
