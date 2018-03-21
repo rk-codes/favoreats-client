@@ -266,21 +266,24 @@ export const deleteDishError = (error) => ({
       type: ADD_DISH_REVIEW_ERROR,
       payload: error
   })
-  export const addDishReview = () => (dispatch) => {
+  export const addDishReview = (restaurantId, dishId) => (dispatch, getState) => {
+      console.log('Action: add review');
     //API call to POST
-     // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId/addreview}`)
-     const review = {
-         dishId: 22,
-         id: 555, 
-         date: '4/5/2017',
-         rating: '3',
-         description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-    }
-    setTimeout(() => { 
-        console.log("success");
-        dispatch(addDishReviewSuccess(review))
-    }, 300);
-
+    const authToken = getState().auth.authToken;
+    return fetch(`${API_BASE_URL}/restaurants/${restaurantId}/dishes/${dishId}/reviews`, {
+        method: 'POST',
+        headers: {
+           // Provide our auth token as credentials
+           Authorization: `Bearer ${authToken}`,
+           'content-type': 'application/json'
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((data) => dispatch(addDishReviewSuccess(data)))
+    .catch(err => {
+       dispatch(addDishReviewError(err));
+   });
  }
 
  //Get all reviews of a dish
@@ -294,25 +297,23 @@ export const fetchAllReviewsError = (error) => ({
     type: FETCH_ALL_REVIEWS_ERROR,
     error
 })
- export const fetchAllReviewsOfDish = () => (dispatch) => {
-    //API call to GET
-    // fetch(`${API_BASE_URL/restaurants/:restaurantId/dishes/:dishId/reviews}`)
-    const reviews=[{
-        dishId: 11,
-        id: 111,
-        date: '4/5/2017',
-        rating: '3',
-        review: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-    },
-    {
-        dishId: 11,
-        id: 112,
-        date: '5/6/2017',
-        rating: '4',
-        review: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
-    }]
-    setTimeout(() => { 
-        console.log("success");
-        dispatch(fetchAllReviewsSuccess(reviews))
-    }, 300);
+ export const fetchAllReviewsOfDish = (restaurantId, dishId) => (dispatch, getState) => {
+    console.log("Action: fetch all reviews");
+    
+    const authToken = getState().auth.authToken;
+    
+     //API call to GET all reviews
+    return fetch(`${API_BASE_URL}/restaurants/${restaurantId}/dishes/${dishId}/reviews`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((data) => dispatch(fetchAllReviewsSuccess(data)))
+    .catch(err => {
+        dispatch(fetchAllReviewsError(err));
+    });
 }
