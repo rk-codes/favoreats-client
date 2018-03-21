@@ -7,7 +7,7 @@ import {deleteDish} from '../actions';
 
 export  class DishInfo extends React.Component{
     onDelete() {
-        this.props.deleteDish();
+        this.props.deleteDish(this.props.match.params.restaurantId, this.props.id);
     }
     render() {
         console.log(this.props);
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return ({
-        deleteDish: () => dispatch(deleteDish()),
+        deleteDish: (restId, dishId) => dispatch(deleteDish(restId, dishId)),
     })
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DishInfo));
