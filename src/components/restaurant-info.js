@@ -10,7 +10,7 @@ class RestaurantInfo extends React.Component {
     // }
     onDelete(){
         console.log("Delete Clicked");
-        this.props.deleteRestaurant({restaurant:{}});
+        this.props.deleteRestaurant(this.props.id);
     }
     onEdit() {
         console.log("Edit Clicked");
@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return({
-        deleteRestaurant: () => dispatch(deleteRestaurant()),
+        deleteRestaurant: (restaurantId) => dispatch(deleteRestaurant(restaurantId)),
         editRestaurant: () => dispatch(editRestaurant())
     })
    
