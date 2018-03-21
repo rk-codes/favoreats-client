@@ -1,50 +1,50 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import DishReview from './dish-review';
-import { fetchAllReviewsOfDish } from '../actions';
+import React from "react";
+import { connect } from "react-redux";
+import DishReview from "./dish-review";
+import { fetchAllReviewsOfDish } from "../actions";
 
-export  class DishReviewsList extends React.Component{
+export class DishReviewsList extends React.Component {
+  componentDidMount() {
+    this.props.fetchAllReviewsOfDish(
+      this.props.match.params.restaurantId,
+      this.props.match.params.dishId
+    );
+  }
+  render() {
+    console.log("DishReviewsList");
+    //console.log(this.props);
+    const restaurantId = this.props.match.params.restaurantId;
+    const dishId = this.props.match.params.dishId;
+    const reviewIds = this.props.dishes[dishId].reviewIds; //get all reviewIds of the dish
 
-    componentDidMount() {
-        this.props.fetchAllReviewsOfDish(this.props.match.params.restaurantId, this.props.match.params.dishId);
-    }
-    render() {
-        console.log("DishReviewsList");
-        console.log(this.props);
-        const restaurantId = this.props.match.params.restaurantId;
-        const dishId = this.props.match.params.dishId;
-        const reviewIds = this.props.dishes[dishId].reviewIds; //get all reviewIds of the dish
-   
-        const reviewsList = reviewIds.map(id => this.props.reviews[id]) //get the reviews for each review id
-        console.log(reviewsList);
-        const reviews = Object.values(reviewsList).map((item,index) => 
-            <li key={index}>
-                <DishReview {...item} />
-            </li>
-        )
+    const reviewsList = reviewIds.map(id => this.props.reviews[id]); //get the reviews for each review id
+    //console.log(reviewsList);
+    const reviews = Object.values(reviewsList).map((item, index) => (
+      <li key={index}>
+        <DishReview {...item} />
+      </li>
+    ));
 
-        return(
-            <div className="reviews">
-            <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
-            <h4>Dish Name: {this.props.dishes[dishId].name}</h4>
-                <ul>
-                    {reviews}
-                </ul>
-            </div>
-        )
-    }  
+    return (
+      <div className="reviews">
+        <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
+        <h4>Dish Name: {this.props.dishes[dishId].name}</h4>
+        <ul>{reviews}</ul>
+      </div>
+    );
+  }
 }
-const mapStateToProps = (state) => {
-    return{
-        restaurants: state.restaurant.restaurants,
-        dishes: state.restaurant.dishes,
-        reviews: state.restaurant.reviews
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return ({
-        fetchAllReviewsOfDish: (restaurantId, dishId) => dispatch(fetchAllReviewsOfDish(restaurantId, dishId)),
-    })
-}
+const mapStateToProps = state => {
+  return {
+    restaurants: state.restaurant.restaurants,
+    dishes: state.restaurant.dishes,
+    reviews: state.restaurant.reviews
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchAllReviewsOfDish: (restaurantId, dishId) =>
+      dispatch(fetchAllReviewsOfDish(restaurantId, dishId))
+  };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(DishReviewsList);
-
