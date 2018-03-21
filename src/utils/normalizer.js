@@ -23,7 +23,7 @@ export function normalizeReview(review) {
     return {
         [review.id]: {
             id: review.id,
-            dateReviewed: review.date,
+            reviewDate: review.reviewDate,
             rating: review.rating,
             description: review.description
         }
