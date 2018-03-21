@@ -15,14 +15,14 @@ export function normalizeDish(dish) {
         [dish.id]: {
             id: dish.id,
             name: dish.name,
-            reviewIds: dish.reviews.map(review => review.id)
+            reviewIds: dish.reviews
         }
     }
 }
 export function normalizeReview(review) {
     return {
-        [review.id]: {
-            id: review.id,
+        [review._id]: {
+            id: review._id,
             reviewDate: review.reviewDate,
             rating: review.rating,
             description: review.description
