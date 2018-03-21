@@ -130,7 +130,7 @@ export default  (state=initialState, action) => {
             const normalizedDish = normalizeDish(action.payload); 
             
             //find the matching restaurant
-            const rId = action.payload.restId;
+            const rId = action.payload.restaurant;
             const matchRestaurant = state.restaurants[rId];
 
             //add the dishId to the dishIds array in the matching restaurant
@@ -149,12 +149,11 @@ export default  (state=initialState, action) => {
         case actions.DELETE_DISH_SUCCESS:
             console.log("Case: Delete dish succes ");
             const dishIdToDelete =  action.payload.id;
-            const resId = action.payload.restId;
+            const resId = action.payload.restaurant;
 
             //remove the dish from dishes object in the state
             const filterDishes = _.omitBy(state.dishes, (value, key) => key === dishIdToDelete); 
-
-           
+          
             //remove the dishId from the dishIds of the restaurant of the deleted dish
             const remainingDishIds = _.without(state.restaurants[resId].dishIds, dishIdToDelete ) 
             //update the restaurant with new array of dishIds
@@ -165,7 +164,7 @@ export default  (state=initialState, action) => {
 
             return (Object.assign({}, state, {
                 restaurants: Object.assign({}, state.restaurants, {[resId]: updatedRest}),
-                dishes: Object.assign({},   filterDishes),
+                dishes: Object.assign({},  state.dishes, filterDishes),
                 reviews:Object.assign({}, state.reviews, updatedReviews)
             }))
 
