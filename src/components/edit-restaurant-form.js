@@ -14,8 +14,14 @@ export class EditRestaurantForm extends React.Component {
     });
   }
 
-  handleSubmit(values) {
-    console.log(values);
+  onSubmit(values, dispatch) {
+    const restaurantData = Object.assign({}, values, {
+      id: this.props.match.params.restaurantId
+    });
+    dispatch(
+      editRestaurant(restaurantData, this.props.match.params.restaurantId)
+    );
+    this.props.history.push("/home");
   }
   onCancelClick() {
     this.props.history.push("/home");
@@ -72,7 +78,7 @@ export class EditRestaurantForm extends React.Component {
           <button type="button" onClick={() => this.onCancelClick()}>
             Cancel
           </button>
-          <button type="submit">Add</button>
+          <button type="submit">Save</button>
         </fieldset>
       </form>
     );

@@ -74,9 +74,9 @@ export default (state = initialState, action) => {
       });
 
     case actions.EDIT_RESTAURANT_SUCCESS:
-      console.log("Case: Edit restaurant succes ");
+      const normalizedRestaurant = normalizeRestaurant(action.payload);
       return Object.assign({}, state, {
-        restaurants: [...action.payload]
+        restaurants: Object.assign({}, state.restaurants, normalizedRestaurant)
       });
 
     case actions.FETCH_ALL_DISHES_SUCCESS:
