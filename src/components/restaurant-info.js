@@ -14,7 +14,7 @@ class RestaurantInfo extends React.Component {
   }
   onEdit() {
     console.log("Edit Clicked");
-    this.props.history.push("/editrestaurant");
+    this.props.history.push(`/editrestaurant/${this.props.id}`);
   }
   render() {
     console.log(this.props);
