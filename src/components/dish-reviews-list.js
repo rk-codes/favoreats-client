@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import DishReview from "./dish-review";
 import { fetchAllReviewsOfDish } from "../actions";
 
@@ -11,14 +12,12 @@ export class DishReviewsList extends React.Component {
     );
   }
   render() {
-    console.log("DishReviewsList");
-    //console.log(this.props);
     const restaurantId = this.props.match.params.restaurantId;
     const dishId = this.props.match.params.dishId;
+    const dishesCount = this.props.restaurants[restaurantId].dishIds.length;
     const reviewIds = this.props.dishes[dishId].reviewIds; //get all reviewIds of the dish
 
     const reviewsList = reviewIds.map(id => this.props.reviews[id]); //get the reviews for each review id
-    //console.log(reviewsList);
     const reviews = Object.values(reviewsList).map((item, index) => (
       <li key={index}>
         <DishReview {...item} />
@@ -28,6 +27,11 @@ export class DishReviewsList extends React.Component {
     return (
       <div className="reviews">
         <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
+        <span>
+          <Link to={`/restaurants/${restaurantId}/dishes`}>
+            {dishesCount} dishes
+          </Link>
+        </span>
         <h4>Dish Name: {this.props.dishes[dishId].name}</h4>
         <ul>{reviews}</ul>
       </div>
