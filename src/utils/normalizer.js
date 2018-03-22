@@ -3,7 +3,7 @@ export function normalizeRestaurant(restaurant) {
     [restaurant.id]: {
       id: restaurant.id,
       name: restaurant.name,
-      location: restaurant.location,
+      restLocation: restaurant.location,
       cuisine: restaurant.cuisine,
       dishIds: restaurant.dishes
     }
