@@ -1,13 +1,12 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
 import { addRestaurant } from "../actions";
+import Input from "./input";
+import { required, nonEmpty } from "../validators";
 
 export class AddRestaurantForm extends React.Component {
-  onSubmit(values, dispatch) {
-    console.log("Form submitted");
-    console.log(values);
-    //API call to POST new restaurant
-    dispatch(addRestaurant(values));
+  onSubmit(values) {
+    this.props.dispatch(addRestaurant(values));
     this.props.history.push("/home");
   }
   onCancelClick() {
@@ -34,19 +33,34 @@ export class AddRestaurantForm extends React.Component {
       <form
         className="add-restaurant-form"
         onSubmit={this.props.handleSubmit((values, dispatch) =>
-          this.onSubmit(values, dispatch)
+          this.onSubmit(values)
         )}
       >
         {successMessage}
         {errorMessage}
         <fieldset>
-          <legend>Add restaurant form</legend>
+          <legend>Add restaurant</legend>
           <label htmlFor="name">Restaurant Name</label>
-          <Field name="name" type="text" component="input" />
+          <Field
+            name="name"
+            type="text"
+            component={Input}
+            validate={[required, nonEmpty]}
+          />
           <label htmlFor="location">City/State</label>
-          <Field name="location" type="text" component="input" />
+          <Field
+            name="location"
+            type="text"
+            component={Input}
+            validate={[required, nonEmpty]}
+          />
           <label htmlFor="cuisine">Cuisine</label>
-          <Field name="cuisine" type="text" component="input" />
+          <Field
+            name="cuisine"
+            type="text"
+            component={Input}
+            validate={[required, nonEmpty]}
+          />
           <button type="button" onClick={() => this.onCancelClick()}>
             Cancel
           </button>
@@ -59,5 +73,3 @@ export class AddRestaurantForm extends React.Component {
 export default reduxForm({
   form: "addrestaurant"
 })(AddRestaurantForm);
-
-//Submit the form -> dispatch an action to add the restaurant data -> Redirect to the restaurants list page
