@@ -9,15 +9,12 @@ class RestaurantInfo extends React.Component {
   //     super(props);
   // }
   onDelete() {
-    console.log("Delete Clicked");
     this.props.deleteRestaurant(this.props.id);
   }
   onEdit() {
-    console.log("Edit Clicked");
     this.props.history.push(`/editrestaurant/${this.props.id}`);
   }
   render() {
-    console.log(this.props);
     return (
       <div className="restaurant-info">
         <Link to={`/restaurants/${this.props.id}/dishes`}>
