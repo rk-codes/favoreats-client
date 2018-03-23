@@ -9,13 +9,12 @@ import { fetchAllDishes } from "../actions";
 
 class DishesList extends React.Component {
   componentDidMount() {
-    const restaurant = this.props.restaurants[
-      this.props.match.params.restaurantId
-    ];
-    if (restaurant.dishIds.length > 0) {
-      //console.log(this.props.match.params.restaurantId);
-      this.props.fetchAllDishes(this.props.match.params.restaurantId);
-    }
+    // const dishesLength = get (this.props.restaurants,[this.props.match.params.restaurantId, 'dishIds', 'length']) ;
+
+    //   if (dishesLength) {
+    //console.log(this.props.match.params.restaurantId);
+    this.props.fetchAllDishes(this.props.match.params.restaurantId);
+    //   }
   }
 
   onAddClick() {
@@ -39,10 +38,11 @@ class DishesList extends React.Component {
         <DishInfo {...item} />
       </li>
     ));
+    const restaurant = this.props.restaurants[restaurantId] || {};
     return (
       <div className="dishes-list">
-        <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
-        <p>Cuisine: {this.props.restaurants[restaurantId].cuisine}</p>
+        <h3>Restaurant Name: {restaurant.name}</h3>
+        <p>Cuisine: {restaurant.cuisine}</p>
         <span>Dishes count: {dishIds.length}</span>
         <ul>{dishes}</ul>
         <button onClick={() => this.onAddClick()}>Add dish</button>

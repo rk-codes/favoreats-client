@@ -86,7 +86,13 @@ export default (state = initialState, action) => {
 
       // find the matching restaurant in the state
       const restId = action.payload[0].restaurant;
-      const cachedRestaurant = state.restaurants[restId];
+      let cachedRestaurant = state.restaurants[restId];
+      if (!cachedRestaurant) {
+        cachedRestaurant = {
+          dishIds: [],
+          id: restId
+        };
+      }
 
       //add dishIds of all the dishes to the dishIds array of the restaurant
       const restaurant = Object.assign({}, cachedRestaurant, {

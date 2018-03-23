@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "../config";
 import { normalizeResponseErrors } from "./utils";
+import { get } from "lodash";
 
 export const FETCH_ALL_RESTAURANTS_SUCCESS = "FETCH_ALL_RESTAURANTS_SUCCESS";
 export const fetchAllRestaurantsSuccess = data => ({
@@ -153,7 +154,16 @@ export const fetchAllDishes = restaurantId => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(data => dispatch(fetchAllDishesSuccess(data)))
+    .then(data => {
+      const state = getState();
+      const restId = get(data[0], ["id"]);
+      const restaurant = get(state.restaurant.restaurants, [restId]);
+      if (!restaurant) {
+        dispatch(fetchAllRestaurants());
+      }
+      dispatch(fetchAllDishesSuccess(data));
+    })
+
     .catch(err => {
       dispatch(fetchAllDishesError(err));
     });
