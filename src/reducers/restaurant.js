@@ -36,8 +36,6 @@ export default (state = initialState, action) => {
 
     case actions.DELETE_RESTAURANT_SUCCESS:
       const restaurantId = action.payload.id;
-      // console.log(restaurantId, typeof(restaurantId))
-      // console.log(Object.keys(state.restaurants));
 
       let filteredDishes = {};
       let filteredReviews = {};
@@ -58,7 +56,7 @@ export default (state = initialState, action) => {
         filteredDishes = _.omit(state.dishes, dishIdsOfDeletedRestaurant);
 
         // console.log(dishIdsOfDeletedRestaurant);
-        //console.log(state.dishes);
+
         // delete the reviews of the dishes
 
         const reviewIdsOfDeletedRestaurant = mapDishToReviewIds(
@@ -82,6 +80,9 @@ export default (state = initialState, action) => {
     case actions.FETCH_ALL_DISHES_SUCCESS:
       //normalize each dish in the payload
       const dishes = action.payload.map(dish => normalizeDish(dish));
+      // const reviews = action.payload.map(dish => dish.reviews);
+
+      // const normalizedReviews = reviews.map(review => normalizeReview(review));
 
       // find the matching restaurant in the state
       const restId = action.payload[0].restaurant;
@@ -105,6 +106,8 @@ export default (state = initialState, action) => {
     case actions.ADD_DISH_SUCCESS:
       // normalize the dish in the payload
       const normalizedDish = normalizeDish(action.payload);
+
+      //const normReview = normalizeReview(action.payload.reviews[0])
 
       //find the matching restaurant
       const rId = action.payload.restaurant;
@@ -162,7 +165,6 @@ export default (state = initialState, action) => {
     case actions.ADD_DISH_REVIEW_SUCCESS:
       //normalize review in the payload
       const normalizedReview = normalizeReview(action.payload);
-      console.log(normalizedReview);
 
       //find the matching dish to update the reviewIds
       const idOfDish = action.payload.dishId;
@@ -173,7 +175,6 @@ export default (state = initialState, action) => {
         reviewIds: _.concat(matchDish.reviewIds, action.payload.id)
       });
 
-      console.log(updatedDish);
       return Object.assign({}, state, {
         dishes: Object.assign({}, state.dishes, { [idOfDish]: updatedDish }),
         reviews: Object.assign({}, state.reviews, normalizedReview)
