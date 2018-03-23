@@ -1,10 +1,12 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
 import { addDish } from "../actions";
+import Input from "./input";
+import { required, nonEmpty } from "../validators";
 
 export class AddDishForm extends React.Component {
-  onSubmit(values, dispatch) {
-    dispatch(addDish(this.props.match.params.restaurantId, values));
+  onSubmit(values) {
+    this.props.dispatch(addDish(this.props.match.params.restaurantId, values));
     this.props.history.push(
       `/restaurants/${this.props.match.params.restaurantId}/dishes`
     );
@@ -34,19 +36,34 @@ export class AddDishForm extends React.Component {
       <form
         className="add-dish-form"
         onSubmit={this.props.handleSubmit((values, dispatch) =>
-          this.onSubmit(values, dispatch)
+          this.onSubmit(values)
         )}
       >
         {successMessage}
         {errorMessage}
         <fieldset>
-          <legend>Add dish form</legend>
+          <legend>Add dish</legend>
           <label htmlFor="name">Dish Name</label>
-          <Field name="name" type="text" component="input" />
+          <Field
+            name="name"
+            type="text"
+            component={Input}
+            validate={[required, nonEmpty]}
+          />
           <label htmlFor="rating">Rating</label>
-          <Field name="rating" type="text" component="input" />
+          <Field
+            name="rating"
+            type="text"
+            component={Input}
+            validate={[required, nonEmpty]}
+          />
           <label htmlFor="description">Review</label>
-          <Field name="description" type="text" component="input" />
+          <Field
+            name="description"
+            type="text"
+            component="textarea"
+            validate={[required, nonEmpty]}
+          />
           <button type="button" onClick={() => this.onCancelClick()}>
             Cancel
           </button>
