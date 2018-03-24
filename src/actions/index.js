@@ -327,7 +327,14 @@ export const fetchAllReviewsOfDish = (restaurantId, dishId) => (
   )
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(data => dispatch(fetchAllReviewsSuccess(data)))
+    .then(data => {
+      const state = getState();
+      const dish = get(state.restaurant.dishes, [dishId]);
+      if (!dish) {
+        dispatch(fetchAllDishes(restaurantId));
+      }
+      dispatch(fetchAllReviewsSuccess(data));
+    })
     .catch(err => {
       dispatch(fetchAllReviewsError(err));
     });

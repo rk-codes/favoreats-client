@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import DishReview from "./dish-review";
 import { fetchAllReviewsOfDish } from "../actions";
+import { get } from "lodash";
 
 export class DishReviewsList extends React.Component {
   componentDidMount() {
@@ -12,13 +13,21 @@ export class DishReviewsList extends React.Component {
     );
   }
   render() {
-    const restaurantId = this.props.match.params.restaurantId;
-    const dishId = this.props.match.params.dishId;
-    const dishesCount = this.props.restaurants[restaurantId].dishIds.length;
-    const reviewIds = this.props.dishes[dishId].reviewIds; //get all reviewIds of the dish
+    const {
+      match: { params: { restaurantId, dishId } },
+      dishes,
+      restaurants,
+      reviews
+    } = this.props;
+    //const restaurantId = params.restaurantId;
+    const restaurant = restaurants[restaurantId] || {};
+    // const dishId = params.dishId;
+    const dish = dishes[dishId] || {};
+    const dishesCount = get(restaurant, ["dishIds", "length"]) || 0;
+    const reviewIds = get(dish, ["reviewIds"]) || []; //get all reviewIds of the dish
 
-    const reviewsList = reviewIds.map(id => this.props.reviews[id]); //get the reviews for each review id
-    const reviews = Object.values(reviewsList).map((item, index) => (
+    const reviewsList = reviewIds.map(id => reviews[id]); //get the reviews for each review id
+    const dishReviews = reviewsList.map((item, index) => (
       <li key={index}>
         <DishReview {...item} />
       </li>
@@ -26,14 +35,14 @@ export class DishReviewsList extends React.Component {
 
     return (
       <div className="reviews">
-        <h3>Restaurant Name: {this.props.restaurants[restaurantId].name}</h3>
+        <h3>Restaurant Name: {restaurant.name}</h3>
         <span>
           <Link to={`/restaurants/${restaurantId}/dishes`}>
             {dishesCount} dishes
           </Link>
         </span>
-        <h4>Dish Name: {this.props.dishes[dishId].name}</h4>
-        <ul>{reviews}</ul>
+        <h4>Dish Name: {dish.name}</h4>
+        <ul>{dishReviews}</ul>
       </div>
     );
   }
