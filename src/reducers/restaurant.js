@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
       // remove the restaurant object from the restaurants in state
       const filteredRestaurants = _.omitBy(
         state.restaurants,
-        (value, key) => key == restaurantId
+        (value, key) => key === restaurantId
       );
 
       // remove the dishes of the deleted restaurant from the dishes object in the state
