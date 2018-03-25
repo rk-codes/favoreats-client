@@ -40,8 +40,8 @@ export default class App extends Component {
             />
             <Route
               exact
-              path="/restaurants/:restaurantId/dishes/:dishId"
-              component={DishInfo}
+              path="/restaurants/:restaurantId/dishes/adddish"
+              component={AddDishForm}
             />
             <Route
               exact
@@ -58,11 +58,6 @@ export default class App extends Component {
               exact
               path="/editrestaurant/:restaurantId"
               component={EditRestaurantForm}
-            />
-            <Route
-              exact
-              path="/restaurants/:restaurantId/dishes/adddish"
-              component={AddDishForm}
             />
           </main>
         </div>
