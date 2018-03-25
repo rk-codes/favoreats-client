@@ -1,58 +1,68 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { get } from "lodash";
 
-import DishInfo from './dish-info';
-import { fetchAllDishes } from '../actions';
+import DishInfo from "./dish-info";
+import { fetchAllDishes } from "../actions";
 //import store from '../store';
 
 class DishesList extends React.Component {
-    
-    componentDidMount() {
-        this.props.fetchAllDishes(this.props.match.params.restaurantId);
-    }
+  componentDidMount() {
+    // const dishesLength = get (this.props.restaurants,[this.props.match.params.restaurantId, 'dishIds', 'length']) ;
 
-    onAddClick(){
-        this.props.history.push(`/restaurants/${this.props.match.params.restaurantId}/dishes/adddish`)
-    }
+    //   if (dishesLength) {
+    //console.log(this.props.match.params.restaurantId);
+    this.props.fetchAllDishes(this.props.match.params.restaurantId);
+    //   }
+  }
 
-    render() {
-        //console.log(store.getState());
-        const restaurantId = this.props.match.params.restaurantId;
-        const dishIds = this.props.restaurants[restaurantId].dishIds  // get all dish ids of this restaurant
-        //iterate dishes{} to find the dish objects where dish.id == dishId
-        const dishesList = dishIds.map(id => this.props.dishes[id])
-        const dishes = Object.values(dishesList).map((item,index) => 
-            <li key={index}>
-                <DishInfo {...item} />
-            </li>
-        )
-        return(
-            <div className="dishes-list">
-                <h3>Restaurant Name: {this.props.restaurants.name}</h3>
-                <p>Cuisine: {this.props.restaurants.cuisine}</p>
-                <span>Dishes count: {this.props.restaurants.dishCount}</span>
-                <ul>
-                  {dishes}
-                </ul>
-                <button onClick = {() => this.onAddClick()}>Add dish</button>
-            </div>
-        )
-    }
-   
+  onAddClick() {
+    this.props.history.push(
+      `/restaurants/${this.props.match.params.restaurantId}/dishes/adddish`
+    );
+  }
+
+  render() {
+    //console.log(store.getState());
+    let restaurantId;
+    restaurantId = this.props.match.params.restaurantId;
+
+    const dishIds =
+      get(this.props.restaurants, [restaurantId, "dishIds"]) || [];
+
+    //iterate dishes{} to find the dish objects where dish.id == dishId
+    const dishesList = dishIds.map(id => this.props.dishes[id]);
+    const dishes = Object.values(dishesList).map((item, index) => (
+      <li key={index}>
+        <DishInfo {...item} />
+      </li>
+    ));
+    const restaurant = this.props.restaurants[restaurantId] || {};
+    return (
+      <div className="dishes-list">
+        <h3>Restaurant Name: {restaurant.name}</h3>
+        <p>Cuisine: {restaurant.cuisine}</p>
+        <span>Dishes count: {dishIds.length}</span>
+        <ul>{dishes}</ul>
+        <button onClick={() => this.onAddClick()}>Add dish</button>
+      </div>
+    );
+  }
 }
-const mapStateToProps = (state) => {
-    return{
-        restaurants: state.restaurant.restaurants,
-        dishes: state.restaurant.dishes
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return ({
-        fetchAllDishes: () => dispatch(fetchAllDishes()),
-    })
-}
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DishesList));
+const mapStateToProps = state => {
+  return {
+    restaurants: state.restaurant.restaurants,
+    dishes: state.restaurant.dishes
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchAllDishes: restaurantId => dispatch(fetchAllDishes(restaurantId))
+  };
+};
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(DishesList)
+);
 
-
-//Add dish clicked -> render add dish form -> rerender dishes list with the updated data 
+//Add dish clicked -> render add dish form -> rerender dishes list with the updated data
