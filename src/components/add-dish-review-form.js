@@ -13,7 +13,7 @@ export class AddDishReview extends React.Component {
     );
   }
   onCancelClick() {
-    const { restaurantId, dishId } = this.props.match.params;
+    const { restaurantId } = this.props.match.params;
     this.props.history.push(`/restaurants/${restaurantId}/dishes`);
   }
   render() {

@@ -8,7 +8,6 @@ import LoginForm from "./components/login-form";
 import RegistrationPage from "./components/registration-page";
 import HomePage from "./components/home-page";
 import RestaurantInfo from "./components/restaurant-info";
-import DishInfo from "./components/dish-info";
 import DishesList from "./components/dishes-list";
 import AddRestaurantForm from "./components/add-restaurant-form";
 import EditRestaurantForm from "./components/edit-restaurant-form";
