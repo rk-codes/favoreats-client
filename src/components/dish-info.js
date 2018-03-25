@@ -3,18 +3,19 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteDish } from "../actions";
+import { get } from "lodash";
 
 export class DishInfo extends React.Component {
   onDelete() {
     this.props.deleteDish(this.props.match.params.restaurantId, this.props.id);
   }
   render() {
-    // console.log(this.props);
+    const reviewsCount = get(this.props.reviewIds, ["length"]) || 0;
     return (
       <div className="dish-info">
         <h3>DishInfo</h3>
         <p>Dish Name: {this.props.name}</p>
-        <p>Rating: {this.props.rating}</p>
+        <p>Rating: {this.props.latestRating}</p>
         <button onClick={() => this.onDelete()}>Delete</button>
 
         <Link
@@ -29,7 +30,7 @@ export class DishInfo extends React.Component {
             this.props.id
           }/reviews`}
         >
-          View past reviews
+          {reviewsCount} reviews
         </Link>
       </div>
     );
