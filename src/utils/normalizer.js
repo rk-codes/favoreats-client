@@ -15,6 +15,7 @@ export function normalizeDish(dish) {
     [dish.id]: {
       id: dish.id,
       name: dish.name,
+      latestRating: dish.latestRating,
       reviewIds: dish.reviews
     }
   };
