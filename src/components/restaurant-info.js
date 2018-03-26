@@ -26,8 +26,12 @@ class RestaurantInfo extends React.Component {
             <p>Location: {this.props.restLocation}</p>
             <span>Cuisine: {this.props.cuisine}</span>
             <div className="restaurant-buttons">
-              <button onClick={() => this.onEdit()}>Edit</button>
-              <button onClick={() => this.onDelete()}>Delete</button>
+              <button onClick={() => this.onEdit()}>
+                <i class="fa fa-edit fa-lg" />
+              </button>
+              <button onClick={() => this.onDelete()}>
+                <i class="fa fa-trash fa-lg" />
+              </button>
             </div>
           </div>
           <div className="dish-count">
