@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { deleteRestaurant, editRestaurant } from "../actions";
+import "./restaurant-info.css";
 
 class RestaurantInfo extends React.Component {
   // constructor(props) {
@@ -16,15 +17,23 @@ class RestaurantInfo extends React.Component {
   }
   render() {
     return (
-      <div className="restaurant-info">
-        <Link to={`/restaurants/${this.props.id}/dishes`}>
-          Restaurant Name: {this.props.name}
-        </Link>
-        <p>Location: {this.props.restLocation}</p>
-        <span>Cuisine: {this.props.cuisine}</span>
-        <p>Dishes Count: {this.props.dishIds.length}</p>
-        <button onClick={() => this.onEdit()}>Edit</button>
-        <button onClick={() => this.onDelete()}>Delete</button>
+      <div className="restaurant-outer">
+        <div className="restaurant-info">
+          <div className="restaurant-details">
+            <Link to={`/restaurants/${this.props.id}/dishes`}>
+              Restaurant Name: {this.props.name}
+            </Link>
+            <p>Location: {this.props.restLocation}</p>
+            <span>Cuisine: {this.props.cuisine}</span>
+            <div className="restaurant-buttons">
+              <button onClick={() => this.onEdit()}>Edit</button>
+              <button onClick={() => this.onDelete()}>Delete</button>
+            </div>
+          </div>
+          <div className="dish-count">
+            <p>{this.props.dishIds.length} Dishes </p>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,15 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import RestaurantInfo from "./restaurant-info";
 import { fetchAllRestaurants } from "../actions";
-//import store from '../store';
-import { withRouter } from "react-router-dom";
+import "./restaurants-list.css";
 
 class RestaurantsList extends React.Component {
-  // constructor(props){
-  //     super(props);
-  // }
   componentDidMount() {
     this.props.fetchAllRestaurants();
   }
@@ -28,7 +25,7 @@ class RestaurantsList extends React.Component {
     );
     return (
       <div className="restaurants-list">
-        <h1>Restaurants List</h1>
+        <h1>My Restaurants</h1>
         <ul>{restaurant}</ul>
         <button onClick={() => this.onAddClick()}>Add Restaurant</button>
       </div>
