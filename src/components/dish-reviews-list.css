@@ -1,0 +1,17 @@
+.reviews {
+  border: 1px solid green;
+  width: 80%;
+  margin: 0 auto;
+  padding: 15px;
+}
+.reviews-flex-container {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  list-style: none;
+}
+.reviews-flex-container li {
+  border: 1px solid blue;
+  padding: 10px;
+}

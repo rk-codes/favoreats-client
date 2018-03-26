@@ -1,0 +1,11 @@
+.dish-review {
+  display: flex;
+  border: 1px solid violet;
+}
+
+.date-box {
+  border: 1px solid black;
+}
+.review-box {
+  border: 1px solid aqua;
+}
