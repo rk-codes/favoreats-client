@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteDish } from "../actions";
 import { get } from "lodash";
+import "./dish-info.css";
 
 export class DishInfo extends React.Component {
   onDelete() {
@@ -17,7 +18,6 @@ export class DishInfo extends React.Component {
         <p>Dish Name: {this.props.name}</p>
         <p>Rating: {this.props.latestRating}</p>
         <button onClick={() => this.onDelete()}>Delete</button>
-
         <Link
           to={`/restaurants/${this.props.match.params.restaurantId}/dishes/${
             this.props.id
