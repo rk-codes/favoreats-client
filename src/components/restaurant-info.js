@@ -23,7 +23,10 @@ class RestaurantInfo extends React.Component {
             <Link to={`/restaurants/${this.props.id}/dishes`}>
               Restaurant Name: {this.props.name}
             </Link>
-            <p>Location: {this.props.restLocation}</p>
+            <p>
+              <i class="fa fa-map-marker" aria-hidden="true" />
+              {this.props.restLocation}
+            </p>
             <span>Cuisine: {this.props.cuisine}</span>
             <div className="restaurant-buttons">
               <button onClick={() => this.onEdit()}>
