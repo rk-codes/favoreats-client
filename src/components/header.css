@@ -1,0 +1,21 @@
+.header-container {
+  border: 1px solid rebeccapurple;
+  display: flex;
+  /* flex-direction: row;*/
+  justify-content: space-between;
+
+  color: #fff;
+  background-color: #69bb9a;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+.header-container h1 {
+  margin-left: 5%;
+  font-size: 2em;
+}
+
+.header-container ul li {
+  display: inline-block;
+  margin: 10px;
+  color: #fff;
+}
