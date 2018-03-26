@@ -1,0 +1,12 @@
+.restaurants-list {
+  border: 1px solid red;
+  text-align: center;
+}
+.restaurants-list ul {
+  border: 1px solid green;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
