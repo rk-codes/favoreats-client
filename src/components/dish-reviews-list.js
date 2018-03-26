@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import DishReview from "./dish-review";
 import { fetchAllReviewsOfDish } from "../actions";
 import { get } from "lodash";
+import "./dish-reviews-list.css";
 
 export class DishReviewsList extends React.Component {
   componentDidMount() {
@@ -42,7 +43,7 @@ export class DishReviewsList extends React.Component {
           </Link>
         </span>
         <h4>Dish Name: {dish.name}</h4>
-        <ul>{dishReviews}</ul>
+        <ul className="reviews-flex-container">{dishReviews}</ul>
       </div>
     );
   }
