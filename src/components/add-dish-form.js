@@ -3,6 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import { addDish } from "../actions";
 import Input from "./input";
 import { required, nonEmpty } from "../validators";
+import "./add-dish-form.css";
 
 export class AddDishForm extends React.Component {
   onSubmit(values) {
