@@ -5,11 +5,17 @@ export default function DishReview(props) {
   return (
     <div className="dish-review">
       <div className="date-box">
-        <p>Date: {props.reviewDate}</p>
+        <span>
+          <i class="fa fa-calendar-o" />
+        </span>
+        <p>{props.reviewDate}</p>
       </div>
       <div className="review-box">
         <span>Rating: {props.rating}</span>
-        <p>Review: {props.description}</p>
+        <p>
+          <i class="fa fa-comment-o" />
+          <span>{props.description}</span>
+        </p>
       </div>
     </div>
   );
