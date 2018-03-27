@@ -16,7 +16,10 @@ export default function DishReview(props) {
         <p>{reviewDate}</p>
       </div>
       <div className="review-box">
-        <span>Rating: {props.rating}</span>
+        <span>
+          Rating:
+          <div className="rating">{props.rating}</div>
+        </span>
         <p>
           <i class="fa fa-comment-o" />
           <span className="comment">{props.description}</span>

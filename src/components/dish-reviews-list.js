@@ -37,13 +37,13 @@ export class DishReviewsList extends React.Component {
     return (
       <div className="reviews">
         <div className="rest-info">
-          <h3>Restaurant Name: {restaurant.name}</h3>
-          <span>
+          <p className="rest-name">Restaurant Name: {restaurant.name}</p>
+          <span className="dishes-count">
             <Link to={`/restaurants/${restaurantId}/dishes`}>
-              {dishesCount} dishes
+              <i class="fa fa-spoon" aria-hidden="true" /> {dishesCount}
             </Link>
           </span>
-          <h4>Dish Name: {dish.name}</h4>
+          <p className="dish-name">Dish Name: {dish.name}</p>
         </div>
         <ul className="reviews-flex-container">{dishReviews}</ul>
       </div>
