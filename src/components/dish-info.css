@@ -1,7 +1,50 @@
 .dish-info {
-  border: 1px solid green;
+  border: 1px solid tomato;
   list-style: none;
+  /* max-width: 250px; */
+  /* background-color: darkgoldenrod; */
+  background: indianred;
+
+  /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3eHoAYEs3nS7wrKopzvsthzo45p9vDTnJ5GZkM8x_WdriZANvw'); */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around */
+  box-shadow: -12px 14px 8px -6px rgba(0, 0, 0, 0.37);
+}
+.delete-button {
+  padding: 8px;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+.dish-data {
+  /* background: rgb(54, 25, 25); 
+    color: white; */
   padding: 20px;
-  background-color: #f7a956;
+  background: white;
+  align-self: center;
+  /* background: indianred; */
+  background-color: #333;
   color: white;
+  text-align: center;
+}
+.dish-data i.fa {
+  font-size: 45px;
+  color: white;
+}
+.dish-buttons {
+  background-color: white;
+  padding: 8px;
+  text-align: center;
+}
+.dish-buttons a {
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+}
+.dish-buttons a:hover {
+  color: tomato;
+}
+.dish-buttons i.fa {
+  font-size: 25px;
 }
