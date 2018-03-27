@@ -2,13 +2,18 @@ import React from "react";
 import "./dish-review.css";
 
 export default function DishReview(props) {
+  const options = { weekday: "short", month: "short", day: "numeric" };
+  const reviewDate = new Date(props.reviewDate).toLocaleDateString(
+    "en-US",
+    options
+  );
   return (
     <div className="dish-review">
       <div className="date-box">
         <span>
           <i class="fa fa-calendar-o" />
         </span>
-        <p>{props.reviewDate}</p>
+        <p>{reviewDate}</p>
       </div>
       <div className="review-box">
         <span>Rating: {props.rating}</span>
