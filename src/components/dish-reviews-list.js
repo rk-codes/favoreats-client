@@ -36,13 +36,15 @@ export class DishReviewsList extends React.Component {
 
     return (
       <div className="reviews">
-        <h3>Restaurant Name: {restaurant.name}</h3>
-        <span>
-          <Link to={`/restaurants/${restaurantId}/dishes`}>
-            {dishesCount} dishes
-          </Link>
-        </span>
-        <h4>Dish Name: {dish.name}</h4>
+        <div className="rest-info">
+          <h3>Restaurant Name: {restaurant.name}</h3>
+          <span>
+            <Link to={`/restaurants/${restaurantId}/dishes`}>
+              {dishesCount} dishes
+            </Link>
+          </span>
+          <h4>Dish Name: {dish.name}</h4>
+        </div>
         <ul className="reviews-flex-container">{dishReviews}</ul>
       </div>
     );
