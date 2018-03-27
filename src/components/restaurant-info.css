@@ -3,22 +3,39 @@
   justify-content: center;
 }
 .restaurant-info {
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
   padding: 20px;
   display: flex;
   align-items: center;
   flex-grow: 1;
 }
 .restaurant-details {
-  border: 1px solid black;
-  padding: 20px;
+  /* border: 1px solid black; */
   flex-grow: 1;
+  box-shadow: -12px 14px 8px -6px rgba(0, 0, 0, 0.37);
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  padding: 20px;
+  background-color: white;
 }
 .dish-count {
   text-decoration: none;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding: 20px;
   color: white;
   font-weight: 600;
   background-color: tomato;
+}
+.restaurant-buttons button {
+  padding: 8px;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+.restaurant-details a {
+  text-decoration: none;
+}
+.restaurant-details i.fa {
+  font-size: 25px;
+  padding: 8px;
 }
