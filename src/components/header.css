@@ -25,6 +25,10 @@
 
 .header-container ul a {
   color: tomato;
+  text-decoration: none;
+}
+.header-container ul a:hover {
+  color: white;
 }
 .header-container i.fa {
   padding: 8px;
