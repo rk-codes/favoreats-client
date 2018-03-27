@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import { editRestaurant } from "../actions";
+import "./edit-restaurant-form.css";
 
 export class EditRestaurantForm extends React.Component {
   componentDidMount() {
@@ -45,7 +46,7 @@ export class EditRestaurantForm extends React.Component {
 
     return (
       <form
-        className="add-restaurant-form"
+        className="edit-restaurant-form"
         onSubmit={this.props.handleSubmit((values, dispatch) =>
           this.onSubmit(values, dispatch)
         )}
