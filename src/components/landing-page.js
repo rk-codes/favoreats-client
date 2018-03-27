@@ -29,21 +29,21 @@ export function LandingPage(props) {
       <div className="about-outer">
         <div className="about-inner">
           <div>
-            <i class="fa fa-cutlery" aria-hidden="true" />
+            <i className="fa fa-cutlery" aria-hidden="true" />
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry
             </p>
           </div>
           <div>
-            <i class="fa fa-comments-o" aria-hidden="true" />
+            <i className="fa fa-comments-o" aria-hidden="true" />
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry
             </p>
           </div>
           <div>
-            <i class="fa fa-check" aria-hidden="true" />
+            <i className="fa fa-check" aria-hidden="true" />
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry
