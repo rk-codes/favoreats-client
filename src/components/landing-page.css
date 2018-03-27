@@ -22,6 +22,7 @@
   padding: 6px;
   color: white;
   background: #333;
+  margin: 15px;
 }
 
 .intro-box {
@@ -48,6 +49,7 @@
 .about-inner i.fa {
   font-size: 50px;
   padding: 20px;
+  color: tomato;
 }
 @media (max-width: 400px) {
   .about-inner {
