@@ -1,0 +1,17 @@
+.add-review-form {
+  max-width: 500px;
+  padding: 10px 20px;
+  margin: 40px auto;
+}
+.add-review-form button {
+  border: 1px solid #27a0a0;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 14px;
+  padding: 8px 18px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+  margin: 10px;
+  background: #333;
+  color: white;
+}
