@@ -18,6 +18,10 @@
   padding: 20px;
   background-color: white;
 }
+.restaurant-details a {
+  color: black;
+  font-weight: 700;
+}
 .dish-count {
   text-decoration: none;
   /* border: 1px solid red; */
@@ -34,6 +38,9 @@
 }
 .restaurant-details a {
   text-decoration: none;
+}
+.restaurant-details a:hover {
+  color: tomato;
 }
 .restaurant-details i.fa {
   font-size: 25px;

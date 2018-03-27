@@ -1,6 +1,8 @@
 .landing-section {
   padding: 10px;
-  border: 1px solid green;
+  /* border: 1px solid coral; */
+  /* background: #ee6e73; */
+  background-image: url("../img/brickwall.png");
 }
 .about-outer {
   text-align: center;
@@ -9,29 +11,44 @@
 }
 .about-inner {
   display: flex;
-  justify-content: space-around;
-  border: solid 1px rgb(240, 52, 52);
+  justify-content: space-between;
+  /* border: solid 1px rgb(240, 52, 52); */
   /* padding: 30px; */
 }
 .about-inner div {
   /* flex: 1; */
-  background-color: #bfdedf;
   height: 200px;
   border: solid 2px black;
   padding: 6px;
+  color: white;
+  background: #333;
 }
 
 .intro-box {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   color: #5995da;
   background-color: #d6e9fe;
   border: 1px solid red;
   padding: 8px;
   width: 90%;
-  margin: auto;
-}
+  margin: auto; */
 
+  margin: 5%;
+  text-align: center;
+  color: black;
+  opacity: 0.8;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.intro-box h3 {
+  font-size: 30px;
+  font-style: italic;
+}
+.about-inner i.fa {
+  font-size: 50px;
+  padding: 20px;
+}
 @media (max-width: 400px) {
   .about-inner {
     display: block;
