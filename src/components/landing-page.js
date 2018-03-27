@@ -14,6 +14,7 @@ export function LandingPage(props) {
     <section className="landing-section">
       <div className="intro-box">
         <p>
+          <h3>favorEats</h3>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -28,13 +29,25 @@ export function LandingPage(props) {
       <div className="about-outer">
         <div className="about-inner">
           <div>
-            <h3>How it works</h3>
+            <i class="fa fa-cutlery" aria-hidden="true" />
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry
+            </p>
           </div>
           <div>
-            <h3>How it works</h3>
+            <i class="fa fa-comments-o" aria-hidden="true" />
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry
+            </p>
           </div>
           <div>
-            <h3>How it works</h3>
+            <i class="fa fa-check" aria-hidden="true" />
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry
+            </p>
           </div>
         </div>
       </div>
