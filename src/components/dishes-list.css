@@ -15,16 +15,24 @@
 .dishes-list {
   border: 1px solid red;
   margin: 10px;
+  background-image: url("../img/brickwall.png");
 }
 .dishes-list ul {
   list-style: none;
 }
 .dishes-restbox {
-  border: 1px solid blue;
+  border-bottom: 1px solid black;
   width: 90%;
-  margin: 0 auto;
+  margin: 15px auto;
   padding: 20px;
+  font-family: "Oswald", sans-serif;
+  text-align: center;
 }
+/* .dish-data {
+
+ 
+  
+} */
 .add-button {
   border: 1px solid #27a0a0;
   color: black;
