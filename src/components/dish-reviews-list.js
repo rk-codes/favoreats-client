@@ -27,7 +27,11 @@ export class DishReviewsList extends React.Component {
     const dishesCount = get(restaurant, ["dishIds", "length"]) || 0;
     const reviewIds = get(dish, ["reviewIds"]) || []; //get all reviewIds of the dish
 
-    const reviewsList = reviewIds.map(id => reviews[id]); //get the reviews for each review id
+    const reviewsList = reviewIds.map(id => reviews[id]).sort((a, b) => {
+      return (
+        new Date(b.reviewDate).getTime() - new Date(a.reviewDate).getTime()
+      );
+    }); //get the reviews for each review id
     const dishReviews = reviewsList.map((item, index) => (
       <li key={index}>
         <DishReview {...item} />
