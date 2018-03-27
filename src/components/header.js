@@ -45,7 +45,7 @@ export class Header extends React.Component {
     return (
       <div className="header-container">
         <h1>
-          <i class="fa fa-cutlery" aria-hidden="true" />FavorEats
+          <i className="fa fa-cutlery" aria-hidden="true" />FavorEats
         </h1>
         <nav>{navLinks}</nav>
       </div>

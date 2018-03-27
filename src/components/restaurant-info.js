@@ -25,15 +25,15 @@ class RestaurantInfo extends React.Component {
             </Link>
             <p>Cuisine: {this.props.cuisine}</p>
             <p>
-              <i class="fa fa-map-marker" aria-hidden="true" />
+              <i className="fa fa-map-marker" aria-hidden="true" />
               {this.props.restLocation}
             </p>
             <div className="restaurant-buttons">
               <button onClick={() => this.onEdit()}>
-                <i class="fa fa-edit fa-lg" />
+                <i className="fa fa-edit fa-lg" />
               </button>
               <button onClick={() => this.onDelete()}>
-                <i class="fa fa-trash fa-lg" />
+                <i className="fa fa-trash fa-lg" />
               </button>
             </div>
           </div>

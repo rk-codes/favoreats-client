@@ -40,7 +40,7 @@ export class DishReviewsList extends React.Component {
           <p className="rest-name">Restaurant Name: {restaurant.name}</p>
           <span className="dishes-count">
             <Link to={`/restaurants/${restaurantId}/dishes`}>
-              <i class="fa fa-spoon" aria-hidden="true" /> {dishesCount}
+              <i className="fa fa-spoon" aria-hidden="true" /> {dishesCount}
             </Link>
           </span>
           <p className="dish-name">Dish Name: {dish.name}</p>

@@ -11,7 +11,7 @@ export default function DishReview(props) {
     <div className="dish-review">
       <div className="date-box">
         <span>
-          <i class="fa fa-calendar-o" />
+          <i className="fa fa-calendar-o" />
         </span>
         <p>{reviewDate}</p>
       </div>
@@ -21,7 +21,7 @@ export default function DishReview(props) {
           <div className="rating">{props.rating}</div>
         </span>
         <p>
-          <i class="fa fa-comment-o" />
+          <i className="fa fa-comment-o" />
           <span className="comment">{props.description}</span>
         </p>
       </div>

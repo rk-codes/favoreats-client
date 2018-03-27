@@ -15,13 +15,13 @@ export class DishInfo extends React.Component {
     return (
       <div className="dish-info">
         <div className="dish-data">
-          <i class="fa fa-spoon" aria-hidden="true" />
+          <i className="fa fa-spoon" aria-hidden="true" />
           <p>Dish Name: {this.props.name}</p>
           <p>Rating: {this.props.latestRating}</p>
         </div>
         <div className="dish-buttons">
           <button className="delete-button" onClick={() => this.onDelete()}>
-            <i class="fa fa-trash fa-lg" />
+            <i className="fa fa-trash fa-lg" />
           </button>
           <span>
             <Link
