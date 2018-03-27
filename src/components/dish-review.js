@@ -2,7 +2,7 @@ import React from "react";
 import "./dish-review.css";
 
 export default function DishReview(props) {
-  const options = { weekday: "short", month: "short", day: "numeric" };
+  const options = { month: "short", day: "numeric", year: "numeric" };
   const reviewDate = new Date(props.reviewDate).toLocaleDateString(
     "en-US",
     options
