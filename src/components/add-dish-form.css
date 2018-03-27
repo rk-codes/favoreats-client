@@ -22,10 +22,10 @@ textarea {
   width: 100%;
   margin-bottom: 15px;
   font-size: 0.9em;
+  background: inherit;
 }
 .add-dish-form button {
   border: 1px solid #27a0a0;
-  color: black;
   font-family: "Open Sans Condensed", sans-serif;
   font-size: 14px;
   padding: 8px 18px;
@@ -33,4 +33,6 @@ textarea {
   margin-top: 10px;
   cursor: pointer;
   margin: 10px;
+  background: #333;
+  color: white;
 }
