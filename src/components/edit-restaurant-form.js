@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import { editRestaurant } from "../actions";
 import "./edit-restaurant-form.css";
+import Input from "./input";
 
 export class EditRestaurantForm extends React.Component {
   componentDidMount() {
@@ -59,21 +60,21 @@ export class EditRestaurantForm extends React.Component {
           <Field
             name="name"
             type="text"
-            component="input"
+            component={Input}
             value={this.props.name}
           />
           <label htmlFor="location">City/State</label>
           <Field
             name="location"
             type="text"
-            component="input"
+            component={Input}
             value={this.props.restLocation}
           />
           <label htmlFor="cuisine">Cuisine</label>
           <Field
             name="cuisine"
             type="text"
-            component="input"
+            component={Input}
             value={this.props.cuisine}
           />
           <button type="button" onClick={() => this.onCancelClick()}>
