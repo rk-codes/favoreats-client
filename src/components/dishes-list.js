@@ -43,8 +43,11 @@ class DishesList extends React.Component {
       <div className="dishes-list">
         <div className="dishes-restbox">
           <h3>Restaurant Name: {restaurant.name}</h3>
-          <p>Cuisine: {restaurant.cuisine}</p>
-          <span>Dishes count: {dishIds.length}</span>
+          <p>
+            <i class="fa fa-tag" aria-hidden="true" />
+            {restaurant.cuisine}
+          </p>
+          <span>Dishes: {dishIds.length}</span>
           <div>
             <button className="add-button" onClick={() => this.onAddClick()}>
               Add dish

@@ -15,7 +15,7 @@ export class DishInfo extends React.Component {
     return (
       <div className="dish-info">
         <div className="dish-data">
-          <h3>DishInfo</h3>
+          <i class="fa fa-spoon" aria-hidden="true" />
           <p>Dish Name: {this.props.name}</p>
           <p>Rating: {this.props.latestRating}</p>
         </div>
