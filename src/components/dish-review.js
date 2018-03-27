@@ -14,7 +14,7 @@ export default function DishReview(props) {
         <span>Rating: {props.rating}</span>
         <p>
           <i class="fa fa-comment-o" />
-          <span>{props.description}</span>
+          <span className="comment">{props.description}</span>
         </p>
       </div>
     </div>
