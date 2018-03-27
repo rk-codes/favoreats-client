@@ -27,7 +27,6 @@ class RestaurantsList extends React.Component {
       <div className="restaurants-list">
         <h1>My Restaurants</h1>
         <ul>{restaurant}</ul>
-        <button onClick={() => this.onAddClick()}>Add Restaurant</button>
       </div>
     );
   }
