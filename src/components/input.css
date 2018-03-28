@@ -1,0 +1,15 @@
+.message {
+  padding: 12px 6px;
+}
+
+.message-success {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.form-error {
+  color: red;
+}
+.form-error i.fa {
+  color: red;
+}
