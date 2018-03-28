@@ -1,6 +1,5 @@
 .dish-review {
   display: flex;
-  /* border: 1px solid violet; */
 }
 
 .date-box {
@@ -14,7 +13,6 @@
   text-align: center;
 }
 .review-box {
-  /* border: 1px solid aqua; */
   margin-bottom: 10px;
   margin-left: 20px;
   padding: 8px;

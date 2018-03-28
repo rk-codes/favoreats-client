@@ -34,7 +34,6 @@ fieldset legend {
   margin-bottom: 15px;
 }
 .register-button {
-  /* box-shadow: inset 0px 1px 0px 0px #45D6D6; */
   border: 1px solid indianred;
   font-family: "Open Sans Condensed", sans-serif;
   font-size: 14px;

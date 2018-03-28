@@ -12,12 +12,9 @@
   cursor: pointer;
 }
 .dish-data {
-  /* background: rgb(54, 25, 25); 
-    color: white; */
   padding: 20px;
   background: white;
   align-self: center;
-  /* background: indianred; */
   background-color: #333;
   color: white;
   text-align: center;
