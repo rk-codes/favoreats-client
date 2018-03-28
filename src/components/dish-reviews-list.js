@@ -42,11 +42,12 @@ export class DishReviewsList extends React.Component {
       <div className="reviews">
         <div className="rest-info">
           <p className="rest-name">Restaurant Name: {restaurant.name}</p>
-          <span className="dishes-count">
+          <div className="dishes-count">
             <Link to={`/restaurants/${restaurantId}/dishes`}>
               <i className="fa fa-spoon" aria-hidden="true" /> {dishesCount}
             </Link>
-          </span>
+          </div>
+
           <p className="dish-name">Dish Name: {dish.name}</p>
         </div>
         <ul className="reviews-flex-container">{dishReviews}</ul>
