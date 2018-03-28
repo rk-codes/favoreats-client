@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { clearAuth } from "../actions/auth";
 import { clearAuthToken } from "../local-storage";
 
+import "./header.css";
+
 export class Header extends React.Component {
   logOut() {
     this.props.dispatch(clearAuth());
@@ -41,8 +43,10 @@ export class Header extends React.Component {
       );
     }
     return (
-      <div className="header">
-        <h1>FavorEats</h1>
+      <div className="header-container">
+        <h1>
+          <i className="fa fa-cutlery" aria-hidden="true" />FavorEats
+        </h1>
         <nav>{navLinks}</nav>
       </div>
     );

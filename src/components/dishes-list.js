@@ -5,7 +5,7 @@ import { get } from "lodash";
 
 import DishInfo from "./dish-info";
 import { fetchAllDishes } from "../actions";
-//import store from '../store';
+import "./dishes-list.css";
 
 class DishesList extends React.Component {
   componentDidMount() {
@@ -41,11 +41,22 @@ class DishesList extends React.Component {
     const restaurant = this.props.restaurants[restaurantId] || {};
     return (
       <div className="dishes-list">
-        <h3>Restaurant Name: {restaurant.name}</h3>
-        <p>Cuisine: {restaurant.cuisine}</p>
-        <span>Dishes count: {dishIds.length}</span>
-        <ul>{dishes}</ul>
-        <button onClick={() => this.onAddClick()}>Add dish</button>
+        <div className="dishes-restbox">
+          <h3>Restaurant Name: {restaurant.name}</h3>
+          <p>
+            <i className="fa fa-tag" aria-hidden="true" />
+            {restaurant.cuisine}
+          </p>
+          <span>Dishes: {dishIds.length}</span>
+          <div>
+            <button className="add-button" onClick={() => this.onAddClick()}>
+              Add dish
+            </button>
+          </div>
+        </div>
+        <div>
+          <ul className="dish-flex-container">{dishes}</ul>
+        </div>
       </div>
     );
   }

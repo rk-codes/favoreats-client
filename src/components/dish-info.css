@@ -1,0 +1,42 @@
+.dish-info {
+  list-style: none;
+  background: indianred;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -12px 14px 8px -6px rgba(0, 0, 0, 0.37);
+  margin-bottom: 15px;
+}
+.delete-button {
+  padding: 8px;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+.dish-data {
+  padding: 20px;
+  background: white;
+  align-self: center;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+.dish-data i.fa {
+  font-size: 45px;
+  color: white;
+}
+.dish-buttons {
+  background-color: white;
+  padding: 8px;
+  text-align: center;
+}
+.dish-buttons a {
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+}
+.dish-buttons a:hover {
+  color: tomato;
+}
+.dish-buttons i.fa {
+  font-size: 25px;
+}

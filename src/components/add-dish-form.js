@@ -3,6 +3,8 @@ import { reduxForm, Field } from "redux-form";
 import { addDish } from "../actions";
 import Input from "./input";
 import { required, nonEmpty } from "../validators";
+import "./add-dish-form.css";
+import RatingDropdown from "./rating-dropdown";
 
 export class AddDishForm extends React.Component {
   onSubmit(values) {
@@ -54,7 +56,7 @@ export class AddDishForm extends React.Component {
           <Field
             name="rating"
             type="text"
-            component={Input}
+            component={RatingDropdown}
             validate={[required, nonEmpty]}
           />
           <label htmlFor="description">Review</label>

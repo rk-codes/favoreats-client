@@ -1,8 +1,9 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
 import { addDishReview } from "../actions";
-import Input from "./input";
 import { required, nonEmpty } from "../validators";
+import "./add-dish-review-form.css";
+import RatingDropdown from "./rating-dropdown";
 
 export class AddDishReview extends React.Component {
   onSubmit(values) {
@@ -19,7 +20,6 @@ export class AddDishReview extends React.Component {
   render() {
     return (
       <div>
-        <h3>Dish name</h3>
         <form
           className="add-review-form"
           onSubmit={this.props.handleSubmit((values, dispatch) =>
@@ -32,7 +32,7 @@ export class AddDishReview extends React.Component {
             <Field
               name="rating"
               type="text"
-              component={Input}
+              component={RatingDropdown}
               validate={[required, nonEmpty]}
             />
             <label htmlFor="description">Review</label>

@@ -1,0 +1,14 @@
+.restaurants-list {
+  text-align: center;
+  background-image: url("../img/brickwall.png");
+}
+.restaurants-list ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.restaurants-list h1 {
+  font-family: "Oswald", sans-serif;
+}

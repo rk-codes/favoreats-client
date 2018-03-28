@@ -1,0 +1,45 @@
+.restaurant-outer {
+  display: flex;
+  justify-content: center;
+}
+.restaurant-info {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+.restaurant-details {
+  flex-grow: 1;
+  box-shadow: -12px 14px 8px -6px rgba(0, 0, 0, 0.37);
+  margin-bottom: 20px;
+  border: 1px solid grey;
+  padding: 20px;
+  background-color: white;
+}
+.restaurant-details a {
+  color: black;
+  font-weight: 700;
+}
+.dish-count {
+  text-decoration: none;
+  padding: 20px;
+  color: white;
+  font-weight: 600;
+  background-color: tomato;
+}
+.restaurant-buttons button {
+  padding: 8px;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+.restaurant-details a {
+  text-decoration: none;
+}
+.restaurant-details a:hover {
+  color: tomato;
+}
+.restaurant-details i.fa {
+  font-size: 25px;
+  padding: 8px;
+}

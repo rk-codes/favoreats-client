@@ -1,0 +1,54 @@
+.reviews {
+  border: 3px solid #8d8c8c;
+  padding: 15px;
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 0;
+}
+.rest-info {
+  border-bottom: 2px solid red;
+  opacity: 0.8;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
+}
+.rest-name {
+  font-family: "Oswald", sans-serif;
+}
+.rest-name {
+  display: inline;
+  margin-right: 8px;
+}
+.reviews-flex-container {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  list-style: none;
+  padding: 0;
+}
+.reviews-flex-container li {
+  padding: 10px;
+}
+.dishes-count {
+  font-weight: bold;
+  display: inline-block;
+  border: 2px solid tomato;
+  padding: 5px;
+}
+
+.dishes-count a {
+  text-decoration: none;
+  color: black;
+}
+.dishes-count a:hover {
+  color: tomato;
+}
+.dish-name {
+  font-weight: bold;
+}
+.dishes-count i.fa {
+  font-size: 25px;
+}
+.dishes-count i.fa:hover {
+  color: tomato;
+}

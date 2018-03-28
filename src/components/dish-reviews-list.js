@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import DishReview from "./dish-review";
 import { fetchAllReviewsOfDish } from "../actions";
 import { get } from "lodash";
+import "./dish-reviews-list.css";
 
 export class DishReviewsList extends React.Component {
   componentDidMount() {
@@ -26,7 +27,11 @@ export class DishReviewsList extends React.Component {
     const dishesCount = get(restaurant, ["dishIds", "length"]) || 0;
     const reviewIds = get(dish, ["reviewIds"]) || []; //get all reviewIds of the dish
 
-    const reviewsList = reviewIds.map(id => reviews[id]); //get the reviews for each review id
+    const reviewsList = reviewIds.map(id => reviews[id]).sort((a, b) => {
+      return (
+        new Date(b.reviewDate).getTime() - new Date(a.reviewDate).getTime()
+      );
+    }); //get the reviews for each review id
     const dishReviews = reviewsList.map((item, index) => (
       <li key={index}>
         <DishReview {...item} />
@@ -35,14 +40,17 @@ export class DishReviewsList extends React.Component {
 
     return (
       <div className="reviews">
-        <h3>Restaurant Name: {restaurant.name}</h3>
-        <span>
-          <Link to={`/restaurants/${restaurantId}/dishes`}>
-            {dishesCount} dishes
-          </Link>
-        </span>
-        <h4>Dish Name: {dish.name}</h4>
-        <ul>{dishReviews}</ul>
+        <div className="rest-info">
+          <p className="rest-name">Restaurant Name: {restaurant.name}</p>
+          <div className="dishes-count">
+            <Link to={`/restaurants/${restaurantId}/dishes`}>
+              <i className="fa fa-spoon" aria-hidden="true" /> {dishesCount}
+            </Link>
+          </div>
+
+          <p className="dish-name">Dish Name: {dish.name}</p>
+        </div>
+        <ul className="reviews-flex-container">{dishReviews}</ul>
       </div>
     );
   }

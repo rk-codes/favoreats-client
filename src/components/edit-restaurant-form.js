@@ -2,11 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import { editRestaurant } from "../actions";
+import "./edit-restaurant-form.css";
+import Input from "./input";
+import { get } from "lodash";
 
 export class EditRestaurantForm extends React.Component {
   componentDidMount() {
     const { restaurantId } = this.props.match.params;
-    const restaurant = this.props.restaurants[restaurantId];
+    const restaurant = get(this.props.restaurants, [restaurantId]) || [];
     this.props.initialize({
       name: restaurant.name,
       location: restaurant.restLocation,
@@ -45,7 +48,7 @@ export class EditRestaurantForm extends React.Component {
 
     return (
       <form
-        className="add-restaurant-form"
+        className="edit-restaurant-form"
         onSubmit={this.props.handleSubmit((values, dispatch) =>
           this.onSubmit(values, dispatch)
         )}
@@ -58,21 +61,21 @@ export class EditRestaurantForm extends React.Component {
           <Field
             name="name"
             type="text"
-            component="input"
+            component={Input}
             value={this.props.name}
           />
           <label htmlFor="location">City/State</label>
           <Field
             name="location"
             type="text"
-            component="input"
+            component={Input}
             value={this.props.restLocation}
           />
           <label htmlFor="cuisine">Cuisine</label>
           <Field
             name="cuisine"
             type="text"
-            component="input"
+            component={Input}
             value={this.props.cuisine}
           />
           <button type="button" onClick={() => this.onCancelClick()}>

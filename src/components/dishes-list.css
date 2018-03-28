@@ -1,0 +1,43 @@
+.dish-flex-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+.dish-flex-container li {
+  flex-basis: 400px;
+}
+.dishes-list {
+  margin: 10px;
+  background-image: url("../img/brickwall.png");
+}
+.dishes-list ul {
+  list-style: none;
+}
+.dishes-restbox {
+  border-bottom: 1px solid black;
+  width: 90%;
+  margin: 15px auto;
+  padding: 20px;
+  font-family: "Oswald", sans-serif;
+  text-align: center;
+}
+.dishes-restbox p {
+  color: #6d6767;
+}
+.add-button {
+  border: 1px solid #27a0a0;
+  color: black;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 14px;
+  padding: 8px 18px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+}

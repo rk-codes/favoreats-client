@@ -1,0 +1,31 @@
+.header-container {
+  background: #333;
+  display: flex;
+  justify-content: space-between;
+
+  color: tomato;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+.header-container h1 {
+  margin-left: 5%;
+  font-size: 2em;
+  font-family: "Special Elite", cursive;
+}
+
+.header-container ul li {
+  display: inline-block;
+  margin: 10px;
+  color: #fff;
+}
+
+.header-container ul a {
+  color: tomato;
+  text-decoration: none;
+}
+.header-container ul a:hover {
+  color: white;
+}
+.header-container i.fa {
+  padding: 8px;
+}

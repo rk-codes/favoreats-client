@@ -1,7 +1,7 @@
 import React from "react";
 import "./input.css";
 
-export default class Input extends React.Component {
+export default class RatingDropdown extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.meta.active && this.props.meta.active) {
       this.input.focus();
@@ -30,12 +30,19 @@ export default class Input extends React.Component {
           {error}
           {warning}
         </label>
-        <input
+        <select
           {...this.props.input}
           id={this.props.input.name}
           type={this.props.type}
           ref={input => (this.input = input)}
-        />
+        >
+          <option />
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
         {/* {error} */}
         {warning}
       </div>
