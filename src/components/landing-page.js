@@ -39,7 +39,7 @@ export function LandingPage(props) {
             <i className="fa fa-check" aria-hidden="true" />
             <h4>Track your favorites</h4>
             <p>
-              Track the dishes that you love and the ones that you don't.<br />
+              Track the dishes that you love and that you don't.<br />
               Anytime. Anywhere.
             </p>
           </div>
