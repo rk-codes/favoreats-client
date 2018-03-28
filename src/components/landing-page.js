@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-
-import IntroSection from "./intro-section";
 import "./landing-page.css";
 
 export function LandingPage(props) {

@@ -1,7 +1,6 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
 import { addDishReview } from "../actions";
-import Input from "./input";
 import { required, nonEmpty } from "../validators";
 import "./add-dish-review-form.css";
 import RatingDropdown from "./rating-dropdown";
