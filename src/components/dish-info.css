@@ -1,14 +1,8 @@
 .dish-info {
-  border: 1px solid tomato;
   list-style: none;
-  /* max-width: 250px; */
-  /* background-color: darkgoldenrod; */
   background: indianred;
-
-  /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA3eHoAYEs3nS7wrKopzvsthzo45p9vDTnJ5GZkM8x_WdriZANvw'); */
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around */
   box-shadow: -12px 14px 8px -6px rgba(0, 0, 0, 0.37);
 }
 .delete-button {
