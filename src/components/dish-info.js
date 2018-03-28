@@ -17,7 +17,7 @@ export class DishInfo extends React.Component {
         <div className="dish-data">
           <i className="fa fa-spoon" aria-hidden="true" />
           <p>Dish Name: {this.props.name}</p>
-          <p>Rating: {this.props.latestRating}</p>
+          <p>Latest Rating: {this.props.latestRating}</p>
         </div>
         <div className="dish-buttons">
           <button className="delete-button" onClick={() => this.onDelete()}>
