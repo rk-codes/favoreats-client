@@ -29,23 +29,20 @@ export function LandingPage(props) {
         <div className="about-inner">
           <div>
             <i className="fa fa-cutlery" aria-hidden="true" />
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry
-            </p>
+            <h4>Add restaurants</h4>
+            <p>Add restaurants that you've visited or are planning to</p>
           </div>
           <div>
             <i className="fa fa-comments-o" aria-hidden="true" />
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry
-            </p>
+            <h4>Review dishes</h4>
+            <p>Add your past orders. And don't forget to review them!</p>
           </div>
           <div>
             <i className="fa fa-check" aria-hidden="true" />
+            <h4>Track your favorites</h4>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry
+              Track the dishes that you love and the ones that you don't.<br />
+              Anytime. Anywhere.
             </p>
           </div>
         </div>
