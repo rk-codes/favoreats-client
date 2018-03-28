@@ -3,10 +3,15 @@
   padding: 15px;
   width: 80%;
   margin: 0 auto;
+  padding-top: 0;
   /* background-image: url("../img/brickwall.png"); */
 }
 .rest-info {
   border-bottom: 2px solid red;
+  opacity: 0.8;
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
 }
 .rest-name {
   font-family: "Oswald", sans-serif;
@@ -29,6 +34,9 @@
 }
 .dishes-count {
   font-weight: bold;
+  display: inline-block;
+  border: 2px solid tomato;
+  padding: 5px;
 }
 
 .dishes-count a {
@@ -40,11 +48,9 @@
 }
 .dish-name {
   font-weight: bold;
-  font-family: "Open Sans", sans-serif;
 }
 .dishes-count i.fa {
   font-size: 25px;
-  padding: 5px;
 }
 .dishes-count i.fa:hover {
   color: tomato;
