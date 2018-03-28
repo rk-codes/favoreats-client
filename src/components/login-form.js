@@ -55,6 +55,9 @@ export class LoginForm extends React.Component {
           >
             Log in
           </button>
+          <p className="demo">
+            For Demo:<br />username: demouser<br />password: demopassword
+          </p>
         </fieldset>
       </form>
     );

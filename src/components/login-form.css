@@ -36,6 +36,6 @@ fieldset legend {
   background: #333;
   color: white;
 }
-/* Add a restaurant
-add dishes that you ordered
- */
+.demo {
+  color: gray;
+}
