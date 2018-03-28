@@ -1,7 +1,5 @@
 .dish-flex-container {
-  /* border: 1px solid violet; */
   display: flex;
-  /* justify-content: center; */
   justify-content: space-around;
   align-items: center;
   flex-flow: row wrap;
@@ -13,13 +11,8 @@
   flex-basis: 400px;
 }
 .dishes-list {
-  /* border: 1px solid red; */
   margin: 10px;
   background-image: url("../img/brickwall.png");
-  /* background-image: url('http://blog.testmatick.com/wp-content/uploads/2016/07/shutterstock_120479893-u6982.jpg');
-  background-size: cover; */
-  /* background-attachment: fixed; */
-  /* background-position: center; */
 }
 .dishes-list ul {
   list-style: none;
@@ -32,11 +25,9 @@
   font-family: "Oswald", sans-serif;
   text-align: center;
 }
-/* .dish-data {
-
- 
-  
-} */
+.dishes-restbox p {
+  color: #6d6767;
+}
 .add-button {
   border: 1px solid #27a0a0;
   color: black;
