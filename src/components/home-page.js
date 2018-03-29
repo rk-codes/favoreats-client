@@ -1,6 +1,6 @@
 import React from "react";
 
-import RestaurantsList from "./restaurants-list";
+import RestaurantsList from "../containers/restaurants-list";
 
 export default function HomePage() {
   return (
