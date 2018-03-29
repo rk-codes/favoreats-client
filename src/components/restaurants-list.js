@@ -7,7 +7,7 @@ export default class RestaurantsList extends React.Component {
   static propTypes = {
     fetchAllRestaurants: PropTypes.func.isRequired,
     //restaurants: PropTypes.arrayOf(PropTypes.object).isRequired,
-    restaurants: PropTypes.object.isRequired
+    restaurants: PropTypes.objectOf(PropTypes.object).isRequired
   };
 
   componentDidMount() {
