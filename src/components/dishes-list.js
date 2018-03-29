@@ -1,7 +1,7 @@
 import React from "react";
 import { get } from "lodash";
 import PropTypes from "prop-types";
-import DishInfo from "./dish-info";
+import DishInfo from "../containers/dish-info";
 import "./dishes-list.css";
 
 export default class DishesList extends React.Component {
