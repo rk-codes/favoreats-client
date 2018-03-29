@@ -1,20 +1,23 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-
 import RestaurantInfo from "./restaurant-info";
-import { fetchAllRestaurants } from "../actions";
+import PropTypes from "prop-types";
 import "./restaurants-list.css";
 
-class RestaurantsList extends React.Component {
+export default class RestaurantsList extends React.Component {
+  static propTypes = {
+    fetchAllRestaurants: PropTypes.func.isRequired,
+    //restaurants: PropTypes.arrayOf(PropTypes.object).isRequired,
+    restaurants: PropTypes.object.isRequired
+  };
+
   componentDidMount() {
     this.props.fetchAllRestaurants();
   }
 
-  onAddClick() {
-    //render the add-restaurant form
-    this.props.history.push("/addrestaurant");
-  }
+  // onAddClick() {
+  //   //render the add-restaurant form
+  //   this.props.history.push("/addrestaurant");
+  // }
   render() {
     const restaurant = Object.values(this.props.restaurants).map(
       (item, index) => (
@@ -31,17 +34,3 @@ class RestaurantsList extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    restaurants: state.restaurant.restaurants
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAllRestaurants: () => dispatch(fetchAllRestaurants())
-  };
-};
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(RestaurantsList)
-);
