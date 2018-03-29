@@ -1,14 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { deleteRestaurant, editRestaurant } from "../actions";
+import PropTypes from "prop-types";
 import "./restaurant-info.css";
 
-class RestaurantInfo extends React.Component {
-  // constructor(props) {
-  //     super(props);
-  // }
+export default class RestaurantInfo extends React.Component {
+  static propTypes = {
+    deleteRestaurant: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    cuisine: PropTypes.string.isRequired,
+    restLocation: PropTypes.string.isRequired,
+    dishIds: PropTypes.array.isRequired
+  };
+
   onDelete() {
     this.props.deleteRestaurant(this.props.id);
   }
@@ -45,19 +49,3 @@ class RestaurantInfo extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    restaurants: state.restaurant.restaurants
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    deleteRestaurant: restaurantId => dispatch(deleteRestaurant(restaurantId)),
-    editRestaurant: () => dispatch(editRestaurant())
-  };
-};
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(RestaurantInfo)
-);
-
-//Delete clicked -> dispatch action to delete the restaurant -> Redirect to the restaurants list page
