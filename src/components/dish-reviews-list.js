@@ -1,12 +1,23 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import DishReview from "./dish-review";
-import { fetchAllReviewsOfDish } from "../actions";
+import PropTypes from "prop-types";
 import { get } from "lodash";
 import "./dish-reviews-list.css";
 
-export class DishReviewsList extends React.Component {
+export default class DishReviewsList extends React.Component {
+  static propTypes = {
+    fetchAllReviewsOfDish: PropTypes.func.isRequired,
+    restaurants: PropTypes.objectOf(PropTypes.object).isRequired,
+    dishes: PropTypes.objectOf(PropTypes.object).isRequired,
+    reviews: PropTypes.objectOf(PropTypes.object).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        restaurantId: PropTypes.string.isRequired,
+        dishId: PropTypes.string.isRequired
+      })
+    })
+  };
   componentDidMount() {
     this.props.fetchAllReviewsOfDish(
       this.props.match.params.restaurantId,
@@ -55,17 +66,3 @@ export class DishReviewsList extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    restaurants: state.restaurant.restaurants,
-    dishes: state.restaurant.dishes,
-    reviews: state.restaurant.reviews
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAllReviewsOfDish: (restaurantId, dishId) =>
-      dispatch(fetchAllReviewsOfDish(restaurantId, dishId))
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(DishReviewsList);
