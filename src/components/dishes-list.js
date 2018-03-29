@@ -1,13 +1,21 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { get } from "lodash";
-
+import PropTypes from "prop-types";
 import DishInfo from "./dish-info";
-import { fetchAllDishes } from "../actions";
 import "./dishes-list.css";
 
-class DishesList extends React.Component {
+export default class DishesList extends React.Component {
+  static propTypes = {
+    fetchAllDishes: PropTypes.func.isRequired,
+    restaurants: PropTypes.objectOf(PropTypes.object).isRequired,
+    dishes: PropTypes.objectOf(PropTypes.object).isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        restaurantId: PropTypes.string.isRequired
+      })
+    })
+  };
+
   componentDidMount() {
     // const dishesLength = get (this.props.restaurants,[this.props.match.params.restaurantId, 'dishIds', 'length']) ;
 
@@ -24,7 +32,7 @@ class DishesList extends React.Component {
   }
 
   render() {
-    //console.log(store.getState());
+    console.log(this.props);
     let restaurantId;
     restaurantId = this.props.match.params.restaurantId;
 
@@ -61,19 +69,3 @@ class DishesList extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    restaurants: state.restaurant.restaurants,
-    dishes: state.restaurant.dishes
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAllDishes: restaurantId => dispatch(fetchAllDishes(restaurantId))
-  };
-};
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DishesList)
-);
-
-//Add dish clicked -> render add dish form -> rerender dishes list with the updated data
