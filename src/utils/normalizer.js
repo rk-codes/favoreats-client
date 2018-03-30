@@ -5,7 +5,7 @@ export function normalizeRestaurant(restaurant) {
       name: restaurant.name,
       restLocation: restaurant.location,
       cuisine: restaurant.cuisine,
-      dishIds: restaurant.dishes
+      dishIds: restaurant.dishes || []
     }
   };
 }
