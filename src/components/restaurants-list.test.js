@@ -1,15 +1,8 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducers from "../reducers";
 
 import RestaurantsList from "./restaurants-list";
 import RestaurantInfo from "./restaurant-info";
-
-import { MemoryRouter as Router, withRouter } from "react-router-dom";
-
-let store = createStore(reducers);
 
 describe("<RestaurantsList />", () => {
   it("Renders without crashing", () => {
