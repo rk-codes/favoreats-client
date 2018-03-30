@@ -7,10 +7,10 @@ import "./dish-info.css";
 export default class DishInfo extends React.Component {
   static propTypes = {
     deleteDish: PropTypes.func,
-    reviewIds: PropTypes.arrayOf(PropTypes.string).isRequired,
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    latestRating: PropTypes.number.isRequired,
+    reviewIds: PropTypes.arrayOf(PropTypes.string),
+    id: PropTypes.string,
+    name: PropTypes.string,
+    latestRating: PropTypes.number,
     match: PropTypes.shape({
       params: PropTypes.shape({
         restaurantId: PropTypes.string.isRequired
