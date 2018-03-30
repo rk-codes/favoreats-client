@@ -62,7 +62,11 @@ export class AddRestaurantForm extends React.Component {
             component={Input}
             validate={[required, nonEmpty]}
           />
-          <button type="button" onClick={() => this.onCancelClick()}>
+          <button
+            className="cancel-button"
+            type="button"
+            onClick={() => this.onCancelClick()}
+          >
             Cancel
           </button>
           <button type="submit">Add</button>
