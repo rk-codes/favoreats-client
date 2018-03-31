@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducers from "../reducers";
 
-import AddRestaurantForm from "./add-restaurant-form";
+import AddRestaurantForm from "../containers/add-restaurant-form";
 
 let store = createStore(reducers);
 
@@ -25,15 +25,14 @@ describe("<AddRestaurantForm />", () => {
   });
 
   it("Should fire callback when the cancel button is clicked", () => {
-    const callback = jest.fn();
-    const push = jest.fn();
     const history = [];
     const wrapper = mount(
       <Provider store={store}>
-        <AddRestaurantForm onClick={callback} history={history} />
+        <AddRestaurantForm history={history} />
       </Provider>
     );
-    wrapper.find('button[type="button"]').simulate("click");
-    // expect(callback).toHaveBeenCalled()
+    wrapper.find(".cancel-button").simulate("click");
+    expect(history.length).toBe(1);
+    expect(history[0]).toBe("/home");
   });
 });
