@@ -9,7 +9,7 @@ import RegistrationPage from "./components/registration-page";
 import HomePage from "./components/home-page";
 import RestaurantInfo from "./containers/restaurant-info";
 import DishesList from "./containers/dishes-list";
-import AddRestaurantForm from "./components/add-restaurant-form";
+import AddRestaurantForm from "./containers/add-restaurant-form";
 import EditRestaurantForm from "./components/edit-restaurant-form";
 import AddDishForm from "./components/add-dish-form";
 import DishReviewsList from "./containers/dish-reviews-list";

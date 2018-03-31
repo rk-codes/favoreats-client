@@ -1,5 +1,5 @@
 import React from "react";
-import RestaurantInfo from "./restaurant-info";
+import RestaurantInfo from "../containers/restaurant-info";
 import PropTypes from "prop-types";
 import "./restaurants-list.css";
 
