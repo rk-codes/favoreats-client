@@ -5,7 +5,7 @@ import Input from "./input";
 import { required, nonEmpty } from "../validators";
 import "./add-restaurant-form.css";
 
-export class AddRestaurantForm extends React.Component {
+export default class AddRestaurantForm extends React.Component {
   onSubmit(values) {
     this.props.dispatch(addRestaurant(values));
     this.props.history.push("/home");
@@ -75,6 +75,3 @@ export class AddRestaurantForm extends React.Component {
     );
   }
 }
-export default reduxForm({
-  form: "addrestaurant"
-})(AddRestaurantForm);
