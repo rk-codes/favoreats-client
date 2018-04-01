@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import reducers from "../reducers";
 
-import LoginForm from "./add-dish-form";
+import LoginForm from "./login-form";
 
 let store = createStore(reducers);
 
