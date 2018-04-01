@@ -1,5 +1,5 @@
 import React from "react";
-import { reduxForm, Field } from "redux-form";
+import { Field } from "redux-form";
 import { addRestaurant } from "../actions";
 import Input from "./input";
 import { required, nonEmpty } from "../validators";
