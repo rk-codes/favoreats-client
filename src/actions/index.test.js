@@ -41,4 +41,31 @@ describe("async actions", () => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
+
+  it("creates ADD_RESTAURANT_SUCCESS when adding a restaurant has been done", () => {
+    const token = "12345";
+    fetchMock.postOnce(`${API_BASE_URL}/restaurants`, {
+      body: { restaurants: { name: "ssf", location: "erer", cuisne: "seef" } },
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const expectedActions = [
+      {
+        type: ADD_RESTAURANT_SUCCESS,
+        payload: {
+          restaurants: { name: "ssf", location: "erer", cuisne: "seef" }
+        }
+      }
+    ];
+    const store = mockStore({
+      restaurants: { restaurants: {}, dishes: {}, reviews: {} },
+      auth: { authToken: token }
+    });
+    return store.dispatch(actions.addRestaurant()).then(() => {
+      // return of async actions
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
 });
