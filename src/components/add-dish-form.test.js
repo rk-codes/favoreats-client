@@ -24,9 +24,7 @@ describe("<AddDishForm />", () => {
     expect(callback).toHaveBeenCalled();
   });
 
-  it("Should fire callback when the cancel button is clicked", () => {
-    const callback = jest.fn();
-    const push = jest.fn();
+  it("Should push url to history when the cancel button is clicked", () => {
     const match = {
       history: {},
       params: { restaurantId: "2" }
@@ -34,9 +32,11 @@ describe("<AddDishForm />", () => {
     const history = [];
     const wrapper = mount(
       <Provider store={store}>
-        <AddDishForm onClick={callback} history={history} match={match} />
+        <AddDishForm history={history} match={match} />
       </Provider>
     );
     wrapper.find('button[type="button"]').simulate("click");
+    expect(history.length).toBe(1);
+    expect(history[0]).toBe("/restaurants/2/dishes");
   });
 });
