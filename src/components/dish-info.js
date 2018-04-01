@@ -29,7 +29,7 @@ export default class DishInfo extends React.Component {
       <div className="dish-info">
         <div className="dish-data">
           <i className="fa fa-spoon" aria-hidden="true" />
-          <p>Dish Name: {this.props.name}</p>
+          <p>{this.props.name}</p>
           <p>Latest Rating: {this.props.latestRating}</p>
         </div>
         <div className="dish-buttons">
