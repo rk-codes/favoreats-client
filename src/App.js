@@ -11,7 +11,7 @@ import RestaurantInfo from "./containers/restaurant-info";
 import DishesList from "./containers/dishes-list";
 import AddRestaurantForm from "./containers/add-restaurant-form";
 import EditRestaurantForm from "./components/edit-restaurant-form";
-import AddDishForm from "./components/add-dish-form";
+import AddDishForm from "./containers/add-dish-form";
 import DishReviewsList from "./containers/dish-reviews-list";
 import AddDishReviewForm from "./components/add-dish-review-form";
 import Header from "./components/header";
