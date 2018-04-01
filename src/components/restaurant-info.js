@@ -27,7 +27,7 @@ export default class RestaurantInfo extends React.Component {
         <div className="restaurant-info">
           <div className="restaurant-details">
             <Link to={`/restaurants/${this.props.id}/dishes`}>
-              Restaurant Name: {this.props.name}
+              Restaurant: {this.props.name}
             </Link>
             <p>Cuisine: {this.props.cuisine}</p>
             <p>

@@ -59,7 +59,7 @@ export default class DishReviewsList extends React.Component {
             </Link>
           </div>
 
-          <p className="dish-name">Dish Name: {dish.name}</p>
+          <p className="dish-name">Dish: {dish.name}</p>
         </div>
         <ul className="reviews-flex-container">{dishReviews}</ul>
       </div>

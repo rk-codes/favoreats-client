@@ -19,13 +19,22 @@
 .restaurant-details a {
   color: black;
   font-weight: 700;
+  font-size: 0.9em;
+}
+.restaurant-details p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9em;
 }
 .dish-count {
   text-decoration: none;
-  padding: 20px;
+  padding: 8px;
   color: white;
+  font-size: 0.9em;
   font-weight: 600;
   background-color: tomato;
+}
+.restaurant-buttons {
+  border-top: 1px solid tomato;
 }
 .restaurant-buttons button {
   padding: 8px;
@@ -36,10 +45,11 @@
 .restaurant-details a {
   text-decoration: none;
 }
-.restaurant-details a:hover {
+.restaurant-details a:hover,
+.restaurant-details i.fa:hover {
   color: tomato;
 }
 .restaurant-details i.fa {
-  font-size: 25px;
+  font-size: 20px;
   padding: 8px;
 }

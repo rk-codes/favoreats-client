@@ -34,7 +34,8 @@
   text-decoration: none;
   color: black;
 }
-.dish-buttons a:hover {
+.dish-buttons a:hover,
+.dish-buttons i.fa:hover {
   color: tomato;
 }
 .dish-buttons i.fa {

@@ -50,7 +50,7 @@ export default class DishesList extends React.Component {
     return (
       <div className="dishes-list">
         <div className="dishes-restbox">
-          <h3>Restaurant Name: {restaurant.name}</h3>
+          <h3>Restaurant: {restaurant.name}</h3>
           <p>
             <i className="fa fa-tag" aria-hidden="true" />
             {restaurant.cuisine}
