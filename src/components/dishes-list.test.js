@@ -53,7 +53,7 @@ describe("<DishesList />", () => {
         match={match}
       />
     );
-    expect(wrapper.contains(<h3>Restaurant Name: aaa</h3>)).toEqual(true);
+    expect(wrapper.contains(<h3>Restaurant: aaa</h3>)).toEqual(true);
   });
 
   it("Should render the dishes list", () => {
