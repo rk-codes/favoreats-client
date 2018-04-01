@@ -1,11 +1,11 @@
 import React from "react";
-import { reduxForm, Field } from "redux-form";
+import { Field } from "redux-form";
 import { addRestaurant } from "../actions";
 import Input from "./input";
 import { required, nonEmpty } from "../validators";
 import "./add-restaurant-form.css";
 
-export class AddRestaurantForm extends React.Component {
+export default class AddRestaurantForm extends React.Component {
   onSubmit(values) {
     this.props.dispatch(addRestaurant(values));
     this.props.history.push("/home");
@@ -62,7 +62,11 @@ export class AddRestaurantForm extends React.Component {
             component={Input}
             validate={[required, nonEmpty]}
           />
-          <button type="button" onClick={() => this.onCancelClick()}>
+          <button
+            className="cancel-button"
+            type="button"
+            onClick={() => this.onCancelClick()}
+          >
             Cancel
           </button>
           <button type="submit">Add</button>
@@ -71,6 +75,3 @@ export class AddRestaurantForm extends React.Component {
     );
   }
 }
-export default reduxForm({
-  form: "addrestaurant"
-})(AddRestaurantForm);

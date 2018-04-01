@@ -1,12 +1,12 @@
 import React from "react";
-import { reduxForm, Field } from "redux-form";
+import { Field } from "redux-form";
 import { addDish } from "../actions";
 import Input from "./input";
 import { required, nonEmpty } from "../validators";
 import "./add-dish-form.css";
 import RatingDropdown from "./rating-dropdown";
 
-export class AddDishForm extends React.Component {
+export default class AddDishForm extends React.Component {
   onSubmit(values) {
     this.props.dispatch(addDish(this.props.match.params.restaurantId, values));
     this.props.history.push(
@@ -75,6 +75,3 @@ export class AddDishForm extends React.Component {
     );
   }
 }
-export default reduxForm({
-  form: "adddish"
-})(AddDishForm);

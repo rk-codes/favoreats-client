@@ -1,12 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { deleteDish } from "../actions";
+import PropTypes from "prop-types";
 import { get } from "lodash";
 import "./dish-info.css";
 
-export class DishInfo extends React.Component {
+export default class DishInfo extends React.Component {
+  static propTypes = {
+    deleteDish: PropTypes.func,
+    reviewIds: PropTypes.arrayOf(PropTypes.string),
+    id: PropTypes.string,
+    name: PropTypes.string,
+    latestRating: PropTypes.number,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        restaurantId: PropTypes.string.isRequired
+      })
+    })
+  };
+
   onDelete() {
     this.props.deleteDish(this.props.match.params.restaurantId, this.props.id);
   }
@@ -46,17 +57,3 @@ export class DishInfo extends React.Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    restaurants: state.restaurant.restaurants,
-    dishes: state.restaurant.dishes
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    deleteDish: (restId, dishId) => dispatch(deleteDish(restId, dishId))
-  };
-};
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(DishInfo)
-);
