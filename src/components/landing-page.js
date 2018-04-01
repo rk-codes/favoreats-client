@@ -45,6 +45,13 @@ export function LandingPage(props) {
           </div>
         </div>
       </div>
+      <footer>
+        <div className="footer-box">
+          <p>
+            <i className="fa fa-copyright" aria-hidden="true" />Resmi Krishna
+          </p>
+        </div>
+      </footer>
     </section>
   );
 }
