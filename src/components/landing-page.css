@@ -14,15 +14,16 @@
   flex-wrap: wrap;
 }
 .about-inner div {
-  border: solid 2px black;
   padding: 6px;
-  color: white;
-  background: #333;
   margin: 15px;
 }
 
+.about-inner p {
+  font-size: 0.9em;
+}
 .intro-box {
   margin: 5%;
+  min-height: 300px;
   text-align: center;
   color: black;
   opacity: 0.8;
@@ -45,7 +46,7 @@
   padding: 15px;
   text-align: center;
   margin: 0;
-  font-family: "Playfair Display", serif;
+  font-family: "Playball", cursive;
 }
 @media (min-width: 760px) {
   .about-inner {
