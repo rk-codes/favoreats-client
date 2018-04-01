@@ -34,7 +34,7 @@ describe("<RestaurantsList />", () => {
     const wrapper = shallow(
       <RestaurantsList restaurants={rests} fetchAllRestaurants={dispatch} />
     );
-    expect(wrapper.contains(<h1>My Restaurants</h1>)).toEqual(true);
+    expect(wrapper.contains(<h1>Restaurants</h1>)).toEqual(true);
   });
 
   it("Should render the restaurants list", () => {
