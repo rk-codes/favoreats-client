@@ -23,6 +23,8 @@ export default class DishInfo extends React.Component {
   }
   render() {
     const reviewsCount = get(this.props.reviewIds, ["length"]) || 0;
+    const isPlural = reviewsCount !== 1;
+    const guessNoun = isPlural ? "reviews" : "review";
     return (
       <div className="dish-info">
         <div className="dish-data">
@@ -49,7 +51,7 @@ export default class DishInfo extends React.Component {
                 this.props.match.params.restaurantId
               }/dishes/${this.props.id}/reviews`}
             >
-              {reviewsCount} reviews
+              {reviewsCount} {guessNoun}
             </Link>
           </span>
         </div>

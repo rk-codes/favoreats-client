@@ -20,6 +20,8 @@ export default class RestaurantInfo extends React.Component {
     this.props.history.push(`/editrestaurant/${this.props.id}`);
   }
   render() {
+    const isPlural = this.props.dishIds.length !== 1;
+    const guessNoun = isPlural ? "dishes" : "dish";
     return (
       <div className="restaurant-outer">
         <div className="restaurant-info">
@@ -42,7 +44,9 @@ export default class RestaurantInfo extends React.Component {
             </div>
           </div>
           <div className="dish-count">
-            <p>{this.props.dishIds.length} Dishes </p>
+            <p>
+              {this.props.dishIds.length} {guessNoun}{" "}
+            </p>
           </div>
         </div>
       </div>
