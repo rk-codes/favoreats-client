@@ -28,7 +28,7 @@ export default class RestaurantsList extends React.Component {
     );
     return (
       <div className="restaurants-list">
-        <h1>My Restaurants</h1>
+        <h1>Restaurants</h1>
         <ul>{restaurant}</ul>
       </div>
     );
