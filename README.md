@@ -28,3 +28,7 @@ keeping track of the hits and misses.
 - Travis CI
 - Heroku
 - mLab
+
+## Screenshots
+
+![landing](screenshots/Landing.png)
