@@ -2,6 +2,9 @@
 FavorEats is an app that helps users log their favorite restaurants and dishes. User can add dishes and review them thereby
 keeping track of the hits and misses.
 
+## Live App
+https://silly-thompson-2a981e.netlify.com/
+
 ## Technology Used
 
 ### Front End
