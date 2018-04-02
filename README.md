@@ -32,3 +32,6 @@ keeping track of the hits and misses.
 ## Screenshots
 
 ![landing](screenshots/Landing.png)
+![home](screenshots/Home.png)
+![dishes](screenshots/Dishes.png)
+![reviews](screenshots/Reviews.png)
