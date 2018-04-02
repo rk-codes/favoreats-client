@@ -19,10 +19,12 @@ keeping track of the hits and misses.
 - MongoDB
 
 ### Testing and Deployment
-- Mocha
-- Chai
+
 - Enzyme
 - Jest
+- Mocha
+- Chai
+- Netlify
 - Travis CI
 - Heroku
 - mLab
