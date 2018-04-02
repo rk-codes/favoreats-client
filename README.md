@@ -34,7 +34,12 @@ https://silly-thompson-2a981e.netlify.com/
 
 ## Screenshots
 
+### Landing Page
 ![landing](screenshots/Landing.png)
+
+### Dashboard
 ![home](screenshots/Home.png)
+
 ![dishes](screenshots/DIshes.png)
+
 ![reviews](screenshots/Reviews.png)
