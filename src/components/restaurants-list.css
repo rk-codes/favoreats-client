@@ -12,3 +12,9 @@
 .restaurants-list h1 {
   font-family: "Oswald", sans-serif;
 }
+.restaurants-empty {
+  max-width: 600px;
+  margin: 10% auto;
+  padding: 10px;
+  text-align: center;
+}

@@ -26,11 +26,20 @@ export default class RestaurantsList extends React.Component {
         </li>
       )
     );
-    return (
-      <div className="restaurants-list">
-        <h1>Restaurants</h1>
-        <ul>{restaurant}</ul>
-      </div>
-    );
+    console.log(restaurant.length);
+    if (restaurant.length > 0) {
+      return (
+        <div className="restaurants-list">
+          <h1>Restaurants</h1>
+          <ul>{restaurant}</ul>
+        </div>
+      );
+    } else {
+      return (
+        <div className="restaurants-empty">
+          <h3>Start adding restaurants by clicking 'Add Restaurant'</h3>
+        </div>
+      );
+    }
   }
 }
