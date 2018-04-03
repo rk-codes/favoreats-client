@@ -13,11 +13,6 @@ export default class RestaurantsList extends React.Component {
   componentDidMount() {
     this.props.fetchAllRestaurants();
   }
-
-  // onAddClick() {
-  //   //render the add-restaurant form
-  //   this.props.history.push("/addrestaurant");
-  // }
   render() {
     const restaurant = Object.values(this.props.restaurants).map(
       (item, index) => (
@@ -26,7 +21,6 @@ export default class RestaurantsList extends React.Component {
         </li>
       )
     );
-    console.log(restaurant.length);
     if (restaurant.length > 0) {
       return (
         <div className="restaurants-list">
