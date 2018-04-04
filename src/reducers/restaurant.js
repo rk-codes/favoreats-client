@@ -6,6 +6,7 @@ import {
   normalizeReview
 } from "../utils/normalizer";
 import { mapDishToReviewIds } from "../utils/mapper";
+import { LOGOUT } from "../actions/auth";
 
 const initialState = {
   restaurants: {},
@@ -15,6 +16,9 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case LOGOUT:
+      return initialState;
+
     case actions.ADD_RESTAURANT_SUCCESS:
       //normalize restaurant
       const normalizedData = normalizeRestaurant(action.payload);

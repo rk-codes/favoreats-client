@@ -1,15 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearAuth } from "../actions/auth";
-import { clearAuthToken } from "../local-storage";
+import { logout } from "../actions/auth";
 
 import "./header.css";
 
 export class Header extends React.Component {
   logOut() {
-    this.props.dispatch(clearAuth());
-    clearAuthToken();
+    this.props.dispatch(logout());
+    // clearAuthToken();
   }
   render() {
     let navLinks;
