@@ -31,7 +31,8 @@ export default (state = initialState, action) => {
       );
 
       return Object.assign({}, state, {
-        restaurants: Object.assign({}, state.restaurants, ...restaurants)
+        //restaurants: Object.assign({}, state.restaurants, ...restaurants)
+        restaurants: Object.assign({}, ...restaurants)
       });
 
     case actions.DELETE_RESTAURANT_SUCCESS:
