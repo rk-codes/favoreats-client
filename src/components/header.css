@@ -1,11 +1,11 @@
 .header-container {
-  background: #333;
+  /* background: #333; */
   display: flex;
   justify-content: space-between;
 
   color: tomato;
-  padding: 20px 0;
-  margin-bottom: 20px;
+  padding: 12px 0;
+  /* margin-bottom: 20px; */
 }
 .header-container h1 {
   margin-left: 5%;

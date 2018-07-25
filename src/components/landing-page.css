@@ -1,6 +1,6 @@
 .landing-section {
   padding: 10px;
-  background-image: url("../img/brickwall.png");
+  /* background-image: url("../img/brickwall.png"); */
 }
 .about-outer {
   text-align: center;
@@ -22,13 +22,49 @@
   font-size: 0.9em;
 }
 .intro-box {
-  margin: 5%;
-  text-align: center;
   color: black;
   opacity: 0.8;
-  padding-left: 8px;
-  padding-right: 8px;
-  font-size: 1.2em;
+  background-image: linear-gradient(
+      to right,
+      rgba(138, 90, 31, 0.808),
+      rgba(69, 101, 90, 0.8)
+    ),
+    url("https://images.pexels.com/photos/693269/pexels-photo-693269.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=350");
+  background-size: cover;
+  background-position: top;
+  height: 90vh;
+  margin-bottom: 20px;
+}
+.intro-box-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-family: "Lato", sans-serif;
+}
+
+.heading-primary {
+  color: #fff;
+  /* text-transform: uppercase; */
+}
+.heading-primary-main {
+  display: block;
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 3.4rem;
+  text-transform: uppercase;
+  animation: moveInLeft 1s ease-in-out;
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.3rem;
+  animation: moveInRight 2s ease-in-out;
+  margin-bottom: 4rem;
 }
 .intro-box h3 {
   font-size: 30px;
@@ -40,6 +76,16 @@
   color: tomato;
 }
 
+.msg-box {
+  margin: 5%;
+  text-align: center;
+  color: black;
+  opacity: 0.8;
+  padding-left: 8px;
+  padding-right: 8px;
+  /* font-size: 1.2em; */
+  font-size: 1.5rem;
+}
 .footer-box {
   color: tomato;
   width: 100%;
@@ -48,6 +94,34 @@
   margin: 0;
   font-family: "Playball", cursive;
 }
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    /* transform: translateX(100px); */
+  }
+
+  100% {
+    opacity: 1;
+    /* transform: translate(0); */
+  }
+}
 @media (min-width: 760px) {
   .about-inner {
     flex-wrap: nowrap;
@@ -55,7 +129,7 @@
 }
 @media (min-width: 640px) {
   .intro-box {
-    height: 200px;
+    /* height: 200px; */
     padding: 10px;
   }
   .about-inner div {

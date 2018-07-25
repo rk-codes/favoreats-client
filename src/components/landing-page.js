@@ -11,6 +11,25 @@ export function LandingPage(props) {
   return (
     <section className="landing-section">
       <div className="intro-box">
+        <div className="intro-box-text">
+          <h1 class="heading-primary">
+            <span class="heading-primary-main">FavorEats</span>
+            <span class="heading-primary-sub">
+              Your favorite restaurants and dishes in one place
+            </span>
+          </h1>
+        </div>
+        {/* <p>
+            Finding a good place to eat is hard enough. Keeping track of them,
+            even harder. Fret no more!
+          </p>
+          <p>
+            Share your dining experience with us and we'll track your hits and
+            misses for you.
+          </p> */}
+      </div>
+
+      <div class="msg-box">
         <p>
           Finding a good place to eat is hard enough. Keeping track of them,
           even harder. Fret no more!
