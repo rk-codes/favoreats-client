@@ -4,6 +4,7 @@ import RestaurantsList from "../containers/restaurants-list";
 import { connect } from "react-redux";
 
 import { fetchAllRestaurants } from "../actions";
+import "./home-page.css";
 
 export class HomePage extends React.Component {
   componentDidMount() {
@@ -14,7 +15,14 @@ export class HomePage extends React.Component {
     console.log("HOME");
     if (Object.getOwnPropertyNames(this.props.restaurants).length === 0) {
       console.log("home empty");
-      return <h3>Welcome! Start adding restaurants</h3>;
+      return (
+        <h3 className="welcome-msg">
+          No restaurants added!<p>
+            Click <span className="add-link">'Add Restaurant'</span> to start
+            adding restaurants
+          </p>
+        </h3>
+      );
     } else {
       return (
         <div>

@@ -1,0 +1,21 @@
+.welcome-msg {
+  margin: 10% auto;
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+  animation: fadeIn 1.5s ease-in-out;
+  font-family: "Oswald", sans-serif;
+  font-weight: 300;
+}
+
+.add-link {
+  color: tomato;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
